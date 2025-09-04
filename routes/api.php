@@ -1,0 +1,48 @@
+<?php
+
+use App\Models\Medicaments;
+use Illuminate\Http\Request;
+use Illuminate\Routing\RouteGroup;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\UsersController;
+use App\Http\Controllers\Api\CategoriesController;
+use App\Http\Controllers\Api\MedicamentsController;
+
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "api" middleware group. Make something great!
+|
+*/
+
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::post('/login', [UsersController::class, 'login']);
+Route::post('/register', [UsersController::class, 'register']);
+
+// Route::group(['middleware'=>['auth:sanctum']],function(){
+
+    Route::get('/users', [UsersController::class, 'index']);
+    Route::post('/logout', [UsersController::class, 'logout']);
+
+    Route::get('/categories', [CategoriesController::class, 'index_categories']);
+    Route::get('/categories-show/{id}', [CategoriesController::class, 'show']);
+    Route::post('/categories-store', [CategoriesController::class, 'register_categories']);
+    Route::put('/categories-update/{id}/', [CategoriesController::class, 'update']);
+
+    Route::get('/medicaments', [MedicamentsController::class, 'index_medicaments']);
+    Route::get('/medicament-show/{id}', [MedicamentsController::class, 'show']);
+    Route::post('/medicament-store', [MedicamentsController::class, 'register_medicaments']);
+    Route::put('/medicament-update/{id}/', [MedicamentsController::class, 'update']);
+
+
+
+
+
+// });
