@@ -66,7 +66,7 @@ class MedicamentsController extends Controller
             // foreach ($request->file('images') as $image) {
                 // Générer un nom unique pour l'image
                 $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-                $path = $file->move(public_path('/assets/images/produits'), $filename);
+                $path = $file->move(public_path('/assets/images/produits/'), $filename);
 
             // Stocker l'image
             // $image->move('assets/images/produits', $imageName);

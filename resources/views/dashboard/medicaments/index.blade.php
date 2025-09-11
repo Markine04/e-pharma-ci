@@ -6,12 +6,18 @@
 
         <!-- Bordered Table -->
         <div class="card">
-            <div class="navbar-nav align-items-center me-auto">
-                <div class="card-header">Medicaments </div>
-                <div class="ml-9" style="float: right;">
-                    <a href="{{route('medicaments.create')}}" class="btn btn-primary">Ajouter</a>
-                    </div>
+            <div class="navbar-nav me-auto container mt-5">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12">
+                        <h4>Medicaments
+                            <div class="ml-8" style="float: right">
+                                <a href="{{ route('medicaments.create') }}" class="btn btn-primary">Ajouter un medicament
+                                    </a>
+                            </div>
 
+                        </h4>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive text-nowrap">

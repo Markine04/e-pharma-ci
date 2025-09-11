@@ -211,15 +211,46 @@
     <li class="menu-header small text-uppercase">
       <span class="menu-header-text">Apps &amp; Pages</span>
     </li>
-    <li class="menu-item">
-      <a
-        href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/vertical-menu-template/app-email.html"
-        target="_blank"
-        class="menu-link">
-        <i class="menu-icon tf-icons bx bx-envelope"></i>
-        <div class="text-truncate" data-i18n="Email">Email</div>
-        <div class="badge rounded-pill bg-label-primary text-uppercase fs-tiny ms-auto">Pro</div>
+    <li class="menu-item {{(Route::is('categoriemedicaments.*')?'active open':'')}} {{(Route::is('regions.*')?'active open':'')}} {{(Route::is('communes.*')?'active open':'')}}  {{(Route::is('pharmacies.*')?'active open':'')}}">
+      <a href="javascript:void(0);" class="menu-link menu-toggle">
+        <i class="menu-icon tf-icons bx bx-layout"></i>
+        <div class="text-truncate">Paramètres</div>
       </a>
+
+      <ul class="menu-sub">
+        <li class="menu-item {{(Route::is('categoriemedicaments.index')?'active':'')}}">
+          <a href="{{route('categoriemedicaments.index')}}" class="menu-link">
+            <div class="text-truncate" data-i18n="Without navbar">Categories</div>
+          </a>
+        </li>
+        <li class="menu-item {{(Route::is('pharmacies.index')?'active':'')}} ">
+          <a href="{{route('pharmacies.index')}}" class="menu-link">
+            <div class="text-truncate" data-i18n="Fluid">Pharmacies</div>
+          </a>
+        </li>
+        <li class="menu-item  {{(Route::is('regions.index')?'active':'')}}">
+          <a href="{{route('regions.index')}}" class="menu-link">
+            <div class="text-truncate" data-i18n="Without menu">Régions</div>
+          </a>
+        </li>
+        <li class="menu-item {{(Route::is('communes.index')?'active':'')}}">
+          <a href="{{route('communes.index')}}" class="menu-link">
+            <div class="text-truncate" data-i18n="Without navbar">Commnunes</div>
+          </a>
+        </li>
+        
+        
+        {{-- <li class="menu-item">
+          <a href="layouts-container.html" class="menu-link">
+            <div class="text-truncate" data-i18n="Container">Container</div>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="layouts-blank.html" class="menu-link">
+            <div class="text-truncate" data-i18n="Blank">Blank</div>
+          </a>
+        </li> --}}
+      </ul>
     </li>
     <li class="menu-item">
       <a
