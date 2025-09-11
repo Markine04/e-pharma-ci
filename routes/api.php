@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UsersController;
 use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\MedicamentsController;
+use App\Http\Controllers\Api\PharmaciesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,13 @@ Route::post('/register', [UsersController::class, 'register']);
     Route::get('/medicament-show/{id}', [MedicamentsController::class, 'show']);
     Route::post('/medicament-store', [MedicamentsController::class, 'register_medicaments']);
     Route::put('/medicament-update/{id}/', [MedicamentsController::class, 'update']);
+
+
+    Route::get('/pharmacies', [PharmaciesController::class, 'index_pharmacies']);
+    Route::get('/pharmacie-show/{id}', [PharmaciesController::class, 'show']);
+    Route::post('/pharmacie-store', [PharmaciesController::class, 'register_pharmacies']);
+    Route::put('/pharmacie-update/{id}/', [PharmaciesController::class, 'update']);
+
 
 
 

@@ -24,18 +24,33 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th></th>
+                                <th>Actions</th>
+                                <th>Images</th>
                                 <th>Libelles</th>
                                 <th>Adresses</th>
                                 <th>Telephones</th>
                                 <th>Communes</th>
                                 <th>Statuts</th>
-                                <th>Actions</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($pharmacies as $items)
                                 <tr>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                                data-bs-toggle="dropdown">
+                                                <i class="icon-base bx bx-dots-vertical-rounded"></i>
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="{{route('pharmacies.edit',['id'=>$items->id])}}"><i
+                                                        class="icon-base bx bx-edit-alt me-1" style='color:rgba(0, 119, 255, 0.637);'></i> Modifier</a>
+                                                <a class="dropdown-item" href="javascript:void(0);"><i
+                                                        class="icon-base bx bx-trash me-1" style='color:rgba(255, 0, 0, 0.637);'></i> Supprimer</a>
+                                            </div>
+                                        </div>
+                                    </td>
                                     <td>
                                         <img src="{{asset('pharmacies/'.$items->images)}}" alt="{{ $items->name }}" width="90px" height="70px">
                                         
@@ -46,23 +61,11 @@
                                     </td>
                                     <td>{{ $items->phone }}</td>
                                     <td>
-                                        {{ $items->commune_id }}
+                                        {{ DB::table('communes')->where('id', $items->commune_id)->get()[0]->name }}
+
                                     </td>
                                     <td><span class="badge bg-label-primary me-1">Active</span></td>
-                                    <td>
-                                        <div class="dropdown">
-                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                data-bs-toggle="dropdown">
-                                                <i class="icon-base bx bx-dots-vertical-rounded"></i>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="javascript:void(0);"><i
-                                                        class="icon-base bx bx-edit-alt me-1"></i> Edit</a>
-                                                <a class="dropdown-item" href="javascript:void(0);"><i
-                                                        class="icon-base bx bx-trash me-1"></i> Delete</a>
-                                            </div>
-                                        </div>
-                                    </td>
+                                    
                                 </tr>
                             @endforeach
                         </tbody>

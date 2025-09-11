@@ -94,9 +94,10 @@ class PharmaciesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Pharmacies $pharmacies)
+    public function edit(Request $request)
     {
-        //
+        $pharmacies = DB::table('pharmacies')->where('id', $request->id)->first();
+        return view('dashboard.pharmacies.edit', compact('pharmacies'));
     }
 
     /**
@@ -104,7 +105,31 @@ class PharmaciesController extends Controller
      */
     public function update(Request $request, Pharmacies $pharmacies)
     {
-        //
+        $filename = '';
+        if($request->images==""){
+            $filename = $request->lastimages;
+        }else{
+            if ($request->hasfile('images')) {
+                $filename = time() . '.' . $request->images->getClientOriginalExtension();
+                $request->images->move(public_path('pharmacies/'), $filename);
+            }
+        }
+
+        // dd($filename);
+        DB::table('pharmacies')->where('id',$request->id)->update([
+            'name' => $request->name,
+            'address' => $request->address,
+            'phone' => $request->telephone,
+            'images' => $filename,
+            'commune_id' => $request->commune_id,
+            'latitude' => $request->latitude,
+            'is_active' => 1,
+            'longitude' => $request->longitude,
+            'user_enreg' => Auth::user()->id,
+            // 'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+        return redirect()->route('pharmacies.index')->with('success', 'Pharmacie ajoutée avec succès');
     }
 
     /**

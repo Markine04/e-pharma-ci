@@ -19,7 +19,7 @@
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label for="address">Adresse</label>
-                                    <input type="text" name="address" class="form-control" id="address" required />
+                                    <input type="text" name="address" class="form-control" id="address"  />
                                 </div>
                             </div>
                         </div>
@@ -50,13 +50,13 @@
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label for="latitude">Latitude</label>
-                                    <input type="text" name="latitude" class="form-control" id="latitude" required />
+                                    <input type="text" name="latitude" class="form-control" id="latitude" />
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label for="longitude">Longitide</label>
-                                    <input type="text" name="longitude" class="form-control" id="longitude" required />
+                                    <input type="text" name="longitude" class="form-control" id="longitude" />
                                 </div>
                             </div>
                         </div>

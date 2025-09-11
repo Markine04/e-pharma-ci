@@ -59,7 +59,7 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard/pharmacie/create', [PharmaciesController::class, 'create'])->name('pharmacies.create');
     Route::post('dashboard/pharmacie', [PharmaciesController::class, 'store'])->name('pharmacies.store');
     Route::get('dashboard/pharmacie/{id}/edit', [PharmaciesController::class, 'edit'])->name('pharmacies.edit');
-    Route::put('dashboard/pharmacie/{id}', [PharmaciesController::class, 'update'])->name('pharmacies.update');
+    Route::post('dashboard/pharmacie/{id}', [PharmaciesController::class, 'update'])->name('pharmacies.update');
     Route::delete('dashboard/pharmacie/{id}', [PharmaciesController::class, 'destroy'])->name('pharmacies.destroy');
     Route::get('dashboard/pharmacie-uploadImages', [PharmaciesController::class, 'upload'])->name('pharmacies.upload');
 
