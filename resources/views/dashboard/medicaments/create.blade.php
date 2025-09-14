@@ -350,7 +350,64 @@
                     </div>
                 </div>
             </div>
-            
+
+            <div class="form-section">
+                <h2><i class="fas fa-info-circle"></i> Indications</h2>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="indication">Description indication</label>
+                            <textarea id="indication" name="indication" placeholder="indication détaillée du produit..." class="form-control" rows="5">{{ old('description') }}</textarea>
+                            @error('indication')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-section">
+                <h2><i class="fas fa-info-circle"></i> Posologies</h2>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="posologie">Description posologie</label>
+                            <textarea id="posologie" name="posologie" placeholder="posologie détaillée du produit..." class="form-control" rows="5">{{ old('posologie') }}</textarea>
+                            @error('posologie')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-section">
+                <h2><i class="fas fa-info-circle"></i> Contre-indications</h2>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="contreindication">Description contre-indication</label>
+                            <textarea id="contreindication" name="contreindication" placeholder="contre-indication détaillée du produit..." class="form-control" rows="5">{{ old('contreindication') }}</textarea>
+                            @error('contreindication')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-section">
+                <h2><i class="fas fa-info-circle"></i> Compositions</h2>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="composition">Description composition</label>
+                            <textarea id="composition" name="composition" placeholder="composition détaillée du produit..." class="form-control" rows="5">{{ old('composition') }}</textarea>
+                            @error('composition')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Section Fournisseur et Prix -->
             <div class="form-section">
                 <h2><i class="fas fa-truck"></i> Fournisseur et Prix</h2>
