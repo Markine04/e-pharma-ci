@@ -29,24 +29,26 @@ Route::post('/register', [UsersController::class, 'register']);
 
 // Route::group(['middleware'=>['auth:sanctum']],function(){
 
-    Route::get('/users', [UsersController::class, 'index']);
-    Route::post('/logout', [UsersController::class, 'logout']);
+Route::get('/users', [UsersController::class, 'index']);
+Route::post('/logout', [UsersController::class, 'logout']);
 
-    Route::get('/categories', [CategoriesController::class, 'index_categories']);
-    Route::get('/categories-show/{id}', [CategoriesController::class, 'show']);
-    Route::post('/categories-store', [CategoriesController::class, 'register_categories']);
-    Route::put('/categories-update/{id}/', [CategoriesController::class, 'update']);
+Route::get('/categories', [CategoriesController::class, 'index_categories']);
+Route::get('/categories-show/{id}', [CategoriesController::class, 'show']);
+Route::post('/categories-store', [CategoriesController::class, 'register_categories']);
+Route::put('/categories-update/{id}/', [CategoriesController::class, 'update']);
 
-    Route::get('/medicaments', [MedicamentsController::class, 'index_medicaments']);
-    Route::get('/medicament-show/{id}', [MedicamentsController::class, 'show']);
-    Route::post('/medicament-store', [MedicamentsController::class, 'register_medicaments']);
-    Route::put('/medicament-update/{id}/', [MedicamentsController::class, 'update']);
+Route::get('/medicaments', [MedicamentsController::class, 'index_medicaments']);
+Route::get('/medicament-show/{id}', [MedicamentsController::class, 'show']);
+Route::get('/medicament-search', [PharmaciesController::class, 'search_pharmacies']);
+Route::post('/medicament-store', [MedicamentsController::class, 'register_medicaments']);
+Route::put('/medicament-update/{id}/', [MedicamentsController::class, 'update']);
 
 
-    Route::get('/pharmacies', [PharmaciesController::class, 'index_pharmacies']);
-    Route::get('/pharmacie-show/{id}', [PharmaciesController::class, 'show']);
-    Route::post('/pharmacie-store', [PharmaciesController::class, 'register_pharmacies']);
-    Route::put('/pharmacie-update/{id}/', [PharmaciesController::class, 'update']);
+Route::get('/pharmacies', [PharmaciesController::class, 'index_pharmacies']);
+Route::get('/pharmacies-search', [PharmaciesController::class, 'search_pharmacies']);
+Route::get('/pharmacie-show/{id}', [PharmaciesController::class, 'show']);
+Route::post('/pharmacie-store', [PharmaciesController::class, 'register_pharmacies']);
+Route::put('/pharmacie-update/{id}/', [PharmaciesController::class, 'update']);
 
 
 

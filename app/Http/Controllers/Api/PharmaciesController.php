@@ -26,6 +26,27 @@ class PharmaciesController extends Controller
         ], 200);
     }
 
+
+    public function search_pharmacies(Request $request)
+    {
+        $query = $request->get('q', '');
+        if (empty($query)) {
+            return response()->json([
+                'message' => 'Veuillez entrer un mot clé',
+            ], 400);
+        }
+
+        $querypharmacies = DB::table('pharmacies')->where('name', 'like', "%$query%")->get();
+
+        return response()->json([
+            // 'message' => 'Liste de toutes les categories existente',
+            'querypharmacies' => $querypharmacies,
+        ], 200);
+    }
+
+
+    
+
     /**
      * Show the form for creating a new resource.
      */
