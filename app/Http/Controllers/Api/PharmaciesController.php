@@ -95,7 +95,7 @@ class PharmaciesController extends Controller
     {
         return response()->json(
             [
-                'pharmacies' => DB::table('pharmacies')->where('id', $id)->get()
+                'pharmacies' => DB::table('pharmacies')->where('idpharmacie', $id)->get()
             ],
         );
     }

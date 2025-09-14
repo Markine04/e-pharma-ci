@@ -65,7 +65,7 @@ class CategoriesController extends Controller
     public function show(string $id)
     {
         return response()->json([
-            'categories' => DB::table('categories')->where('id', $id)->get(),]
+            'categories' => DB::table('categories')->where('idcategorie', $id)->get(),]
         );
     }
 

@@ -119,7 +119,7 @@ class MedicamentsController extends Controller
     public function show(string $id)
     {
         return response()->json([
-            'medicaments' => DB::table('medicaments')->where('id', $id)->get()],
+            'medicaments' => DB::table('medicaments')->where('idmedicament', $id)->get()],
         );
     }
 
