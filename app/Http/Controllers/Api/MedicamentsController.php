@@ -36,7 +36,9 @@ class MedicamentsController extends Controller
                 'message' => 'Veuillez entrer un mot clé',
             ], 400);
         }
-        $querymedicaments = DB::table('medicaments')->where('nom', 'like', "%$query%")->get();
+        $querymedicaments = DB::table('medicaments')
+        ->join('categories', 'medicaments.categorie_id', '=', 'categories.idcategorie')
+        ->where('nom', 'like', "%$query%")->get();
 
         return response()->json([
             // 'message' => 'Liste de toutes les categories existente',
