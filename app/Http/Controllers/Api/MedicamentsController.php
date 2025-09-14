@@ -26,6 +26,23 @@ class MedicamentsController extends Controller
         ], 200);
     }
 
+    
+
+        public function search_medicaments(Request $request)
+    {
+        $query = $request->get('q', '');
+        if (empty($query)) {
+            return response()->json([
+                'message' => 'Veuillez entrer un mot clé',
+            ], 400);
+        }
+        $querymedicaments = DB::table('medicaments')->where('nom', 'like', "%$query%")->get();
+
+        return response()->json([
+            // 'message' => 'Liste de toutes les categories existente',
+            'querymedicaments' => $querymedicaments,
+        ], 200);
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -103,6 +120,7 @@ class MedicamentsController extends Controller
             'medicaments' => DB::table('medicaments')->where('id', $id)->get()],
         );
     }
+
 
     /**
      * Show the form for editing the specified resource.
