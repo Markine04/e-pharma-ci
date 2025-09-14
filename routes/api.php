@@ -39,7 +39,7 @@ Route::put('/categories-update/{id}/', [CategoriesController::class, 'update']);
 
 Route::get('/medicaments', [MedicamentsController::class, 'index_medicaments']);
 Route::get('/medicament-show/{id}', [MedicamentsController::class, 'show']);
-Route::get('/medicament-search', [MedicamentsController::class, 'search_pharmacies']);
+Route::get('/medicament-search', [MedicamentsController::class, 'search_medicaments']);
 Route::post('/medicament-store', [MedicamentsController::class, 'register_medicaments']);
 Route::put('/medicament-update/{id}/', [MedicamentsController::class, 'update']);
 
