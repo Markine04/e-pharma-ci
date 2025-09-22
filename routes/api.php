@@ -52,7 +52,7 @@ Route::post('/pharmacie-store', [PharmaciesController::class, 'register_pharmaci
 Route::put('/pharmacie-update/{id}/', [PharmaciesController::class, 'update']);
 
 
-Route::post('/upload', [UploadController::class, 'store']);
+Route::post('/upload-ordonnances', [UploadController::class, 'store']);
 
 
 

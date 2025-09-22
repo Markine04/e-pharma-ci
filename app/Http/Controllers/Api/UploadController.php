@@ -26,17 +26,21 @@ class UploadController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    
     public function store(Request $request)
     {
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('uploads', 'public');
+            $file = $request->file('image');
+            $name = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('uploads', $name, 'public');
+
             return response()->json([
                 'success' => true,
-                'path' => asset('storage/' . $path)
-            ]);
+                'url' => asset('storage/uploads/' . $name)
+            ], 200);
         }
 
-        return response()->json(['success' => false, 'message' => 'Aucune image reçue']);
+        return response()->json(['success' => false, 'message' => 'Aucune image reçue'], 400);
     }
 
     /**
