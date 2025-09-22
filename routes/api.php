@@ -5,9 +5,10 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UsersController;
+use App\Http\Controllers\Api\UploadController;
 use App\Http\Controllers\Api\CategoriesController;
-use App\Http\Controllers\Api\MedicamentsController;
 use App\Http\Controllers\Api\PharmaciesController;
+use App\Http\Controllers\Api\MedicamentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,7 @@ Route::post('/pharmacie-store', [PharmaciesController::class, 'register_pharmaci
 Route::put('/pharmacie-update/{id}/', [PharmaciesController::class, 'update']);
 
 
+Route::post('/upload', [UploadController::class, 'store']);
 
 
 
