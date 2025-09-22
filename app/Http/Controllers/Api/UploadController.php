@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class UploadController extends Controller
 {
@@ -26,19 +28,31 @@ class UploadController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    
+
     public function store(Request $request)
     {
+        $name = "";
+
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $name = time() . '_' . $file->getClientOriginalName();
-            $file->storeAs('uploads', $name, 'public');
+            $name = time() . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('ordonnances', $name, 'public');
+
+            DB::table('ordonnance_clients')->insert([
+                'image' => $name,
+                // 'id_ordonnance' => $request->id_ordonnance,
+                'id_client' => $request->id_client,
+                // 'id_medecin' => $request->id
+                "created_at" => Carbon::now(),
+            ]);
 
             return response()->json([
                 'success' => true,
                 'url' => asset('storage/uploads/' . $name)
             ], 200);
         }
+
+
 
         return response()->json(['success' => false, 'message' => 'Aucune image reçue'], 400);
     }
