@@ -13,6 +13,7 @@ use App\Http\Controllers\PharmaciesController;
 use App\Http\Controllers\MedicamentsController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\CategorieMedicamentsController;
+use App\Http\Controllers\OrdonnancesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,7 +84,7 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard/region-uploadImages', [RegionsController::class, 'uploadImages'])->name('regions.temp');
 
 
-    //Regions
+    //Categories medicament
     Route::get('dashboard/categorie-medicaments', [CategorieMedicamentsController::class, 'index'])->name('categoriemedicaments.index');
     Route::get('dashboard/categorie-medicament/create', [CategorieMedicamentsController::class, 'create'])->name('categoriemedicaments.create');
     Route::post('dashboard/categorie-medicament', [CategorieMedicamentsController::class, 'store'])->name('categoriemedicaments.store');
@@ -93,6 +94,15 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard/categorie-medicament-uploadImages', [CategorieMedicamentsController::class, 'uploadImages'])->name('categoriemedicaments.temp');
 
     
+    //Ordonnances
+    Route::get('dashboard/ordonnances', [OrdonnancesController::class, 'index'])->name('ordonnances.index');
+    Route::get('dashboard/ordonnance/create', [OrdonnancesController::class, 'create'])->name('ordonnances.create');
+    Route::post('dashboard/ordonnance', [OrdonnancesController::class, 'store'])->name('ordonnances.store');
+    Route::get('dashboard/ordonnance/{id}/edit', [OrdonnancesController::class, 'edit'])->name('ordonnances.edit');
+    Route::put('dashboard/ordonnance/{id}', [OrdonnancesController::class, 'update'])->name('ordonnances.update');
+    Route::delete('dashboard/ordonnance/{id}', [OrdonnancesController::class, 'destroy'])->name('ordonnances.destroy');
+    Route::get('dashboard/ordonnance-uploadImages', [OrdonnancesController::class, 'uploadImages'])->name('ordonnances.temp');
+
 
 })->middleware(['auth', 'verified'])->name('dashboard');
 

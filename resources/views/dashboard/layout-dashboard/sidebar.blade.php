@@ -121,7 +121,7 @@
     </li>
 
     <!-- Layouts -->
-    <li class="menu-item {{(Route::is('medicaments.*')?'active open':'')}}">
+    <li class="menu-item {{(Route::is('medicaments.*')?'active open':'')}} {{(Route::is('ordonnances.*')?'active open':'')}}">
       <a href="javascript:void(0);" class="menu-link menu-toggle">
         <i class="menu-icon tf-icons bx bx-layout"></i>
         <div class="text-truncate">Produits</div>
@@ -133,9 +133,9 @@
             <div class="text-truncate" data-i18n="Without menu">Medicaments</div>
           </a>
         </li>
-        <li class="menu-item">
-          <a href="layouts-without-navbar.html" class="menu-link">
-            <div class="text-truncate" data-i18n="Without navbar">Produits de Beauté</div>
+        <li class="menu-item {{(Route::is('ordonnances.index')?'active':'')}}">
+          <a href="{{route('ordonnances.index')}}" class="menu-link">
+            <div class="text-truncate" data-i18n="Without navbar">Ordonnances</div>
           </a>
         </li>
         <li class="menu-item">
