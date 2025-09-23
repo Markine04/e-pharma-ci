@@ -50,7 +50,7 @@
                             <tr>
                                 <th>Actions</th>
                                 <th>Images</th>
-                                <th>Libelles</th>
+                                <th>Note</th>
                                 <th>Adresses</th>
                                 <th>Telephones</th>
                                 <th>Communes</th>
@@ -78,17 +78,10 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <img class="thumbnail"
-                                            src="{{ asset('/storage/ordonnances-clients/' . $items->image) }}"
-                                            alt="{{ $items->id_client }}" width="20px" height="50px"
-                                            onclick="agrandirImage()">
-
-
-                                        <!-- Image agrandie (cachée initialement) -->
-                                        <img id="fullImage" onclick="reduireImage()"
-                                            src="{{ asset('/storage/ordonnances-clients/' . $items->image) }}">
+                                        <img src="{{ asset('/storage/ordonnances-clients/' . $items->image) }}"
+                                            alt="{{ $items->id_client }}" width="90px" height="70px">
                                     </td>
-                                    <td>{{ $items->id_client }}</td>
+                                    <td>{{ $items->note }}</td>
                                     <td>
                                         {{ $items->id_client }}
                                     </td>
