@@ -13,7 +13,6 @@
                                 <a href="{{ route('pharmacies.create') }}" class="btn btn-primary">Ajouter une
                                     Ordonnance</a>
                             </div>
-
                         </h4>
                     </div>
                 </div>
@@ -43,10 +42,12 @@
                                             </button>
                                             <div class="dropdown-menu">
 
-                                                <a class="dropdown-item"
+                                                {{-- <a class="dropdown-item"
                                                     href="{{ route('ordonnances.edit', ['id' => $items->id_ordonnance]) }}"><i
                                                         class="icon-base bx bx-edit-alt me-1"
-                                                        style='color:rgba(0, 119, 255, 0.637);'></i> Modifier</a>
+                                                        style='color:rgba(0, 119, 255, 0.637);'></i> Modifier</a> --}}
+
+
                                                 <a class="dropdown-item" style="cursor: pointer;"
                                                     data-url="{{ route('ordonnances.delete', ['id' => $items->id_ordonnance]) }}"
                                                     data-ajax-popup="true" data-size="md"

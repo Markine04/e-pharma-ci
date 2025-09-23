@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AssurancesController;
 use App\Models\Regions;
 use App\Models\Medicaments;
 use App\Models\CategorieMedicaments;
@@ -105,6 +106,19 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard/ordonnance-image/{id}', [OrdonnancesController::class, 'show'])->name('ordonnances.image');
     Route::get('dashboard/ordonnance-traiter/{id}', [OrdonnancesController::class, 'traiter'])->name('ordonnances.traiter');
     Route::post('dashboard/ordonnance-verifier', [OrdonnancesController::class, 'verifier'])->name('ordonnances.verifier');
+
+
+
+
+    //Assurances
+    Route::get('dashboard/assurances', [AssurancesController::class, 'index'])->name('assurances.index');
+    Route::get('dashboard/assurance/create', [AssurancesController::class, 'create'])->name('assurances.create');
+    Route::post('dashboard/assurance', [AssurancesController::class, 'store'])->name('assurances.store');
+    Route::get('dashboard/assurance/{id}/edit', [AssurancesController::class, 'edit'])->name('assurances.edit');
+    Route::put('dashboard/assurance/{id}', [AssurancesController::class, 'update'])->name('assurances.update');
+    Route::delete('dashboard/assurance/{id}', [AssurancesController::class, 'destroy'])->name('assurances.destroy');
+    Route::get('dashboard/assurance-uploadImages', [AssurancesController::class, 'uploadImages'])->name('assurances.temp');
+
 
 
 })->middleware(['auth', 'verified'])->name('dashboard');
