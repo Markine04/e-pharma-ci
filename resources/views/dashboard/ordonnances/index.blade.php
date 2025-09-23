@@ -2,32 +2,7 @@
 @section('content')
     <!-- Content -->
     <div class="container-xxl flex-grow-1 container-p-y">
-        <style>
-            /* Style pour l'image miniature */
-            .thumbnail {
-                width: 200px;
-                cursor: pointer;
-                transition: transform 0.2s;
-            }
-
-            .thumbnail:hover {
-                transform: scale(1.05);
-            }
-
-            /* Style pour la version agrandie */
-            #fullImage {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                object-fit: contain;
-                background: rgba(0, 0, 0, 0.8);
-                cursor: zoom-out;
-            }
-        </style>
-
+        
         <!-- Bordered Table -->
         <div class="card">
             <div class="me-auto container mt-5">
@@ -68,7 +43,7 @@
                                             </button>
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item"
-                                                    href="{{ route('ordonnances.edit', ['id' => $items->id_ordonannce]) }}"><i
+                                                    href="{{ route('ordonnances.edit', ['id' => $items->id_ordonnance]) }}"><i
                                                         class="icon-base bx bx-edit-alt me-1"
                                                         style='color:rgba(0, 119, 255, 0.637);'></i> Modifier</a>
                                                 <a class="dropdown-item" href="javascript:void(0);"><i
@@ -78,8 +53,10 @@
                                         </div>
                                     </td>
                                     <td>
+                                        <a href="{{ route('ordonnances.image',['id'=>$items->id_ordonnance])}}" target="_blank">
                                         <img src="{{ asset('/storage/ordonnances-clients/' . $items->image) }}"
                                             alt="{{ $items->id_client }}" width="90px" height="70px">
+                                        </a>
                                     </td>
                                     <td>{{ $items->note }}</td>
                                     <td>
@@ -89,7 +66,36 @@
                                     <td>
 
                                     </td>
-                                    <td><span class="badge bg-label-primary me-1">Active</span></td>
+                                    @switch($items->statut)
+                                        @case('1')
+                                        <span class="badge bg-label-primary me-1">
+                                            <a data-url="{{route('ordonnances.traiter',['id'=>$items->id_ordonnance])}}" data-ajax-popup="true" data-size="md"
+                                            data-title="Traiter l'ordonnance">
+                                            <i class="si si-note" style="font-size: 15px;"></i>
+                                        </a>
+                                        </span>
+                                            
+                                            @break
+
+                                        @case('2')
+                                        <span class="badge bg-label-primary me-1">Active</span>
+                                            
+                                            @break
+
+                                        @case('3')
+                                        <span class="badge bg-label-primary me-1">Active</span>
+                                            
+                                            @break
+                                    
+                                        @default
+                                            
+                                    @endswitch
+                                    <td>
+                                        
+                                        
+                                        
+                                        <span class="badge bg-label-primary me-1">Active</span>
+                                    </td>
 
                                 </tr>
                             @endforeach

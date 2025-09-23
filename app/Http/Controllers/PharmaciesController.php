@@ -96,7 +96,7 @@ class PharmaciesController extends Controller
      */
     public function edit(Request $request)
     {
-        $pharmacies = DB::table('pharmacies')->where('id', $request->id)->first();
+        $pharmacies = DB::table('pharmacies')->where('idpharmacie', $request->id)->first();
         return view('dashboard.pharmacies.edit', compact('pharmacies'));
     }
 

@@ -34,7 +34,7 @@
                                 <tr>
                                     <td>{{ $items->name}}</td>
                                     <td>
-                                        {{ DB::table('regions')->where('id', $items->region_id)->get()[0]->name }}
+                                        {{ DB::table('regions')->where('idregion', $items->region_id)->get()[0]->name }}
                                     </td>
                                     <td>
                                         <div class="dropdown">

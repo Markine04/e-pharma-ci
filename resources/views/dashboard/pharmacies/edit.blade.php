@@ -10,7 +10,7 @@
                 $communes = DB::table('communes')->get();
             @endphp
             <div class="card-body">
-                <form method="post" action="{{ route('pharmacies.update',['id'=>$pharmacies->id]) }}" enctype="multipart/form-data">
+                <form method="post" action="{{ route('pharmacies.update',['id'=>$pharmacies->idpharmacie]) }}" enctype="multipart/form-data">
                     @csrf
 
                     <input type="hidden" name="lastimages" value="{{$pharmacies->images}}">
@@ -44,7 +44,7 @@
                                     <select name="commune_id" id="city_id" class="form-control select2" required>
                                         <option value="">-- Sélectionner une ville --</option>
                                         @foreach ($communes as $city)
-                                            <option value="{{ $city->id }}"{{$pharmacies->commune_id == $city->id ? 'selected': ''}}>{{ $city->name }}</option>
+                                            <option value="{{ $city->idcommune }}"{{$pharmacies->commune_id == $city->idcommune ? 'selected': ''}}>{{ $city->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>

@@ -44,7 +44,7 @@
                                                 <i class="icon-base bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="{{route('pharmacies.edit',['id'=>$items->id])}}"><i
+                                                <a class="dropdown-item" href="{{route('pharmacies.edit',['id'=>$items->idpharmacie])}}"><i
                                                         class="icon-base bx bx-edit-alt me-1" style='color:rgba(0, 119, 255, 0.637);'></i> Modifier</a>
                                                 <a class="dropdown-item" href="javascript:void(0);"><i
                                                         class="icon-base bx bx-trash me-1" style='color:rgba(255, 0, 0, 0.637);'></i> Supprimer</a>
@@ -61,7 +61,7 @@
                                     </td>
                                     <td>{{ $items->phone }}</td>
                                     <td>
-                                        {{ DB::table('communes')->where('id', $items->commune_id)->get()[0]->name }}
+                                        {{ DB::table('communes')->where('idcommune', $items->commune_id)->get()[0]->name }}
 
                                     </td>
                                     <td><span class="badge bg-label-primary me-1">Active</span></td>

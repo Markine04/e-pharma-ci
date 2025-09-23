@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en" class="layout-menu-fixed layout-compact" data-assets-path="{{asset('dashboards/assets/')}}"
+<html lang="en" class="layout-menu-fixed layout-compact" data-assets-path="{{ asset('dashboards/assets/') }}"
     data-template="vertical-menu-template-free">
 
 <head>
@@ -24,84 +24,120 @@
         href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet" />
 
-    <link rel="stylesheet" href="{{asset('dashboards/assets/vendor/fonts/iconify-icons.css')}}" />
+    <link rel="stylesheet" href="{{ asset('dashboards/assets/vendor/fonts/iconify-icons.css') }}" />
 
     <!-- Core CSS -->
     <!-- build:css assets/vendor/css/theme.css  -->
 
-    <link rel="stylesheet" href="{{asset('dashboards/assets/vendor/css/core.css')}}" />
-    <link rel="stylesheet" href="{{asset('dashboards/assets/css/demo.css')}}" />
+    <link rel="stylesheet" href="{{ asset('dashboards/assets/vendor/css/core.css') }}" />
+
+    <link rel="stylesheet" href="{{ asset('assets/builds/css/select2.min.css') }}" />
+
+    <link rel="stylesheet" href="{{ asset('dashboards/assets/css/demo.css') }}" />
 
     <!-- Vendors CSS -->
 
-    <link rel="stylesheet" href="{{asset('dashboards/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css')}}" />
+    <link rel="stylesheet"
+        href="{{ asset('dashboards/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
 
     <!-- endbuild -->
 
-    <link rel="stylesheet" href="{{asset('dashboards/assets/vendor/libs/apex-charts/apex-charts.css')}}" />
+    <link rel="stylesheet" href="{{ asset('dashboards/assets/vendor/libs/apex-charts/apex-charts.css') }}" />
 
-    <!-- Page CSS -->
-
-    <!-- Helpers -->
-    <script src="{{asset('dashboards/assets/vendor/js/helpers.js')}}"></script>
-    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-
-    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-
-    <script src="{{asset('dashboards/assets/js/config.js')}}"></script>
+    <script src="{{ asset('dashboards/assets/vendor/js/helpers.js') }}"></script>
+    <script src="{{ asset('dashboards/assets/js/config.js') }}"></script>
 </head>
 
 <body>
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
-      <div class="layout-container">
-       <!-- Menu -->
-        @include('dashboard.layout-dashboard.sidebar')
-        <div class="layout-page">
-          <!-- Navbar -->
-          @include('dashboard.layout-dashboard.navbar')
-          <div class="content-wrapper">
-            <!-- Content -->
-            @yield('content')
-            <!-- /Content -->
+        <div class="layout-container">
+            <!-- Menu -->
+            @include('dashboard.layout-dashboard.sidebar')
+            <div class="layout-page">
+                <!-- Navbar -->
+                @include('dashboard.layout-dashboard.navbar')
+                <div class="content-wrapper">
+                    <!-- Content -->
+                    @yield('content')
+                    <!-- /Content -->
 
-            <!-- Footer -->
-            @include('dashboard.layout-dashboard.footer')
-            <!-- /Footer -->
+                    <!-- Footer -->
+                    @include('dashboard.layout-dashboard.footer')
+                    <!-- /Footer -->
 
-            <div class="content-backdrop fade"></div>
+                    <div class="content-backdrop fade"></div>
 
-          </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="layout-overlay layout-menu-toggle"></div>
+        <div class="layout-overlay layout-menu-toggle"></div>
 
+    </div>
+
+    <!-- Message Modal -->
+    <div class="modal fade bd-example-modal-lg" id="commonModal" tabindex="-1" role="dialog"
+        aria-labelledby="myLargeModalLabel" aria-hidden="true" data-bs-keyboard="false" data-bs-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myLargeModalLabel"></h4>
+                    <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
     </div>
 
     <!-- Core JS -->
 
-    <script src="{{asset('dashboards/assets/vendor/libs/jquery/jquery.js')}}"></script>
+    <script src="{{ asset('dashboards/assets/vendor/libs/jquery/jquery.js') }}"></script>
 
-    <script src="{{asset('dashboards/assets/vendor/libs/popper/popper.js')}}"></script>
-    <script src="{{asset('dashboards/assets/vendor/js/bootstrap.js')}}"></script>
+    <script src="{{ asset('dashboards/assets/vendor/libs/popper/popper.js') }}"></script>
+    <script src="{{ asset('dashboards/assets/vendor/js/bootstrap.js') }}"></script>
 
-    <script src="{{asset('dashboards/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js')}}"></script>
+    <script src="{{ asset('dashboards/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
 
-    <script src="{{asset('dashboards/assets/vendor/js/menu.js')}}"></script>
+    <script src="{{ asset('dashboards/assets/vendor/js/menu.js') }}"></script>
 
     <!-- endbuild -->
 
     <!-- Vendors JS -->
-    <script src="{{asset('dashboards/assets/vendor/libs/apex-charts/apexcharts.js')}}"></script>
+    <script src="{{ asset('dashboards/assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
 
     <!-- Main JS -->
 
-    <script src="{{asset('dashboards/assets/js/main.js')}}"></script>
+    <script src="{{ asset('dashboards/assets/js/main.js') }}"></script>
+
+    {{-- <script src="{{ asset('dashboards/assets/builds/custom.js') }}"></script> --}}
+
+    <script src="{{ asset('assets/builds/custom.js') }}"></script>
+
+    <script src="{{ asset('assets/builds/js/select2.js') }}"></script>
+
+    <script src="{{ asset('assets/builds/js/select2.min.js') }}"></script>
+
+    <script src="{{ asset('assets/builds/jquery-3.6.0.min.js') }}"></script>
+
+    <script src="{{ asset('assets/builds/jquery.ui.min.js') }}"></script>
 
     <!-- Page JS -->
-    <script src="{{asset('dashboards/assets/js/dashboards-analytics.js')}}"></script>
+    <script src="{{ asset('dashboards/assets/js/dashboards-analytics.js') }}"></script>
 
+    <script src="{{ asset('assets/builds/bootstrap-notify.min.js') }}"></script>
     <!-- Place this tag before closing body tag for github widget button. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-  </body>
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-single').select2();
+        });
+
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2();
+        });
+
+        
+    </script>
+</body>
+
 </html>

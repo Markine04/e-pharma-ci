@@ -101,7 +101,9 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard/ordonnance/{id}/edit', [OrdonnancesController::class, 'edit'])->name('ordonnances.edit');
     Route::put('dashboard/ordonnance/{id}', [OrdonnancesController::class, 'update'])->name('ordonnances.update');
     Route::delete('dashboard/ordonnance/{id}', [OrdonnancesController::class, 'destroy'])->name('ordonnances.destroy');
-    Route::get('dashboard/ordonnance-uploadImages', [OrdonnancesController::class, 'uploadImages'])->name('ordonnances.temp');
+    Route::get('dashboard/ordonnance-image/{id}', [OrdonnancesController::class, 'show'])->name('ordonnances.image');
+    Route::get('dashboard/ordonnance-traiter/{id}', [OrdonnancesController::class, 'traiter'])->name('ordonnances.traiter');
+    Route::post('dashboard/ordonnance-verifier', [OrdonnancesController::class, 'verifier'])->name('ordonnances.verifier');
 
 
 })->middleware(['auth', 'verified'])->name('dashboard');
