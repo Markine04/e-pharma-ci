@@ -27,17 +27,22 @@ class OrdonnancesController extends Controller
     public function traiter(string $id)
     {
         $ordonnances = DB::table('ordonnance_clients')->where('id_ordonnance', $id)->first();
-        return view('dashboard.ordonnances.voir-image', compact('ordonnances'));
+
+        // dd($ordonnances);
+        return view('dashboard.ordonnances.traiter', compact('ordonnances'));
     }
 
 
     public function verifier(Request $request)
     {
-        DB::table('ordonnance_clients')->where('id_ordonnance', $request->id)->insert([
-            'statut' => $request->id_client,
-            'date_traitement' => $request->date_traitement,
+        DB::table('ordonnance_clients')->where('id_ordonnance', $request->id)->update([
+            'image' => $request->image,
+            'statut' => $request->statut,
+            'date_traitement' => Carbon::now(),
             'user_traiter' => Auth::user()->id,
         ]);
+
+        return redirect()->route('ordonnances.index')->with('success', 'ordonnance en cours de traiment!');
     }
     
 
@@ -81,8 +86,18 @@ class OrdonnancesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+    public function delete(string $id)
+    {
+        $ordonnances = DB::table('ordonnance_clients')->where('id_ordonnance', $id)->first();
+        return view('dashboard.ordonnances.delete', compact('ordonnances'));
+    }
     public function destroy(string $id)
     {
-        //
+        DB::table('ordonnance_clients')->where('id_ordonnance', $id)->delete();
+        return redirect()->route('ordonnances.index')->with('success', 'ordonnance supprimer avec succes!');
+
     }
 }
+
+    
+
