@@ -42,12 +42,13 @@ class UploadController extends Controller
                 'image' => $name,
                 // 'id_ordonnance' => $request->id_ordonnance,
                 'id_client' => $request->id_client,
-                // 'id_medecin' => $request->id
+                'note' => $request->note,
                 "created_at" => Carbon::now(),
             ]);
 
             return response()->json([
                 'success' => true,
+                'note'=> $request->note,
                 'url' => asset('storage/ordonnances-clients/' . $name)
             ], 200);
         }
@@ -55,6 +56,7 @@ class UploadController extends Controller
 
 
         return response()->json(['success' => false, 'message' => 'Aucune image reçue'], 400);
+        
     }
 
     /**

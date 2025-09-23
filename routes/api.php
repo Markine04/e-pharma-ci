@@ -55,6 +55,4 @@ Route::put('/pharmacie-update/{id}/', [PharmaciesController::class, 'update']);
 Route::post('/upload-ordonnances', [UploadController::class, 'store']);
 
 
-
-
 // });
