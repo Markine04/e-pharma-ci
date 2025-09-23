@@ -48,7 +48,7 @@ class UploadController extends Controller
 
             return response()->json([
                 'success' => true,
-                'url' => asset('storage/uploads/' . $name)
+                'url' => asset('storage/ordonnances-clients/' . $name)
             ], 200);
         }
 
