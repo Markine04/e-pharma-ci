@@ -1,7 +1,7 @@
 <form action="{{ route('ordonnances.destroy',['id'=>$ordonnances->id_ordonnance]) }}" method="post">
         @csrf
         <div class="text-center">
-            <h4>Voulez-vous supprimer cette commande?</h4>
+            <h4>Voulez-vous vraiment supprimer cette commande?</h4>
             <hr>
             <input type="hidden" name="id" value="{{ $ordonnances->id_ordonnance }}">
 

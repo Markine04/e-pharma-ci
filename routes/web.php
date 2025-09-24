@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\AssurancesController;
 use App\Models\Regions;
 use App\Models\Medicaments;
 use App\Models\CategorieMedicaments;
@@ -10,11 +9,13 @@ use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegionsController;
 use App\Http\Controllers\CommunesController;
+use App\Http\Controllers\AssurancesController;
 use App\Http\Controllers\PharmaciesController;
 use App\Http\Controllers\MedicamentsController;
+use App\Http\Controllers\OrdonnancesController;
+use App\Http\Controllers\FormeGaleniquesController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\CategorieMedicamentsController;
-use App\Http\Controllers\OrdonnancesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -120,6 +121,18 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard/assurance-uploadImages', [AssurancesController::class, 'uploadImages'])->name('assurances.temp');
 
 
+//Assurances
+    Route::get('dashboard/formegaleniques', [FormeGaleniquesController::class, 'index'])->name('formegaleniques.index');
+    Route::get('dashboard/formegalenique/create', [FormeGaleniquesController::class, 'create'])->name('formegaleniques.create');
+    Route::post('dashboard/formegalenique', [FormeGaleniquesController::class, 'store'])->name('formegaleniques.store');
+    Route::get('dashboard/formegalenique/{id}/edit', [FormeGaleniquesController::class, 'edit'])->name('formegaleniques.edit');
+    Route::post('dashboard/formegalenique/{id}', [FormeGaleniquesController::class, 'update'])->name('formegaleniques.update');
+    Route::post('dashboard/formegalenique/{id}/destroy', [FormeGaleniquesController::class, 'destroy'])->name('formegaleniques.destroy');
+    Route::get('dashboard/formegalenique/{id}-delete', [FormeGaleniquesController::class, 'delete'])->name('formegaleniques.delete');
+    Route::get('dashboard/formegalenique-uploadImages', [FormeGaleniquesController::class, 'uploadImages'])->name('formegaleniques.temp');
+
+
+    
 
 })->middleware(['auth', 'verified'])->name('dashboard');
 

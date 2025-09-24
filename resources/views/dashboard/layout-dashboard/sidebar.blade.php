@@ -98,11 +98,7 @@
             <span class="badge rounded-pill bg-danger ms-auto">5</span>
           </a>
         </li>
-        <li class="menu-item">
-          <a href="layouts-fluid.html" class="menu-link">
-            <div class="text-truncate" data-i18n="Fluid">Accessoires</div>
-          </a>
-        </li>
+        
         {{-- <li class="menu-item">
           <a href="layouts-container.html" class="menu-link">
             <div class="text-truncate" data-i18n="Container">Container</div>
@@ -186,6 +182,11 @@
         <li class="menu-item {{(Route::is('categoriemedicaments.index')?'active':'')}}">
           <a href="{{route('categoriemedicaments.index')}}" class="menu-link">
             <div class="text-truncate" data-i18n="Without navbar">Categories</div>
+          </a>
+        </li>
+        <li class="menu-item {{(Route::is('formegaleniques.index')?'active':'')}}">
+          <a href="{{route('formegaleniques.index')}}" class="menu-link">
+            <div class="text-truncate" data-i18n="Fluid">Formes Galeniques</div>
           </a>
         </li>
         <li class="menu-item {{(Route::is('pharmacies.index')?'active':'')}} ">

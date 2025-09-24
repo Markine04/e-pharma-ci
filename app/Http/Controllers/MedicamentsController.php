@@ -15,7 +15,9 @@ class MedicamentsController extends Controller
      */
     public function index()
     {
-        return view('dashboard.medicaments.index');
+        $medicaments = DB::table('medicaments')->paginate(10);
+
+        return view('dashboard.medicaments.index', compact('medicaments'));
     }
 
     /**
@@ -23,7 +25,11 @@ class MedicamentsController extends Controller
      */
     public function create()
     {
-        return view('dashboard.medicaments.create');
+        $categories = DB::table('categories')->get();
+        $suppliers = DB::table('fournisseurs')->get();
+        $formesGaleniques = DB::table('forme_galeniques')->get();
+
+        return view('dashboard.medicaments.create', compact('categories', 'suppliers', 'formesGaleniques'));
     }
 
     /**
@@ -58,23 +64,17 @@ class MedicamentsController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
 
-        
-        $imageName = [];
+        $recupererImages = [];
         if ($request->hasFile('images')) {
-            // foreach ($request->file('images') as $image) {
-                // Générer un nom unique pour l'image
+            foreach ($request->file('images') as $image) {
                 $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-                $path = $file->move(public_path('/assets/images/produits/'), $filename);
-
-            // Stocker l'image
-            // $image->move('assets/images/produits', $imageName);
-
-                // Enregistrer en base de données (si vous avez une table pour les images)
-                // ProductImage::create([...]);
-            // }
+                $path = $image->move(public_path('/assets/images/produits/'), $imageName);
+                $recupererImages[] = $imageName;
+            }
         }
+
 
         DB::table('medicaments')->insert([
             "code_barre" => $request->barcode,
@@ -82,7 +82,11 @@ class MedicamentsController extends Controller
             "principe_actif" => $request->active_ingredient,
             "dosage" => $request->dosage,
             "forme_galenique" => $request->galenic_form,
-            "categorie_id" => $request->category,
+            "indications" => $request->indication,
+            "posologies" => $request->posologie,
+            "contreindications" => $request->contreindication,
+            "compositions" => $request->composition,
+            "categorie_id" => json_encode($request->category),
             "fournisseur_id" => $request->supplier,
             "prix_achat" => $request->purchase_price,
             "prix_vente" => $request->selling_price,
@@ -91,10 +95,12 @@ class MedicamentsController extends Controller
             "conditionnement" => $request->packaging,
             "temperature_conservation" => $request->storage_temperature,
             "description" => $request->description,
-            "images" => json_encode($imageName),
+            "images" => json_encode($recupererImages),
             "user_enreg" => Auth::user()->id,
             "created_at" => Carbon::now(),
         ]);
+
+
         return redirect()->back()->with('success', 'Medicament ajouté avec succès');
     }
 
