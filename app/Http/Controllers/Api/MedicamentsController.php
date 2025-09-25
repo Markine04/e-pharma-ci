@@ -37,9 +37,9 @@ class MedicamentsController extends Controller
             ], 400);
         }
         $querymedicaments = DB::table('medicaments')
-        ->join('categories', 'medicaments.categorie_id', '=', 'categories.idcategorie')
+        // ->join('categories', 'medicaments.categorie_id', '=', 'categories.idcategorie')
         ->where('nom', 'like', "%$query%")->get();
-
+// dd($querymedicaments);
         return response()->json([
             // 'message' => 'Liste de toutes les categories existente',
             'querymedicaments' => $querymedicaments,
