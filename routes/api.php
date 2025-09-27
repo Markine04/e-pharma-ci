@@ -4,6 +4,7 @@ use App\Models\Medicaments;
 use Illuminate\Http\Request;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\CartsController;
 use App\Http\Controllers\Api\UsersController;
 use App\Http\Controllers\Api\UploadController;
 use App\Http\Controllers\Api\CategoriesController;
@@ -54,5 +55,5 @@ Route::put('/pharmacie-update/{id}/', [PharmaciesController::class, 'update']);
 
 Route::post('/upload-ordonnances', [UploadController::class, 'store']);
 
-
+Route::post('/panier-store', [CartsController::class, 'addToCart']);
 // });
