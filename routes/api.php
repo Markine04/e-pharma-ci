@@ -10,6 +10,8 @@ use App\Http\Controllers\Api\UploadController;
 use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\PharmaciesController;
 use App\Http\Controllers\Api\MedicamentsController;
+use App\Http\Controllers\Api\CommunesController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +56,9 @@ Route::put('/pharmacie-update/{id}/', [PharmaciesController::class, 'update']);
 
 
 Route::post('/upload-ordonnances', [UploadController::class, 'store']);
+
+Route::get('/communes', [CommunesController::class, 'index']);
+
 
 Route::post('/panier-store', [CartsController::class, 'addToCart']);
 // });
