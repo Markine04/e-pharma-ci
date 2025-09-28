@@ -31,7 +31,6 @@ use App\Http\Controllers\Api\CommunesController;
 Route::post('/login', [UsersController::class, 'login']);
 Route::post('/register', [UsersController::class, 'register']);
 
-// Route::group(['middleware'=>['auth:sanctum']],function(){
 
 Route::get('/users', [UsersController::class, 'index']);
 Route::post('/logout', [UsersController::class, 'logout']);
@@ -55,10 +54,15 @@ Route::post('/pharmacie-store', [PharmaciesController::class, 'register_pharmaci
 Route::put('/pharmacie-update/{id}/', [PharmaciesController::class, 'update']);
 
 
-Route::post('/upload-ordonnances', [UploadController::class, 'store']);
 
+
+Route::group(['middleware'=>['auth:sanctum']],function(){
+	
 Route::get('/communes', [CommunesController::class, 'index']);
 
 
+Route::post('/upload-ordonnances', [UploadController::class, 'store']);
+
 Route::post('/panier-store', [CartsController::class, 'addToCart']);
-// });
+
+});

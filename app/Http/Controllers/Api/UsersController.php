@@ -22,47 +22,48 @@ class UsersController extends Controller
     }
 
     public function register(Request $request)
-    {
-        // La validation de données
-        $this->validate($request, [
-            // 'name' => 'required|max:100',
-            'username' => 'required|max:100',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:8'
-        ]);
+{
+    // Validation des données
+    $this->validate($request, [
+        'number'=> 'required|min:10|unique:users,number',
+        'commune' => 'nullable|integer'
+    ]);
 
-        // On crée un nouvel utilisateur
-        $user = User::create([
-            'name' => $request->name,
-            'username' => $request->username,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'number' => $request->number,
-            'created_at' => Carbon::now()
+    // Génération d’un code OTP unique à 6 chiffres
+    do {
+        $code = rand(100000, 999999);
+    } while (DB::table('users')->where('otp', $code)->exists());
 
-        ]);
+    // Création du nouvel utilisateur
+    $user = User::create([
+        'number' => $request->number,
+        'otp' => $request->code ?? $code,
+        'otp_valid' => 1,
+        'id_commune' => $request->commune,
+        'created_at' => Carbon::now()
+    ]);
 
-        $token = $user->createToken('auth_token')->plainTextToken;
+    // Génération du token
+    $token = $user->createToken('auth_token')->plainTextToken;
 
-        // On retourne les informations du nouvel utilisateur en JSON
-        return response()->json([
-            'user'=>$user,
-            'access_token' => $token,
-            'token_type' => 'secret',
-        ]);
-    }
+    return response()->json([
+        'user' => $user,
+        'access_token' => $token,
+        'token_type' => 'Bearer',
+    ]);
+}
+
 
 
     public function login(Request $request)
     {
-        if (!Auth::attempt($request->only('email', 'username', 'password'))) {
+        if (!Auth::attempt($request->only('number'))) {
             return response()->json([
                 'message' => 'Invalid login details'
             ], 401);
         }
 
-        $user = User::where('email', $request['email'])
-                ->orwhere('username', $request['username'])->firstOrFail();
+        $user = User::where('number', $request['number'])->firstOrFail();
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
