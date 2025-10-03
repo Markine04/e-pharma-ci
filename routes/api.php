@@ -53,13 +53,12 @@ Route::get('/pharmacie-show/{id}', [PharmaciesController::class, 'show']);
 Route::post('/pharmacie-store', [PharmaciesController::class, 'register_pharmacies']);
 Route::put('/pharmacie-update/{id}/', [PharmaciesController::class, 'update']);
 
+Route::get('/communes', [CommunesController::class, 'index']);
 
 
 
 Route::group(['middleware'=>['auth:sanctum']],function(){
 	
-Route::get('/communes', [CommunesController::class, 'index']);
-
 
 Route::post('/upload-ordonnances', [UploadController::class, 'store']);
 
