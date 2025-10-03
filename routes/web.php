@@ -17,6 +17,8 @@ use App\Http\Controllers\FormeGaleniquesController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\CategorieMedicamentsController;
 use App\Http\Controllers\AffichageAppsController;
+use App\Http\Controllers\UsersController;
+
 
 
 /*
@@ -145,8 +147,11 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard/affiche-app/{id}-delete', [AffichageAppsController::class, 'delete'])->name('afficheApp.delete');
     Route::get('dashboard/affiche-app-uploadImages', [AffichageAppsController::class, 'uploadImages'])->name('afficheApp.temp');
 
-  
-  
+
+//Utilisateurs
+    Route::get('dashboard/users', [UsersController::class, 'index'])->name('users.index');
+
+
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';
