@@ -26,6 +26,8 @@
 
     <link rel="stylesheet" href="{{ asset('dashboards/assets/vendor/fonts/iconify-icons.css') }}" />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <!-- Core CSS -->
     <!-- build:css assets/vendor/css/theme.css  -->
 
@@ -34,7 +36,16 @@
     <link rel="stylesheet" href="{{ asset('assets/builds/css/select2.min.css') }}" />
 
     <link rel="stylesheet" href="{{ asset('dashboards/assets/css/demo.css') }}" />
+    
 
+    {{-- Datatables --}}
+    <link rel="stylesheet" href="{{ asset('dashboards/assets/datatables/css/dataTables.css') }}" />
+    <link rel="stylesheet" href="{{ asset('dashboards/assets/datatables/css/dataTables.dateTime.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('dashboards/assets/datatables/css/dataTables.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('dashboards/assets/datatables/css/searchBuilder.dataTables.css') }}" />
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <!-- Vendors CSS -->
 
     <link rel="stylesheet"
@@ -124,9 +135,21 @@
     <!-- Page JS -->
     <script src="{{ asset('dashboards/assets/js/dashboards-analytics.js') }}"></script>
 
+
+    {{-- DataTables --}}
+    <script src="{{ asset('dashboards/assets/datatables/js/dataTables.dateTime.min.js') }}"></script>
+    <script src="{{ asset('dashboards/assets/datatables/js/dataTables.min.js') }}"></script>
+    <script src="{{ asset('dashboards/assets/datatables/js/dataTables.js') }}"></script>
+    <script src="{{ asset('dashboards/assets/datatables/js/dataTables.searchBuilder.js') }}"></script>
+    <script src="{{ asset('dashboards/assets/datatables/js/jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ asset('dashboards/assets/datatables/js/searchBuilder.dataTables.js') }}"></script>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+
     <script src="{{ asset('assets/builds/bootstrap-notify.min.js') }}"></script>
-    <!-- Place this tag before closing body tag for github widget button. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
     <script>
         $(document).ready(function() {
             $('.js-example-basic-single').select2();
@@ -136,7 +159,6 @@
             $('.js-example-basic-multiple').select2();
         });
 
-        
     </script>
 </body>
 

@@ -21,37 +21,46 @@ class UsersController extends Controller
         ],200);
     }
 
+    // public function store_show()
+    // {
+    //     // $users = DB::table('users')->get();
+
+    //     return response()->json([
+    //         'user'=>Auth::user()
+    //     ],200);
+    // }
+
     public function register(Request $request)
-{
-    // Validation des données
-    $this->validate($request, [
-        'number'=> 'required|min:10|unique:users,number',
-        'commune' => 'nullable|integer'
-    ]);
+    {
+        // Validation des données
+        $this->validate($request, [
+            'number'=> 'required|min:10|unique:users,number',
+            'commune' => 'nullable|integer'
+        ]);
 
-    // Génération d’un code OTP unique à 6 chiffres
-    do {
-        $code = rand(100000, 999999);
-    } while (DB::table('users')->where('otp', $code)->exists());
+        // Génération d’un code OTP unique à 6 chiffres
+        do {
+            $code = rand(100000, 999999);
+        } while (DB::table('users')->where('otp', $code)->exists());
 
-    // Création du nouvel utilisateur
-    $user = User::create([
-        'number' => $request->number,
-        'otp' => $request->code ?? $code,
-        'otp_valid' => 1,
-        'id_commune' => $request->commune,
-        'created_at' => Carbon::now()
-    ]);
+        // Création du nouvel utilisateur
+        $user = User::create([
+            'number' => $request->number,
+            'otp' => $request->code ?? $code,
+            'otp_valid' => 1,
+            'id_commune' => $request->commune,
+            'created_at' => Carbon::now()
+        ]);
 
-    // Génération du token
-    $token = $user->createToken('auth_token')->plainTextToken;
+        // Génération du token
+        $token = $user->createToken('auth_token')->plainTextToken;
 
-    return response()->json([
-        'user' => $user,
-        'access_token' => $token,
-        'token_type' => 'Bearer',
-    ]);
-}
+        return response()->json([
+            'user' => $user,
+            'access_token' => $token,
+            'token_type' => 'Bearer',
+        ]);
+    }
 
 
 

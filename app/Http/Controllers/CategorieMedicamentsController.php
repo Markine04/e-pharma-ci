@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\CategorieMedicaments;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class CategorieMedicamentsController extends Controller
 {
@@ -13,7 +15,7 @@ class CategorieMedicamentsController extends Controller
      */
     public function index()
     {
-        $categories = DB::table('categories')->paginate(10);
+        $categories = DB::table('categories')->get();
         return view('dashboard.categories-medicaments.index',compact('categories'));
     }
 
@@ -21,8 +23,8 @@ class CategorieMedicamentsController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-        //
+    {   $categories = DB::table('categories')->get();
+        return view('dashboard.categories-medicaments.create',compact('categories'));
     }
 
     /**
@@ -30,7 +32,31 @@ class CategorieMedicamentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'libelle' => 'required|max:250',
+        ]);
+        
+        $filename='';
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '_' . $file->getClientOriginalName();
+
+            // Stockage temporaire
+            $path = $file->move(public_path('/assets/images/categories'), $filename);
+        }
+
+        
+        // On crée une nouvelle categories
+        $categories = DB::table('categories')->insert([
+            'libelle' => $request->libelle,
+            'image' => $filename,
+            'parent_id' => $request->parent_id,
+            'description'=> $request->description,
+            'user_enreg' => Auth::user()->id,
+            'created_at'=>Carbon::now()
+        ]);
+
+        return redirect()->back()->with('success', 'Categorie enregistrer avec succès');
     }
 
     /**

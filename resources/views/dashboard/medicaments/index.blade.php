@@ -18,7 +18,23 @@
                         </h4>
                     </div>
                 </div>
+            </div><p></p>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12">
+                        <div class="ml-4" style="float: right">
+                                    <div class="form-group"></div>
+                                    <label>Rechercher:</label>
+                                    <input type="text" name="recherche" class="form-control" placeholder="Recherche..."
+                                        style="width: auto; display: inline;">
+                                    <a href="{{ route('medicaments.create') }}" class="btn btn-primary"><i
+                                            class="fa fa-search"></i>
+                                    </a>
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <div class="card-body">
                 <div class="table-responsive text-nowrap">
                     <table class="table table-bordered">

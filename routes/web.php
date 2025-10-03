@@ -16,6 +16,8 @@ use App\Http\Controllers\OrdonnancesController;
 use App\Http\Controllers\FormeGaleniquesController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\CategorieMedicamentsController;
+use App\Http\Controllers\AffichageAppsController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -132,8 +134,19 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard/formegalenique-uploadImages', [FormeGaleniquesController::class, 'uploadImages'])->name('formegaleniques.temp');
 
 
-    
+//Affichage App
 
+    Route::get('dashboard/affiche-apps', [AffichageAppsController::class, 'index'])->name('afficheApp.index');
+    Route::get('dashboard/affiche-app/create', [AffichageAppsController::class, 'create'])->name('afficheApp.create');
+    Route::post('dashboard/affiche-app', [AffichageAppsController::class, 'store'])->name('afficheApp.store');
+    Route::get('dashboard/affiche-app/{id}/edit', [AffichageAppsController::class, 'edit'])->name('afficheApp.edit');
+    Route::post('dashboard/affiche-app/{id}', [AffichageAppsController::class, 'update'])->name('afficheApp.update');
+    Route::post('dashboard/affiche-app/{id}/destroy', [AffichageAppsController::class, 'destroy'])->name('afficheApp.destroy');
+    Route::get('dashboard/affiche-app/{id}-delete', [AffichageAppsController::class, 'delete'])->name('afficheApp.delete');
+    Route::get('dashboard/affiche-app-uploadImages', [AffichageAppsController::class, 'uploadImages'])->name('afficheApp.temp');
+
+  
+  
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';
