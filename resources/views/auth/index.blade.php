@@ -72,7 +72,11 @@
                                     <td>
                                         <span>{{ $items->number }}</span>
                                     </td>
-                                    <td>{{ $items->id_commune }}</td>
+                                    <td>
+                                        @if($items->id_commune!=null)
+                                        {{ DB::table('communes')->where('idcommune',$items->id_commune)->get()[0]->name  }}
+                                        @endif
+                                    </td>
                                     <td>
                                         @if($items->id_assurance!=null)
                                         {{ DB::table('assurances')->where('id_assurance',$items->id_assurance)->get()[0]->libelle  }}

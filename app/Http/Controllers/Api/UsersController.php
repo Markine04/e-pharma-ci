@@ -59,14 +59,14 @@ class UsersController extends Controller
             'user' => $user,
             'access_token' => $token,
             'token_type' => 'Bearer',
-        ]);
+        ],200);
     }
 
 
 
     public function login(Request $request)
     {
-        if (!Auth::attempt($request->only('number'))) {
+        if (DB::table('users')->where('number','!=',$request->number)->first()) {
             return response()->json([
                 'message' => 'Invalid login details'
             ], 401);
@@ -80,8 +80,45 @@ class UsersController extends Controller
             'user' => $user,
             'access_token' => $token,
             'token_type' => 'secret',
-        ]);
+            'success' => true,
+        ],200);
     }
+
+
+    public function verifyOtp(Request $request)
+    {
+        $request->validate([
+            'user_id' => 'required',
+            'otp' => 'required',
+        ]);
+
+        $user = DB::table('users')->where('id',$request->user_id)->first();
+
+        if (DB::table('users')->where('id',$user->id)->where('otp',$request->otp)->exists()) {
+
+            DB::table('users')->where('id',$user->id)->update([
+                'otp_valid' => 2
+            ]);
+            
+            // générer un token (Sanctum / JWT)
+            $token = $request->token;
+
+            return response()->json([
+                'success' => true,
+                'message' => 'OTP valide',
+                'access_token' => $token,
+                'token_type' => 'secret',
+                'user' => $user,
+            ]);
+        }
+
+        return response()->json([
+            'success' => false,
+            'message' => 'OTP invalide',
+        ], 401);
+    }
+
+
 
     public function logout()
     {

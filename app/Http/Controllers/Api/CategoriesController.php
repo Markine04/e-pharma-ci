@@ -83,7 +83,7 @@ class CategoriesController extends Controller
     public function update(Request $request, string $id)
     {
         // On crée une nouvelle categories
-        DB::table('categories')->where('id', $request->id)->update([
+        DB::table('categories')->where('idcategorie', $request->id)->update([
             'libelle' => $request->libelle,
             'image' => $request->image,
             'user_id' => Auth::user()->id,
