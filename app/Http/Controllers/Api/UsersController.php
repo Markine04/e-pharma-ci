@@ -120,6 +120,26 @@ class UsersController extends Controller
     }
 
 
+    
+    public function resendOtp(Request $request)
+    {
+        $user = User::where('id', $request->user_id)->first();
+
+        if (!$user) {
+            return response()->json(['message' => 'Utilisateur non trouvé'], 404);
+        }
+
+        $newOtp = rand(100000, 999999);
+        $user->otp_code = $newOtp;
+        $user->save();
+
+        // Ici tu peux envoyer SMS via ton service (Twilio, Orange, etc.)
+        // SmsService::send($user->phone, "Votre code OTP est $newOtp");
+
+        return response()->json(['message' => 'Nouveau code envoyé']);
+    }
+
+
 
     public function logout()
     {

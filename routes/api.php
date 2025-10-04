@@ -31,6 +31,7 @@ use App\Http\Controllers\Api\CommunesController;
 Route::post('/login', [UsersController::class, 'login']);
 Route::post('/register', [UsersController::class, 'register']);
 Route::post('/verify-otp', [UsersController::class, 'verifyOtp']);
+Route::post('/resend-otp', [UsersController::class, 'resendOtp']);
 
 Route::get('/users', [UsersController::class, 'index']);
 Route::post('/logout', [UsersController::class, 'logout']);

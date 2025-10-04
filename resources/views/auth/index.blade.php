@@ -62,6 +62,7 @@
                                 <th>Telephone</th>
                                 <th>Communes</th>
                                 <th>Type Assurance</th>
+                                <th>Opt</th>
                                 <th>Statuts</th>
                                 <th>Actions</th>
                             </tr>
@@ -81,6 +82,9 @@
                                         @if($items->id_assurance!=null)
                                         {{ DB::table('assurances')->where('id_assurance',$items->id_assurance)->get()[0]->libelle  }}
                                         @endif
+                                    </td>
+                                    <td>
+                                        <span>{{ $items->otp }}</span>
                                     </td>
                                     <td>
                                         @switch($items->otp_valid)
