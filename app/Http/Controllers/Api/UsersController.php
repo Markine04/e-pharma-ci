@@ -59,6 +59,7 @@ class UsersController extends Controller
             'user' => $user,
             'access_token' => $token,
             'token_type' => 'Bearer',
+            'success' => true,
         ],200);
     }
 
