@@ -14,7 +14,7 @@ class UsersController extends Controller
 {
      public function index()
     {
-        $users = DB::table('users')->where('number','!=',null)->get();
+        $users = DB::table('users')->where('number','!=',null)->orderBy('id','Desc')->get();
         return view('auth.index',compact('users'));
     }
 
