@@ -150,6 +150,9 @@ Route::middleware('auth')->group(function () {
 
 //Utilisateurs
     Route::get('dashboard/users', [UsersController::class, 'index'])->name('users.index');
+    Route::get('dashboard/delete/{id}', [UsersController::class, 'delete'])->name('users.delete');
+    Route::post('dashboard/destroy', [UsersController::class, 'destroy'])->name('users.destroy');
+
 
 
 })->middleware(['auth', 'verified'])->name('dashboard');

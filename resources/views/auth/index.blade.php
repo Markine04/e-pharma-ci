@@ -106,10 +106,13 @@
                                                 <i class="icon-base bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="javascript:void(0);"><i
-                                                        class="icon-base bx bx-edit-alt me-1"></i> Edit</a>
-                                                <a class="dropdown-item" href="javascript:void(0);"><i
-                                                        class="icon-base bx bx-trash me-1"></i> Delete</a>
+                                                <a class="dropdown-item text-blue" style="cursor: pointer; color:blue;" data-url="javascript:void(0);" data-bs-toggle="modal" data-ajax-popup="true" data-size="md"
+                                                    data-title="Modifier cet utilisateur"><i
+                                                        class="icon-base bx bx-edit-alt me-1"style="cursor: pointer; color:blue;"></i> Edit</a>
+
+                                                <a class="dropdown-item text-red" style='color:red; cursor:pointer;' data-url="{{route('users.delete',['id'=>$items->id])}}" data-bs-toggle="modal" data-ajax-popup="true" data-size="md"
+                                                    data-title="Supprimer cet utilisateur"><i
+                                                        class="icon-base bx bx-trash-alt me-1 text-red"style="cursor: pointer; color:red;"></i> Supprimer</a>
                                             </div>
                                         </div>
                                     </td>
