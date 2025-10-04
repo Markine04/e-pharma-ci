@@ -59,6 +59,8 @@ Route::get('/communes', [CommunesController::class, 'index']);
 
 
 Route::group(['middleware'=>['auth:sanctum']],function(){
+
+Route::get('/users-info/{user_id}', [UsersController::class, 'info'])->name('users.info');
 	
 
 Route::post('/upload-ordonnances', [UploadController::class, 'store']);

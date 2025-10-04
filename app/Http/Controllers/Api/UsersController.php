@@ -72,7 +72,6 @@ class UsersController extends Controller
                 'message' => 'Invalid login details'
             ], 401);
         }
-
         $user = User::where('number', $request['number'])->firstOrFail();
 
         $token = $user->createToken('auth_token')->plainTextToken;
@@ -82,6 +81,18 @@ class UsersController extends Controller
             'access_token' => $token,
             'token_type' => 'secret',
             'success' => true,
+        ],200);
+
+        
+    }
+
+
+    public function info(Request $request)
+    {
+        $users = DB::table('users')->where('id',$user->user_id)->first();
+        return response()->json([
+        'success' => true,
+            'user'=>Auth::user()
         ],200);
     }
 
@@ -120,7 +131,7 @@ class UsersController extends Controller
     }
 
 
-    
+
     public function resendOtp(Request $request)
     {
         $user = User::where('id', $request->user_id)->first();
