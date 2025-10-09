@@ -148,7 +148,6 @@
     <script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
 
     <script src="{{ asset('assets/builds/bootstrap-notify.min.js') }}"></script>
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
 
     <script>
         $(document).ready(function() {

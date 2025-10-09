@@ -139,4 +139,73 @@ class PharmaciesController extends Controller
     {
         //
     }
+
+
+
+
+
+    public function index_gardes()
+    {
+        $pharmaciesGardes = DB::table('pharmacie_gardes')->paginate(10);
+        $Communes = DB::table('communes')->get();
+        $currentDate = Carbon::now()->format('Y-m-d');
+        return view('dashboard.pharmacies-gardes.index', compact('pharmaciesGardes', 'Communes', 'currentDate'));
+    }
+
+   public function create_gardes(Request $request)
+{
+    
+
+    if ($request->ajax()) {
+        $result = '';
+
+        if ($request->title == 'communes' && $request->id) {
+            $pharmacies = DB::table('pharmacies')
+                ->where('commune_id', $request->id)
+                ->get();
+
+            foreach ($pharmacies as $pharmacie) {
+                $result .= '<option value="' . $pharmacie->idpharmacie . '">' . $pharmacie->name . '</option>';
+            }
+            // dd($result);
+            return $result;
+        }
+        
+    }
+
+        $communes = DB::table('communes')->get();
+        return view('dashboard.pharmacies-gardes.create', compact('communes'));
+    }
+
+    public function store_garde(Request $request)
+    {
+        // dd($request->all());
+        // Validation
+        $request->validate([
+            'commune' => 'required|exists:communes,idcommune',
+            'pharmacie' => 'required|exists:pharmacies,idpharmacie',
+            'date_debut' => 'required|date',
+            'date_fin' => 'required|date|after_or_equal:date_debut',
+            'note' => 'nullable|string|max:255',
+        ]);
+
+        // Enregistrement de la garde
+        DB::table('pharmacie_gardes')->insert([
+            'commune_id' => $request->commune,
+            'pharmacie_id' => json_encode($request->pharmacie),
+            'date_debut' => $request->date_debut,
+            'date_fin' => $request->date_fin,
+            'note' => $request->note,
+            'user_enreg' => Auth::user()->id,
+            'created_at' => Carbon::now(),
+            // 'updated_at' => Carbon::now(),
+        ]);
+
+        return redirect()->route('pharmacies-gardes.index')->with('success', 'Garde enregistrée avec succès !');
+
+        // return response()->json([
+        //     'success' => true,
+        //     'message' => 'Garde enregistrée avec succès !'
+        // ]);
+    }
 }

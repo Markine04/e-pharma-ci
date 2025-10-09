@@ -54,6 +54,12 @@ Route::get('/pharmacie-show/{id}', [PharmaciesController::class, 'show']);
 Route::post('/pharmacie-store', [PharmaciesController::class, 'register_pharmacies']);
 Route::put('/pharmacie-update/{id}/', [PharmaciesController::class, 'update']);
 
+Route::get('/oncall', [PharmaciesController::class, 'index_oncall']);
+Route::get('/oncall/{id}', [PharmaciesController::class, 'index_oncall']);
+Route::get('/oncall/{id}', [PharmaciesController::class, 'index_oncall']);
+Route::get('/oncall', [PharmaciesController::class, 'index_oncall']);
+
+
 Route::get('/communes', [CommunesController::class, 'index']);
 
 

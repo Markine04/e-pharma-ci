@@ -4,7 +4,9 @@ use App\Models\Regions;
 use App\Models\Medicaments;
 use App\Models\CategorieMedicaments;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SmsController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegionsController;
@@ -13,11 +15,10 @@ use App\Http\Controllers\AssurancesController;
 use App\Http\Controllers\PharmaciesController;
 use App\Http\Controllers\MedicamentsController;
 use App\Http\Controllers\OrdonnancesController;
+use App\Http\Controllers\AffichageAppsController;
 use App\Http\Controllers\FormeGaleniquesController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\CategorieMedicamentsController;
-use App\Http\Controllers\AffichageAppsController;
-use App\Http\Controllers\UsersController;
 
 
 
@@ -69,6 +70,22 @@ Route::middleware('auth')->group(function () {
     Route::post('dashboard/pharmacie/{id}', [PharmaciesController::class, 'update'])->name('pharmacies.update');
     Route::delete('dashboard/pharmacie/{id}', [PharmaciesController::class, 'destroy'])->name('pharmacies.destroy');
     Route::get('dashboard/pharmacie-uploadImages', [PharmaciesController::class, 'upload'])->name('pharmacies.upload');
+
+
+    //PharmaciesDeGarde
+    Route::get('dashboard/pharmacies-gardes', [PharmaciesController::class, 'index_gardes'])->name('pharmacies-gardes.index');
+    Route::get('dashboard/pharmacie-garde/create', [PharmaciesController::class, 'create_gardes'])->name('pharmacies-gardes.create');
+    Route::get('dashboard/pharmacie-gard/{id}/{title}', [PharmaciesController::class, 'create_gardes'])->name('pharmacies-gardes.creat');
+    Route::post('dashboard/pharmacie-gardes/store', [PharmaciesController::class, 'store_garde'])->name('pharmacies-gardes.store');
+
+    // Route::post('dashboard/pharmacie-garde', [PharmaciesController::class, 'store'])->name('pharmacies-gardes.store');
+    Route::get('dashboard/pharmacie-garde/{id}/edit', [PharmaciesController::class, 'edit'])->name('pharmacies-gardes.edit');
+    Route::post('dashboard/pharmacie-garde/{id}', [PharmaciesController::class, 'update'])->name('pharmacies-gardes.update');
+    Route::delete('dashboard/pharmacie-garde/{id}', [PharmaciesController::class, 'destroy'])->name('pharmacies-gardes.destroy');
+    Route::get('dashboard/pharmacie-garde-uploadImages', [PharmaciesController::class, 'upload'])->name('pharmacies-gardes.upload');
+
+
+
 
     //Communes
     Route::get('dashboard/communes', [CommunesController::class, 'index'])->name('communes.index');
@@ -154,6 +171,8 @@ Route::middleware('auth')->group(function () {
     Route::post('dashboard/destroy', [UsersController::class, 'destroy'])->name('users.destroy');
 
 
+    //SMS
+    Route::get('dashboard/sms', [SmsController::class,'index'])->name('sms.index');
 
 })->middleware(['auth', 'verified'])->name('dashboard');
 

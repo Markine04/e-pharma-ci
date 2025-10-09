@@ -10,7 +10,11 @@
                 <div class="row">
                     <div class="col-md-12 col-lg-12">
                         <h4>Pharmacies
+
                             <div class="ml-8" style="float: right">
+                                <a href="{{ route('pharmacies-gardes.index') }}" class="btn btn-secondary">Programme des
+                                    pharmacies de gardes</a> &nbsp;&nbsp;
+                            
                                 <a href="{{ route('pharmacies.create') }}" class="btn btn-primary">Ajouter une
                                     pharmacie</a>
                             </div>
