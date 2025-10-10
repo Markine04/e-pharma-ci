@@ -11,6 +11,7 @@ use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegionsController;
 use App\Http\Controllers\CommunesController;
+use App\Http\Controllers\QuartiersController;
 use App\Http\Controllers\AssurancesController;
 use App\Http\Controllers\PharmaciesController;
 use App\Http\Controllers\MedicamentsController;
@@ -93,8 +94,18 @@ Route::middleware('auth')->group(function () {
     Route::post('dashboard/commune', [CommunesController::class, 'store'])->name('communes.store');
     Route::get('dashboard/commune/{id}/edit', [CommunesController::class, 'edit'])->name('communes.edit');
     Route::put('dashboard/commune/{id}', [CommunesController::class, 'update'])->name('communes.update');
-    Route::delete('dashboard/commune/{id}', [CommunesController::class, 'destroy'])->name('communes.destroy');
-    Route::get('dashboard/commune-uploadImages', [CommunesController::class, 'uploadImages'])->name('communes.temp');
+    Route::get('dashboard/commune-delete/{id}', [CommunesController::class, 'delete'])->name('communes.delete');
+    Route::post('dashboard/commune-destroy', [CommunesController::class, 'destroy'])->name('communes.destroy');
+
+
+    //Quartiers
+    Route::get('dashboard/quartiers', [QuartiersController::class, 'index'])->name('quartiers.index');
+    Route::get('dashboard/quartier/create', [QuartiersController::class, 'create'])->name('quartiers.create');
+    Route::post('dashboard/quartier', [QuartiersController::class, 'store'])->name('quartiers.store');
+    Route::get('dashboard/quartier/{id}/edit', [QuartiersController::class, 'edit'])->name('quartiers.edit');
+    Route::put('dashboard/quartier/{id}', [QuartiersController::class, 'update'])->name('quartiers.update');
+    Route::get('dashboard/quartier-delete/{id}', [QuartiersController::class, 'delete'])->name('quartiers.delete');
+    Route::post('dashboard/quartier-destroy', [QuartiersController::class, 'destroy'])->name('quartiers.destroy');
 
 
     //Regions

@@ -4,17 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Communes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
-class CommunesController extends Controller
+class QuartiersController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $communes = DB::table('communes')->paginate(10);
-        return view('dashboard.communes.index', compact('communes'));
+        $quartiers = DB::table('quartiers')->paginate(10);
+        return view('dashboard.quartiers.index', compact('quartiers'));
     }
 
     /**
@@ -22,8 +23,8 @@ class CommunesController extends Controller
      */
     public function create()
     {
-        $regions = DB::table('regions')->get();
-        return view('dashboard.communes.create', compact('regions'));
+        $communes = DB::table('communes')->get();
+        return view('dashboard.quartiers.create', compact('communes'));
     }
 
     /**
@@ -33,15 +34,18 @@ class CommunesController extends Controller
     {
 
         $data = $request->validate([
-            'name' => 'required',
-            'region_id' => 'required',
+            'libelle' => 'required',
+            'commune' => 'required',
         ]);
-        DB::table('communes')->insert([
-            'name' => $data['name'],
-            'region_id' => $data['region_id'],
+        DB::table('quartiers')->insert([
+            'nom' => $data['libelle'],
+            'id_commune' => $data['commune'],
+            'user_enreg'=> Auth()->user()->id,
+            'created_at' => Carbon::now(),
+
         ]);
 
-        return redirect()->route('communes.index')->with('success', 'La commune a été ajoutée avec succès');
+        return redirect()->route('quartiers.index')->with('success', 'Le quartier a été ajouté avec succès');
     }
 
     /**
@@ -74,13 +78,13 @@ class CommunesController extends Controller
 
     public function delete(Request $request)
     {
-        $commune = DB::table('communes')->where('idcommune', $request->id)->first();
-        return view('dashboard.communes.delete', compact('commune'));
+        $quartier = DB::table('quartiers')->where('idquartier', $request->id)->first();
+        return view('dashboard.quartiers.delete', compact('quartier'));
     }
 
     public function destroy(Request $request)
     {
-        DB::table('communes')->where('idcommune', $request->commune)->delete();
-        return redirect()->route('communes.index')->with('success', 'La commune a été supprimée avec succès');
+        DB::table('quartiers')->where('idquartier', $request->quartier)->delete();
+        return redirect()->route('quartiers.index')->with('success', 'Le quartier a été supprimé avec succès');
     }
 }

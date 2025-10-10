@@ -1,3 +1,6 @@
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 @extends('dashboard.layout-dashboard.master')
 @section('content')
     <div class="container mt-8">
@@ -6,7 +9,7 @@
                 <h2>Ajouter une pharmacie</h2>
             </div>
             <div class="card-body">
-                <form method="post" action="{{ route('pharmacies.store') }}" enctype="multipart/form-data">
+                <form method="post" id="formSchedule" action="{{ route('pharmacies.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <div class="row">
@@ -35,7 +38,7 @@
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label for="city_id">Ville</label>
-                                    <select name="commune_id" id="city_id" class="form-control select2" required>
+                                    <select name="commune_id" id="city_id" class="form-control js-example-basic-single" required>
                                         <option value="">-- Sélectionner une ville --</option>
                                         @foreach ($communes as $city)
                                             <option value="{{ $city->idcommune }}">{{ $city->name }}</option>
@@ -78,7 +81,10 @@
 
 <script>
     $(document).ready(function() {
-        $('.select2').select2();
-
+        // Active Select2
+        $('.js-example-basic-single').select2({
+            dropdownParent: $('#formSchedule')
+            
+        });
     });
 </script>

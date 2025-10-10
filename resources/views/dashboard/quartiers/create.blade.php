@@ -1,17 +1,17 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-<form id="formSchedule" method="post" action="{{ route('communes.store') }}">
+<form id="formSchedule" method="post" action="{{ route('quartiers.store') }}">
     @csrf
     <div class="form-group">
         <div class="row">
             <div class="col-12">
                 <div class="mb-3">
-                    <label for="region">Region</label><br>
-                    <select name="region_id" id="region" class="form-select js-example-basic-single" required style="width: 100%;">
-                        <option value="0">Sélectionner une région</option>
-                        @foreach ($regions as $region)
-                            <option value="{{ $region->idregion }}">{{ $region->name }}</option>
+                    <label for="commune">Commune</label><br>
+                    <select name="commune" id="commune" class="form-select js-example-basic-single" required style="width: 100%;">
+                        <option value="0">Sélectionner une commune</option>
+                        @foreach ($communes as $commune)
+                            <option value="{{ $commune->idcommune }}">{{ $commune->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -19,7 +19,7 @@
             <div class="col-12">
                 <div class="mb-3">
                     <label for="libelle">Libelle</label><br>
-                    <input type="text" name="name" class="form-control" id="libelle" required />
+                    <input type="text" name="libelle" class="form-control" id="libelle" required />
                 </div>
             </div>
         </div>

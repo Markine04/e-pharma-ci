@@ -167,7 +167,10 @@
     <li class="menu-header small text-uppercase">
       <span class="menu-header-text">Apps &amp; Pages</span>
     </li>
-    <li class="menu-item {{(Route::is('categoriemedicaments.*')?'active open':'')}} {{(Route::is('regions.*')?'active open':'')}} {{(Route::is('communes.*')?'active open':'')}}  {{(Route::is('pharmacies.*')?'active open':'')}} {{(Route::is('assurances.*')?'active open':'')}} {{(Route::is('afficheApp.*')?'active open':'')}} {{(Route::is('users.index')?'active open':'')}}">
+    <li class="menu-item {{(Route::is('categoriemedicaments.*')?'active open':'')}} {{(Route::is('regions.*')?'active open':'')}} {{(Route::is('communes.*')?'active open':'')}}
+    {{(Route::is('pharmacies.*')?'active open':'')}} {{(Route::is('assurances.*')?'active open':'')}}
+    {{(Route::is('afficheApp.*')?'active open':'')}} {{(Route::is('users.index')?'active open':'')}}
+    {{(Route::is('quartiers.*')?'active open':'')}}">
       <a href="javascript:void(0);" class="menu-link menu-toggle">
         <i class="menu-icon tf-icons bx bx-layout"></i>
         <div class="text-truncate">Paramètres</div>
@@ -209,6 +212,11 @@
         <li class="menu-item {{(Route::is('communes.index')?'active':'')}}">
           <a href="{{route('communes.index')}}" class="menu-link">
             <div class="text-truncate" data-i18n="Without navbar">Commnunes</div>
+          </a>
+        </li>
+        <li class="menu-item {{(Route::is('quartiers.index')?'active':'')}}">
+          <a href="{{route('quartiers.index')}}" class="menu-link">
+            <div class="text-truncate" data-i18n="Without navbar">Quartiers</div>
           </a>
         </li>
         <li class="menu-item {{(Route::is('afficheApp.index')?'active':'')}}">

@@ -66,7 +66,6 @@
                                     <td>{{ $items->phone }}</td>
                                     <td>
                                         {{ DB::table('communes')->where('idcommune', $items->commune_id)->get()[0]->name }}
-
                                     </td>
                                     <td><span class="badge bg-label-primary me-1">Active</span></td>
                                     
