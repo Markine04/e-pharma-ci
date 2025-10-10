@@ -124,7 +124,7 @@
 
     <script src="{{ asset('assets/builds/custom.js') }}"></script>
 
-    <script src="{{ asset('assets/builds/js/select2.js') }}"></script>
+    {{-- <script src="{{ asset('assets/builds/js/select2.js') }}"></script> --}}
 
     <script src="{{ asset('assets/builds/js/select2.min.js') }}"></script>
 

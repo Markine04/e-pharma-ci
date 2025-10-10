@@ -26,7 +26,8 @@ class PharmaciesController extends Controller
     public function create()
     {
         $communes = DB::table('communes')->get();
-        return view('dashboard.pharmacies.create', compact('communes'));
+        $quartiers = DB::table('quartiers')->get();
+        return view('dashboard.pharmacies.create', compact('communes', 'quartiers'));
     }
 
 
@@ -122,6 +123,7 @@ class PharmaciesController extends Controller
             'phone' => $request->telephone,
             'images' => $filename,
             'commune_id' => $request->commune_id,
+            'quartier_id' => $request->quartier_id,
             'latitude' => $request->latitude,
             'is_active' => 1,
             'longitude' => $request->longitude,
