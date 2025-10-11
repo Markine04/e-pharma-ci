@@ -1,3 +1,5 @@
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 @extends('dashboard.layout-dashboard.master')
 @section('content')
     <div class="container mt-8">
@@ -8,9 +10,11 @@
 
             @php
                 $communes = DB::table('communes')->get();
+                $quartiers = DB::table('quartiers')->where('id_commune', $pharmacies->commune_id)->get();
+
             @endphp
             <div class="card-body">
-                <form method="post" action="{{ route('pharmacies.update',['id'=>$pharmacies->idpharmacie]) }}" enctype="multipart/form-data">
+                <form method="post" id="formSchedule" action="{{ route('pharmacies.update',['id'=>$pharmacies->idpharmacie]) }}" enctype="multipart/form-data">
                     @csrf
 
                     <input type="hidden" name="lastimages" value="{{$pharmacies->images}}">
@@ -67,9 +71,27 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="images">Image</label><br>
-                        <input type="file" name="images" id="images">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="images">Images</label>
+                                    <input type="file" name="images" id="images" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="quartier_id">Quartiers</label>
+                                    <select name="quartier_id" id="quartier_id" class="form-select js-example-basic-single"
+                                        required>
+                                        <option value="">-- Sélectionner un quartier --</option>
+                                        @foreach ($quartiers as $quartier)
+                                            <option value="{{ $quartier->idquartier }}"{{$pharmacies->quartier_id == $quartier->idquartier ? 'selected': ''}}>{{ $quartier->nom }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <center><button type="submit" class="btn btn-success text-center mt-3">Enregistrer</button></center>
                 </form>
@@ -84,7 +106,7 @@
 
 <script>
     $(document).ready(function() {
-        $('.select2').select2();
+        $('.js-example-basic-single').select2();
 
     });
 </script>

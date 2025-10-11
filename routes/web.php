@@ -34,7 +34,7 @@ use App\Http\Controllers\CategorieMedicamentsController;
 |
 */
 
-Route::get('/',[HomeController::class,'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -51,15 +51,15 @@ Route::get('/single-produits', [ProduitController::class, 'show'])->name('single
 
 // DASHBOARD
 Route::middleware('auth')->group(function () {
-    Route::get('dashboard/home',[DashboardController::class,'index'])->name('dashboard');
+    Route::get('dashboard/home', [DashboardController::class, 'index'])->name('dashboard');
 
     //Produits
-    Route::get('dashboard/medicaments',[MedicamentsController::class,'index'])->name('medicaments.index');
-    Route::get('dashboard/medicament/create',[MedicamentsController::class,'create'])->name('medicaments.create');
-    Route::post('dashboard/medicament',[MedicamentsController::class,'store'])->name('medicaments.store');
-    Route::get('dashboard/medicament/{id}/edit',[MedicamentsController::class,'edit'])->name('medicaments.edit');
-    Route::put('dashboard/medicament/{id}',[MedicamentsController::class,'update'])->name('medicaments.update');
-    Route::delete('dashboard/medicament/{id}',[MedicamentsController::class,'destroy'])->name('medicaments.destroy');
+    Route::get('dashboard/medicaments', [MedicamentsController::class, 'index'])->name('medicaments.index');
+    Route::get('dashboard/medicament/create', [MedicamentsController::class, 'create'])->name('medicaments.create');
+    Route::post('dashboard/medicament', [MedicamentsController::class, 'store'])->name('medicaments.store');
+    Route::get('dashboard/medicament/{id}/edit', [MedicamentsController::class, 'edit'])->name('medicaments.edit');
+    Route::put('dashboard/medicament/{id}', [MedicamentsController::class, 'update'])->name('medicaments.update');
+    Route::delete('dashboard/medicament/{id}', [MedicamentsController::class, 'destroy'])->name('medicaments.destroy');
     Route::get('dashboard/medicaments-uploadImages', [MedicamentsController::class, 'uploadImages'])->name('upload.temp');
 
 
@@ -71,6 +71,8 @@ Route::middleware('auth')->group(function () {
     Route::post('dashboard/pharmacie/{id}', [PharmaciesController::class, 'update'])->name('pharmacies.update');
     Route::delete('dashboard/pharmacie/{id}', [PharmaciesController::class, 'destroy'])->name('pharmacies.destroy');
     Route::get('dashboard/pharmacie-uploadImages', [PharmaciesController::class, 'upload'])->name('pharmacies.upload');
+    Route::get('dashboard/pharmacie-delete/{id}', [PharmaciesController::class, 'delete'])->name('pharmacies.delete');
+    Route::post('dashboard/pharmacie-destroy', [PharmaciesController::class, 'destroy'])->name('pharmacies.destroy');
 
 
     //PharmaciesDeGarde
@@ -127,7 +129,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('dashboard/categorie-medicament/{id}', [CategorieMedicamentsController::class, 'destroy'])->name('categoriemedicaments.destroy');
     Route::get('dashboard/categorie-medicament-uploadImages', [CategorieMedicamentsController::class, 'uploadImages'])->name('categoriemedicaments.temp');
 
-    
+
     //Ordonnances
     Route::get('dashboard/ordonnances', [OrdonnancesController::class, 'index'])->name('ordonnances.index');
     Route::get('dashboard/ordonnance/create', [OrdonnancesController::class, 'create'])->name('ordonnances.create');
@@ -153,7 +155,7 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard/assurance-uploadImages', [AssurancesController::class, 'uploadImages'])->name('assurances.temp');
 
 
-//Assurances
+    //Assurances
     Route::get('dashboard/formegaleniques', [FormeGaleniquesController::class, 'index'])->name('formegaleniques.index');
     Route::get('dashboard/formegalenique/create', [FormeGaleniquesController::class, 'create'])->name('formegaleniques.create');
     Route::post('dashboard/formegalenique', [FormeGaleniquesController::class, 'store'])->name('formegaleniques.store');
@@ -164,7 +166,7 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard/formegalenique-uploadImages', [FormeGaleniquesController::class, 'uploadImages'])->name('formegaleniques.temp');
 
 
-//Affichage App
+    //Affichage App
 
     Route::get('dashboard/affiche-apps', [AffichageAppsController::class, 'index'])->name('afficheApp.index');
     Route::get('dashboard/affiche-app/create', [AffichageAppsController::class, 'create'])->name('afficheApp.create');
@@ -176,15 +178,14 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard/affiche-app-uploadImages', [AffichageAppsController::class, 'uploadImages'])->name('afficheApp.temp');
 
 
-//Utilisateurs
+    //Utilisateurs
     Route::get('dashboard/users', [UsersController::class, 'index'])->name('users.index');
     Route::get('dashboard/delete/{id}', [UsersController::class, 'delete'])->name('users.delete');
     Route::post('dashboard/destroy', [UsersController::class, 'destroy'])->name('users.destroy');
 
 
     //SMS
-    Route::get('dashboard/sms', [SmsController::class,'index'])->name('sms.index');
-
+    Route::get('dashboard/sms', [SmsController::class, 'index'])->name('sms.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

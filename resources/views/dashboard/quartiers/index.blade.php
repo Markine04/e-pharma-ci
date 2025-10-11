@@ -1,12 +1,32 @@
 @extends('dashboard.layout-dashboard.master')
 @section('content')
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.3.4/css/dataTables.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+ 
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable({
+                // info: "",
+                    // topStart: 'pageLength',
+                ordering: false,
+                // pagingType: "full_numbers",
+                
+                layout: {
+                    // topStart: 'pageLength',
+                    topEnd: 'search',
+                    bottomStart: 'info',
+                    bottomEnd: 'paging',
+
+                }
+            });
+        });
+    </script>
     <!-- Content -->
     <div class="container-xxl flex-grow-1 container-p-y">
-
-
         <!-- Bordered Table -->
         <div class="card">
-            <div class="me-auto container mt-5">
+            <div class="navbar-nav me-auto container mt-5">
                 <div class="row">
                     <div class="col-md-12 col-lg-12">
                         <h4>Quartiers
@@ -23,8 +43,8 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="table-responsive text-nowrap">
-                    <table class="table table-bordered">
+                <div class="table-responsive">
+                    <table id="example" class="cell-border table table-bordered" aria-label="Page navigation">
                         <thead>
                             <tr>
                                 <th>Libelles</th>
@@ -67,13 +87,8 @@
                 </div>
             </div>
         </div>
-        <!--/ Bordered Table -->
-        <nav aria-label="Page navigation" class="mt-3">
-            {!! $quartiers->links('pagination::bootstrap-5') !!}
-        </nav>
-
     </div>
     <!-- / Content -->
 @endsection
 
-{{-- <h1>Bienvenue</h1> --}}
+

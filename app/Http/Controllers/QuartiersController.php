@@ -14,7 +14,7 @@ class QuartiersController extends Controller
      */
     public function index()
     {
-        $quartiers = DB::table('quartiers')->paginate(10);
+        $quartiers = DB::table('quartiers')->get();
         return view('dashboard.quartiers.index', compact('quartiers'));
     }
 

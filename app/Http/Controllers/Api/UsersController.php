@@ -67,29 +67,29 @@ class UsersController extends Controller
 
     public function login(Request $request)
     {
-        if (DB::table('users')->where('number','!=',$request->number)->first()) {
+        $user = User::where('number', $request->number)->first();
+
+        if (!$user) {
             return response()->json([
                 'message' => 'Invalid login details'
             ], 401);
         }
-        $user = User::where('number', $request['number'])->firstOrFail();
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
             'user' => $user,
             'access_token' => $token,
-            'token_type' => 'secret',
+            'token_type' => 'Bearer', // plus standard que "secret"
             'success' => true,
-        ],200);
+        ], 200);
 
-        
     }
 
 
     public function info(Request $request)
     {
-        $users = DB::table('users')->where('id',$user->user_id)->first();
+        $users = DB::table('users')->where('id', $request->user_id)->first();
         return response()->json([
         'success' => true,
             'user'=>Auth::user()
@@ -152,9 +152,9 @@ class UsersController extends Controller
 
 
 
-    public function logout()
+    public function logout(Request $request)
     {
-        Auth::user()->tokens()->delete();
+        Auth::user()->Token()->delete();
         return response([
             'message' => 'Vous etes deconnecter.',
         ],200);

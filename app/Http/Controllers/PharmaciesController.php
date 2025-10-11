@@ -15,8 +15,8 @@ class PharmaciesController extends Controller
      */
     public function index()
     {
+        
         $pharmacies = DB::table('pharmacies')->paginate(10);
-
         return view('dashboard.pharmacies.index', compact('pharmacies'));
     }
 
@@ -50,7 +50,6 @@ class PharmaciesController extends Controller
 
         return response()->json(['success' => false], 400);
 
-
     }
 
     /**
@@ -58,9 +57,6 @@ class PharmaciesController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-
-
         $filename = '';
         if ($request->hasfile('images')) {
             $filename = time() . '.' . $request->images->getClientOriginalExtension();
@@ -69,11 +65,12 @@ class PharmaciesController extends Controller
 
         // dd($filename);
         DB::table('pharmacies')->insert([
-            'name' => $request->name,
+            'name' => strtoupper($request->name),
             'address' => $request->address,
             'phone' => $request->telephone,
             'images' => $filename,
             'commune_id' => $request->commune_id,
+            'quartier_id' => $request->quartier_id,
             'latitude' => $request->latitude,
             'is_active' => 1,
             'longitude' => $request->longitude,
@@ -117,7 +114,7 @@ class PharmaciesController extends Controller
         }
 
         // dd($filename);
-        DB::table('pharmacies')->where('id',$request->id)->update([
+        DB::table('pharmacies')->where('idpharmacie',$request->id)->update([
             'name' => $request->name,
             'address' => $request->address,
             'phone' => $request->telephone,
@@ -137,9 +134,17 @@ class PharmaciesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Pharmacies $pharmacies)
+
+    public function delete(Request $request)
     {
-        //
+        $pharmacies = DB::table('pharmacies')->where('idpharmacie', $request->id)->first();
+        return view('dashboard.pharmacies.delete', compact('pharmacies'));
+    }
+
+    public function destroy(Request $request)
+    {
+        DB::table('pharmacies')->where('idpharmacie', $request->id)->delete();
+        return redirect()->route('pharmacies.index')->with('success', 'Pharmacie supprimée');
     }
 
 

@@ -34,7 +34,8 @@ Route::post('/verify-otp', [UsersController::class, 'verifyOtp']);
 Route::post('/resend-otp', [UsersController::class, 'resendOtp']);
 
 Route::get('/users', [UsersController::class, 'index']);
-Route::post('/logout', [UsersController::class, 'logout']);
+Route::middleware('auth:sanctum')->post('/logout', [UsersController::class, 'logout']);
+// Route::post('/logout', [UsersController::class, 'logout']);
 
 Route::get('/categories', [CategoriesController::class, 'index_categories']);
 Route::get('/categories-show/{id}', [CategoriesController::class, 'show']);
@@ -63,13 +64,19 @@ Route::get('/oncall', [PharmaciesController::class, 'index_oncall']);
 Route::get('/communes', [CommunesController::class, 'index']);
 
 
+Route::get('/pharmacies-gardes', [PharmaciesController::class, 'index_pharmacies_gardes']);
+Route::get('/pharmacie-garde-search', [PharmaciesController::class, 'search_pharmacies_gardes']);
+Route::get('/pharmacie-garde-show/{id}', [PharmaciesController::class, 'show_gardes']);
+
 
 Route::group(['middleware'=>['auth:sanctum']],function(){
 
 Route::get('/users-info/{user_id}', [UsersController::class, 'info'])->name('users.info');
-	
 
-Route::post('/upload-ordonnances', [UploadController::class, 'store']);
+    // Route::get('/pharmacies-gardes', [PharmaciesController::class, 'index_pharmacies_gardes']);
+
+
+    Route::post('/upload-ordonnances', [UploadController::class, 'store']);
 
 Route::post('/panier-store', [CartsController::class, 'addToCart']);
 

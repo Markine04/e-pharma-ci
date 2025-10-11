@@ -1,9 +1,7 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 @extends('dashboard.layout-dashboard.master')
 @section('content')
-    
-
     <style>
         :root {
             --primary: #0d6efd;
@@ -54,11 +52,18 @@
             </div>
 
             {{-- Formulaire de recherche --}}
-            <form action="search" method="get" id="body">
+            <form action="" method="get" id="body">
                 @csrf
                 <div class="row mb-3">
                     <div class="col-md-4 mb-2">
-                        <input id="dateInput" type="date" name="date" class="form-control" />
+                        <select name="date" class="form-select js-example-basic-single">
+                            <option value="">Toutes les Dates</option>
+                            @foreach ($pharmaciesGardes as $item)
+                                    <option value="{{$item->idpharmacie_garde}}">De
+                                    {{ date('d/m/Y', strtotime($item->date_debut)) }} à
+                                    {{ date('d/m/Y', strtotime($item->date_fin)) }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="col-md-4 mb-2">
                         <select name="commune_id" class="form-select js-example-basic-single">
@@ -93,10 +98,14 @@
                                             <h5 class="mb-0 name">{{ $pharmacie->name }}</h5>
                                             <div class="text-muted small commune">
                                                 {{ DB::table('communes')->where('idcommune', $pharmacie->commune_id)->get()[0]->name }}
+                                                -
+                                                {{ DB::table('quartiers')->where('idquartier', $pharmacie->quartier_id)->get()[0]->nom }}
                                             </div>
                                             <div class="mt-2">
                                                 <span class="badge bg-info text-dark period">En garde</span>
-                                                <span class="ms-2 note text-muted small">De {{date('d/m/Y', strtotime($item->date_debut))}} à {{date('d/m/Y', strtotime($item->date_fin))}}</span>
+                                                <span class="ms-2 note text-muted small">De
+                                                    {{ date('d/m/Y', strtotime($item->date_debut)) }} à
+                                                    {{ date('d/m/Y', strtotime($item->date_fin)) }}</span>
                                             </div>
                                         </div><br>
                                         <div class="ms-3">

@@ -135,5 +135,81 @@ class PharmaciesController extends Controller
     {
         //
     }
-    
+
+
+
+
+    public function index_pharmacies_gardes()
+    {
+        $ids_pharmacies = [];
+        $pharmacies_gardes = DB::table('pharmacie_gardes')->get();
+
+        foreach ($pharmacies_gardes as $pharmacie_garde) {
+            $ids = json_decode($pharmacie_garde->pharmacie_id, true);
+            if (is_array($ids)) {
+                $ids_pharmacies = array_merge($ids_pharmacies, $ids);
+            }
+        }
+
+        // Supprimer les doublons
+        $ids_pharmacies = array_unique($ids_pharmacies);
+
+        // Requête unique
+        $data = DB::table('pharmacies')
+            ->whereIn('idpharmacie', $ids_pharmacies)
+            ->get();
+
+        return response()->json([
+            'pharmacies_gardes' => $data,
+        ], 200);
+    }
+
+
+    public function search_pharmacies_gardes(Request $request)
+    {
+        $query = $request->get('q', '');
+
+        if (empty($query)) {
+            return response()->json([
+                'message' => 'Veuillez entrer le nom de la pharmacie',
+            ], 400);
+        }
+
+        // Récupération des enregistrements pharmacie_gardes
+        $pharmacies_gardes = DB::table('pharmacie_gardes')->get();
+
+        $ids_pharmacies = [];
+
+        foreach ($pharmacies_gardes as $pharmacie_garde) {
+            $ids = json_decode($pharmacie_garde->pharmacie_id, true);
+
+            // Vérifie si c'est un tableau
+            if (is_array($ids)) {
+                $ids_pharmacies = array_merge($ids_pharmacies, $ids);
+            }
+        }
+
+        // Supprimer les doublons (au cas où)
+        $ids_pharmacies = array_unique($ids_pharmacies);
+
+        // Requête sur la table 'pharmacies' avec LIKE sur 'name' et filtrage sur les IDs
+        $liste_pharma = DB::table('pharmacies')
+            ->whereIn('idpharmacie', $ids_pharmacies)
+            ->where('name', 'like', "%{$query}%")
+            ->get(['idpharmacie', 'name', 'address', 'phone', 'images', 'commune_id', 'quartier_id', 'latitude', 'longitude']);
+
+        return response()->json([
+            'querypharmacies_gardes' => $liste_pharma,
+        ], 200);
+    }
+
+
+    public function show_pharmacies_gardes(string $id)
+    {
+        return response()->json(
+            [
+                'pharmacies_gardes' => DB::table('pharmacie_gardes')->where('idpharmacie_garde', $id)->get()
+            ],
+        );
+    }
 }

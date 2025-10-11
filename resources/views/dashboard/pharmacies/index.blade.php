@@ -15,10 +15,12 @@
                                 <a href="{{ route('pharmacies-gardes.index') }}" class="btn btn-secondary">Programme des
                                     pharmacies de gardes</a> &nbsp;&nbsp;
                             
-                                <a href="{{ route('pharmacies.create') }}" class="btn btn-primary">Ajouter une
+                                <a data-url="{{ route('pharmacies.create') }}" class="btn btn-primary text-white"
+                                    data-bs-toggle="modal" data-ajax-popup="true" data-size="lg"
+                                    data-title="Ajouter une pharmacie">
+                                    <i class="si si-note" style="font-size: 15px;"></i>Ajouter une
                                     pharmacie</a>
                             </div>
-
                         </h4>
                     </div>
                 </div>
@@ -34,6 +36,7 @@
                                 <th>Adresses</th>
                                 <th>Telephones</th>
                                 <th>Communes</th>
+                                <th>Quartiers</th>
                                 <th>Statuts</th>
                                 
                             </tr>
@@ -50,8 +53,11 @@
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="{{route('pharmacies.edit',['id'=>$items->idpharmacie])}}"><i
                                                         class="icon-base bx bx-edit-alt me-1" style='color:rgba(0, 119, 255, 0.637);'></i> Modifier</a>
-                                                <a class="dropdown-item" href="javascript:void(0);"><i
-                                                        class="icon-base bx bx-trash me-1" style='color:rgba(255, 0, 0, 0.637);'></i> Supprimer</a>
+                                                <a data-url="{{ route('pharmacies.delete', ['id' => $items->idpharmacie]) }}"
+                                                    class="dropdown-item" data-bs-toggle="modal"
+                                                    data-ajax-popup="true" data-size="md"
+                                                    data-title="supprimer cette pharmacie" style="cursor: pointer"><i
+                                                        class="icon-base bx bx-trash me-1" style="cursor: pointer; color:red;"></i> Supprimer</a>
                                             </div>
                                         </div>
                                     </td>
@@ -67,8 +73,21 @@
                                     <td>
                                         {{ DB::table('communes')->where('idcommune', $items->commune_id)->get()[0]->name }}
                                     </td>
-                                    <td><span class="badge bg-label-primary me-1">Active</span></td>
+
+                                    @if ($items->quartier_id == null)
+                                        <td></td>
+                                    @else
+                                        <td>
+                                            {{ DB::table('quartiers')->where('idquartier', $items->quartier_id)->get()[0]->nom }}
+                                        </td>
+                                    @endif
+
+                                    <td>
+                                        <span class="badge bg-label-primary me-1">Active</span>
+                                    </td>
+
                                     
+
                                 </tr>
                             @endforeach
                         </tbody>

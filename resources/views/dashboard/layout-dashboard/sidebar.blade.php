@@ -170,7 +170,7 @@
     <li class="menu-item {{(Route::is('categoriemedicaments.*')?'active open':'')}} {{(Route::is('regions.*')?'active open':'')}} {{(Route::is('communes.*')?'active open':'')}}
     {{(Route::is('pharmacies.*')?'active open':'')}} {{(Route::is('assurances.*')?'active open':'')}}
     {{(Route::is('afficheApp.*')?'active open':'')}} {{(Route::is('users.index')?'active open':'')}}
-    {{(Route::is('quartiers.*')?'active open':'')}}">
+    {{(Route::is('quartiers.*')?'active open':'')}} {{(Route::is('pharmacies-gardes.*')?'active open':'')}}">
       <a href="javascript:void(0);" class="menu-link menu-toggle">
         <i class="menu-icon tf-icons bx bx-layout"></i>
         <div class="text-truncate">Paramètres</div>
@@ -199,7 +199,7 @@
             <div class="text-truncate" data-i18n="Fluid">Formes Galeniques</div>
           </a>
         </li>
-        <li class="menu-item {{(Route::is('pharmacies.index')?'active':'')}} ">
+        <li class="menu-item {{(Route::is('pharmacies.index')?'active':'')}} {{(Route::is('pharmacies-gardes.*')?'active':'')}}">
           <a href="{{route('pharmacies.index')}}" class="menu-link">
             <div class="text-truncate" data-i18n="Fluid">Pharmacies</div>
           </a>
