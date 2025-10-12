@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\PharmaciesController;
 use App\Http\Controllers\Api\MedicamentsController;
 use App\Http\Controllers\Api\CommunesController;
+use App\Http\Controllers\Api\QuartiersController;
 
 
 /*
@@ -62,6 +63,16 @@ Route::get('/oncall', [PharmaciesController::class, 'index_oncall']);
 
 
 Route::get('/communes', [CommunesController::class, 'index']);
+Route::get('/communes', [CommunesController::class, 'index']);
+Route::get('/communes/{id}', [CommunesController::class, 'show']);
+Route::get('/communes-search', [CommunesController::class, 'search_communes']);
+Route::post('/communes-store', [CommunesController::class, 'register_communes']);
+
+Route::get('/quartiers', [QuartiersController::class, 'index']);
+Route::get('/quartiers/{id}', [QuartiersController::class, 'show']);
+Route::get('/quartiers-search', [QuartiersController::class, 'search_quartiers']);
+Route::post('/quartiers-store', [QuartiersController::class, 'store']);
+Route::put('/quartiers-update/{id}/', [QuartiersController::class, 'update']);
 
 
 Route::get('/pharmacies-gardes', [PharmaciesController::class, 'index_pharmacies_gardes']);
@@ -69,15 +80,14 @@ Route::get('/pharmacie-garde-search', [PharmaciesController::class, 'search_phar
 Route::get('/pharmacie-garde-show/{id}', [PharmaciesController::class, 'show_gardes']);
 
 
-Route::group(['middleware'=>['auth:sanctum']],function(){
+Route::group(['middleware' => ['auth:sanctum']], function () {
 
-Route::get('/users-info/{user_id}', [UsersController::class, 'info'])->name('users.info');
+    Route::get('/users-info/{user_id}', [UsersController::class, 'info'])->name('users.info');
 
     // Route::get('/pharmacies-gardes', [PharmaciesController::class, 'index_pharmacies_gardes']);
 
 
     Route::post('/upload-ordonnances', [UploadController::class, 'store']);
 
-Route::post('/panier-store', [CartsController::class, 'addToCart']);
-
+    Route::post('/panier-store', [CartsController::class, 'addToCart']);
 });
