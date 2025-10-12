@@ -17,8 +17,8 @@ class UsersController extends Controller
         // $users = DB::table('users')->get();
 
         return response()->json([
-            'user'=>Auth::user()
-        ],200);
+            'user' => Auth::user()
+        ], 200);
     }
 
     // public function store_show()
@@ -34,7 +34,7 @@ class UsersController extends Controller
     {
         // Validation des données
         $this->validate($request, [
-            'number'=> 'required|min:10|unique:users,number',
+            'number' => 'required|min:10|unique:users,number',
             'commune' => 'nullable|integer'
         ]);
 
@@ -60,7 +60,7 @@ class UsersController extends Controller
             'access_token' => $token,
             'token_type' => 'Bearer',
             'success' => true,
-        ],200);
+        ], 200);
     }
 
 
@@ -83,17 +83,16 @@ class UsersController extends Controller
             'token_type' => 'Bearer', // plus standard que "secret"
             'success' => true,
         ], 200);
-
     }
 
 
     public function info(Request $request)
     {
-        $users = DB::table('users')->where('id', $request->user_id)->first();
+        $users = DB::table('users')->where('id', Auth::user()->id)->first();
         return response()->json([
-        'success' => true,
-            'user'=>Auth::user()
-        ],200);
+            'success' => true,
+            'user' => Auth::user()
+        ], 200);
     }
 
 
@@ -104,14 +103,14 @@ class UsersController extends Controller
             'otp' => 'required',
         ]);
 
-        $user = DB::table('users')->where('id',$request->user_id)->first();
+        $user = DB::table('users')->where('id', $request->user_id)->first();
 
-        if (DB::table('users')->where('id',$user->id)->where('otp',$request->otp)->exists()) {
+        if (DB::table('users')->where('id', $user->id)->where('otp', $request->otp)->exists()) {
 
-            DB::table('users')->where('id',$user->id)->update([
+            DB::table('users')->where('id', $user->id)->update([
                 'otp_valid' => 2
             ]);
-            
+
             // générer un token (Sanctum / JWT)
             $token = $request->token;
 
@@ -154,11 +153,9 @@ class UsersController extends Controller
 
     public function logout(Request $request)
     {
-        Auth::user()->Token()->delete();
+        Auth::user()->currentAccessToken()->delete();
         return response([
-            'message' => 'Vous etes deconnecter.',
-        ],200);
+            'message' => 'Vous êtes déconnecter.',
+        ], 200);
     }
-
-    
 }

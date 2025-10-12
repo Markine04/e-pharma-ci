@@ -56,48 +56,15 @@ class PharmaciesController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     */
-    // public function register_categories(Request $request)
-    // {
-        
-    //     $this->validate($request, [
-    //         'libelle' => 'required|max:250',
-    //     ]);
-    //     // La validation de données
-
-    //     // On crée une nouvelle categories
-    //     $pharmacies = DB::table('pharmacies')->insert([
-    //         'name' => $request->name,
-    //         'address' => $request->address,
-    //         'phone' => $request->telephone,
-    //         'images' => $filename,
-    //         'commune_id' => $request->commune_id,
-    //         'latitude' => $request->latitude,
-    //         'is_active' => 1,
-    //         'longitude' => $request->longitude,
-    //         'user_enreg' => Auth::user()->id,
-    //         'created_at' => Carbon::now(),
-    //         // 'updated_at' => now(),
-    //     ]);
-
-    //     // On retourne les informations du nouvel utilisateur en JSON
-    //     return response()->json([
-    //         'message' => 'pharmacies créer avec succèss',
-    //         'pharmacies' => $pharmacies,
-    //     ],200);
-    // }
-
-    /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-        return response()->json(
-            [
-                'pharmacies' => DB::table('pharmacies')->where('idpharmacie', $id)->get()
-            ],
-        );
+        $pharmacies = DB::table('pharmacies')->where('idpharmacie', $id)->get();
+        
+        return response()->json([
+            'pharmacies' => $pharmacies,
+        ], 200);
     }
 
     /**
