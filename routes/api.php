@@ -39,9 +39,14 @@ Route::middleware('auth:sanctum')->post('/logout', [UsersController::class, 'log
 // Route::post('/logout', [UsersController::class, 'logout']);
 
 Route::get('/categories', [CategoriesController::class, 'index_categories']);
+Route::get('/categories-showapp', [CategoriesController::class, 'show_app']);
 Route::get('/categories-show/{id}', [CategoriesController::class, 'show']);
 Route::post('/categories-store', [CategoriesController::class, 'register_categories']);
 Route::put('/categories-update/{id}/', [CategoriesController::class, 'update']);
+
+
+
+
 
 Route::get('/medicaments', [MedicamentsController::class, 'index_medicaments']);
 Route::get('/medicament-show/{id}', [MedicamentsController::class, 'show']);

@@ -26,6 +26,16 @@ class CategoriesController extends Controller
         ], 200);
     }
 
+    public function show_app()
+    {
+        $categories = DB::table('categories')->where('show_app', 1)->get()->take(9);
+
+        return response()->json([
+            // 'message' => 'Liste de toutes les categories existente',
+            'categories' => $categories,
+        ], 200);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -39,7 +49,7 @@ class CategoriesController extends Controller
      */
     public function register_categories(Request $request)
     {
-        
+
         $this->validate($request, [
             'libelle' => 'required|max:250',
         ]);
@@ -56,7 +66,7 @@ class CategoriesController extends Controller
         return response()->json([
             'message' => 'Categories créer avec succèss',
             'categories' => $categories,
-        ],200);
+        ], 200);
     }
 
     /**
@@ -64,8 +74,10 @@ class CategoriesController extends Controller
      */
     public function show(string $id)
     {
-        return response()->json([
-            'categories' => DB::table('categories')->where('idcategorie', $id)->get(),]
+        return response()->json(
+            [
+                'categories' => DB::table('categories')->where('idcategorie', $id)->get(),
+            ]
         );
     }
 
@@ -87,7 +99,7 @@ class CategoriesController extends Controller
             'libelle' => $request->libelle,
             'image' => $request->image,
             'user_id' => Auth::user()->id,
-            'updated_at'=>Carbon::now()
+            'updated_at' => Carbon::now()
         ]);
 
         // On retourne les informations du nouvel utilisateur en JSON
