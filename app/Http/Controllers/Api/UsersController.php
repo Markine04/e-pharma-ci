@@ -21,6 +21,15 @@ class UsersController extends Controller
         ], 200);
     }
 
+
+    public function offres()
+    {
+        $offres = DB::table('offres')->get();
+
+        return response()->json([
+            'offres' => $offres
+        ], 200);
+    }
     // public function store_show()
     // {
     //     // $users = DB::table('users')->get();

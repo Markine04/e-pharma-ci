@@ -29,6 +29,8 @@ use App\Http\Controllers\Api\QuartiersController;
 //     return $request->user();
 // });
 
+Route::get('/offres', [UsersController::class, 'offres']);
+
 Route::post('/login', [UsersController::class, 'login']);
 Route::post('/register', [UsersController::class, 'register']);
 Route::post('/verify-otp', [UsersController::class, 'verifyOtp']);
