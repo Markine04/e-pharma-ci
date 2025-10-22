@@ -117,7 +117,7 @@
         </div>
         <!--/ Bordered Table -->
         <nav aria-label="Page navigation" class="mt-3">
-            {!! $ordonnances->links('pagination::bootstrap-5') !!}
+            {!! $commandes->links('pagination::bootstrap-5') !!}
         </nav>
 
     </div>
