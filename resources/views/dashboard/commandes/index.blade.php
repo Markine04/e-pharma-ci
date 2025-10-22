@@ -63,7 +63,7 @@
                                     <td>
                                         <a href="{{ route('commandes.image', ['id' => $items->produit_id]) }}"
                                             target="_blank">
-                                            <img src="{{ asset('assets/images/produits/' . DB::table('medicaments')->where('idmedicament', $items->produit_id)->value('images[0]')) }}"
+                                            <img src="{{ asset('assets/images/produits/' . DB::table('medicaments')->where('idmedicament', $items->produit_id)->value('images'))[0] }}"
                                                 alt="{{ DB::table('medicaments')->where('idmedicament', $items->produit_id)->value('nom') }}" width="90px" height="70px">
                                         </a>
                                     </td>
