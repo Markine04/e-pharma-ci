@@ -68,7 +68,8 @@
                                         </a>
                                     </td>
                                     <td>{{ DB::table('users')->where('id', $items->user_id)->value('number') }}</td>
-                                    <td>{{ DB::table('medicaments')->where('idmedicament', $items->produit_id)->value('nom') }} Dosage:({{ DB::table('medicaments')->where('idmedicament', $items->produit_id)->value('dosage') }})</td>
+                                    <td>{{ DB::table('medicaments')->where('idmedicament', $items->produit_id)->value('nom') }} <br>
+                                        Dosage:({{ DB::table('medicaments')->where('idmedicament', $items->produit_id)->value('dosage') }})</td>
                                     <td>{{ $items->notes }}</td>
                                     <td>
                                         {{ $items->quantite }}
