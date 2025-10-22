@@ -29,7 +29,7 @@
 
 <body style="background-color:rgba(0, 0, 0, 0.8);">
     <center>
-        <img src="{{ asset('assets/images/produits/' . $medicaments->image) }}"
+        <img src="{{ asset('assets/images/produits/' . $medicaments->images) }}"
                                             alt="{{ $medicaments->nom }}">
     </center>
 </body>
