@@ -98,6 +98,13 @@
             <span class="badge rounded-pill bg-danger ms-auto">5</span>
           </a>
         </li>
+
+        <li class="menu-item  {{(Route::is('commandes.index')?'active':'')}}">
+      <a href="{{route('commandes.index')}}" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-home-smile"></i>
+        <div class="text-truncate" data-i18n="Commandes">Commandes</div>
+      </a>
+    </li>
         
         {{-- <li class="menu-item">
           <a href="layouts-container.html" class="menu-link">
