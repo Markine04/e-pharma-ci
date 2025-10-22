@@ -11,6 +11,7 @@ use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegionsController;
 use App\Http\Controllers\CommunesController;
+use App\Http\Controllers\CommandesController;
 use App\Http\Controllers\QuartiersController;
 use App\Http\Controllers\AssurancesController;
 use App\Http\Controllers\PharmaciesController;
@@ -186,6 +187,19 @@ Route::middleware('auth')->group(function () {
 
     //SMS
     Route::get('dashboard/sms', [SmsController::class, 'index'])->name('sms.index');
+
+
+    //Assurances
+    Route::get('dashboard/commandes', [CommandesController::class, 'index'])->name('commandes.index');
+    Route::get('dashboard/commande/create', [CommandesController::class, 'create'])->name('commandes.create');
+    Route::post('dashboard/commande', [CommandesController::class, 'store'])->name('commandes.store');
+    Route::get('dashboard/commande/{id}/edit', [CommandesController::class, 'edit'])->name('commandes.edit');
+    Route::put('dashboard/commande/{id}', [CommandesController::class, 'update'])->name('commandes.update');
+    Route::get('dashboard/commande/{id}/delete', [CommandesController::class, 'delete'])->name('commandes.delete');
+    Route::delete('dashboard/commandes/{id}', [CommandesController::class, 'destroy'])->name('commandes.destroy');
+    Route::get('dashboard/commande-uploadImages', [CommandesController::class, 'uploadImages'])->name('commandes.temp');
+    Route::get('dashboard/commande-image/{id}', [CommandesController::class, 'show'])->name('commandes.image');
+
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__ . '/auth.php';
