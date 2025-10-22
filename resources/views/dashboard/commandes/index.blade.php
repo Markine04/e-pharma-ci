@@ -63,17 +63,18 @@
                                     <td>
                                         <a href="{{ route('commandes.image', ['id' => $items->produit_id]) }}"
                                             target="_blank">
-                                            <img src="{{ asset('assets/images/produits/' . DB::table('medicaments')->where('idmedicament', $items->produit_id)->value('images')) }}"
+                                            <img src="{{ asset('assets/images/produits/' . DB::table('medicaments')->where('idmedicament', $items->produit_id)->value('images[0]')) }}"
                                                 alt="{{ DB::table('medicaments')->where('idmedicament', $items->produit_id)->value('nom') }}" width="90px" height="70px">
                                         </a>
                                     </td>
                                     <td>{{ DB::table('users')->where('id', $items->user_id)->value('number') }}</td>
                                     <td>{{ DB::table('medicaments')->where('idmedicament', $items->produit_id)->value('nom') }} Dosage:({{ DB::table('medicaments')->where('idmedicament', $items->produit_id)->value('dosage') }})</td>
+                                    <td>{{ $items->notes }}</td>
                                     <td>
                                         {{ $items->quantite }}
                                     </td>
                                     <td>{{ $items->prix_unitaire }}</td>
-                                    <td>{{ $items->notes }}</td>
+                                    
                                     <td>
 
                                         {{-- @switch($items->statut)
