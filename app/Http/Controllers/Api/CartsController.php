@@ -22,7 +22,7 @@ class CartsController extends Controller
             'user_id' => $validated['user_id'],
             'produit_id' => $validated['produit_id'],
             'quantite' => $validated['quantite'],
-            'statut' => $validated['statut'],
+            'statut' => $request->statut,
             'prix_unitaire' => $validated['prix_unitaire'],
             'created_at' => now(),
         ]);
@@ -35,7 +35,8 @@ class CartsController extends Controller
         $panier = DB::table('paniers')
             ->join('users', 'paniers.user_id', '=', 'users.id')
             ->where('users.id', $id)
-            ->first();
+            ->where('statut', 1)
+            ->get();
 
         return response()->json(['panier' => $panier], 200);
     }
