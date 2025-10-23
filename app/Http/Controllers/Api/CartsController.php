@@ -22,11 +22,27 @@ class CartsController extends Controller
             'user_id' => $validated['user_id'],
             'produit_id' => $validated['produit_id'],
             'quantite' => $validated['quantite'],
+            'statut' => $validated['statut'],
             'prix_unitaire' => $validated['prix_unitaire'],
             'created_at' => now(),
-            'updated_at' => now(),
         ]);
 
         return response()->json(["message" => "Produit ajouté au panier"], 200);
+    }
+
+    public function get_panier(string $id)
+    {
+        $panier = DB::table('paniers')
+            ->join('users', 'paniers.user_id', '=', 'users.id')
+            ->where('users.id', $id)
+            ->first();
+
+        return response()->json(['panier' => $panier], 200);
+    }
+
+    public function delete_from_cart($id)
+    {
+        DB::table('paniers')->where('idpanier', $id)->delete();
+        return response()->json(["message" => "Produit supprimé du panier"], 200);
     }
 }

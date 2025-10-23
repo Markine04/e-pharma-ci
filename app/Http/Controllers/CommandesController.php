@@ -19,9 +19,13 @@ class CommandesController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function show_panier(string $id)
     {
-        //
+        $panier = DB::table('paniers')
+        ->join('users', 'paniers.user_id', '=', 'users.id')
+        ->where('users.id', $id)->first();
+
+        return view('dashboard.commandes.show-panier', compact('panier'));
     }
 
     public function show(string $id)

@@ -97,4 +97,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/upload-ordonnances', [UploadController::class, 'store']);
 
     Route::post('/panier-store', [CartsController::class, 'addToCart']);
+
+    Route::get('/panier-show', [CartsController::class, 'show']);
+
+    Route::get('/panier-show/{id}', [CartsController::class, 'get_panier']);
+
+    Route::get('/panier-delete/{id}', [CartsController::class, 'delete_from_cart']);
+
 });
