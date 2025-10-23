@@ -34,6 +34,7 @@ class CartsController extends Controller
     {
         $panier = DB::table('paniers')
             ->join('users', 'paniers.user_id', '=', 'users.id')
+            ->join('medicaments', 'paniers.produit_id', '=', 'medicaments.idmedicament')
             ->where('users.id', $id)
             ->where('statut', 1)
             ->get();
