@@ -30,12 +30,12 @@ class CartsController extends Controller
         return response()->json(["message" => "Produit ajouté au panier"], 200);
     }
 
-    public function get_panier(string $id)
+    public function get_panier(Request $request)
     {
         $panier = DB::table('paniers')
             ->join('users', 'paniers.user_id', '=', 'users.id')
             ->join('medicaments', 'paniers.produit_id', '=', 'medicaments.idmedicament')
-            ->where('users.id', $id)
+            ->where('users.id', $request->id)
             ->where('statut', 1)
             ->get();
 
