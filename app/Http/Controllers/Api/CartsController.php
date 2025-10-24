@@ -32,8 +32,8 @@ class CartsController extends Controller
 
     public function get_panier(Request $request)
     {
-
-        dd($request->bearerToken());
+        dd($request->all());
+        // dd($request->bearerToken());
         $panier = DB::table('paniers')
             ->join('users', 'paniers.user_id', '=', 'users.id')
             ->join('medicaments', 'paniers.produit_id', '=', 'medicaments.idmedicament')
