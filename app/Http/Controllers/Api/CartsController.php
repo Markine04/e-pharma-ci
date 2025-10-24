@@ -30,29 +30,29 @@ class CartsController extends Controller
         return response()->json(["message" => "Produit ajouté au panier"], 200);
     }
 
-    // public function get_panier(Request $request)
-    // {
-
-    //     // dd($request->token);
-    //     $panier = DB::table('paniers')
-    //         ->join('users', 'paniers.user_id', '=', 'users.id')
-    //         ->join('medicaments', 'paniers.produit_id', '=', 'medicaments.idmedicament')
-    //         ->where('users.id', $request->id)
-    //         ->where('statut', 1)
-    //         ->get();
-
-    //     return response()->json(['panier' => $panier], 200);
-    // }
-
-    public function show(Request $request)
+    public function get_panier(Request $request)
     {
-        return response()->json([
-            // 'auth_user' => auth()->user(),
-            // 'token' => request()->header('Authorization'),
-            'user' => $request->user(),
-            'token' => $request->bearerToken(),
-        ]);
+
+        dd($request->bearerToken());
+        $panier = DB::table('paniers')
+            ->join('users', 'paniers.user_id', '=', 'users.id')
+            ->join('medicaments', 'paniers.produit_id', '=', 'medicaments.idmedicament')
+            ->where('users.id', $request->id)
+            ->where('statut', 1)
+            ->get();
+
+        return response()->json(['panier' => $panier], 200);
     }
+
+    // public function show(Request $request)
+    // {
+    //     return response()->json([
+    //         // 'auth_user' => auth()->user(),
+    //         // 'token' => request()->header('Authorization'),
+    //         'user' => $request->user(),
+    //         'token' => $request->bearerToken(),
+    //     ]);
+    // }
 
     public function delete_from_cart($id)
     {
