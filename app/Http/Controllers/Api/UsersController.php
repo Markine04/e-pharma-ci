@@ -62,11 +62,11 @@ class UsersController extends Controller
         ]);
 
         // Génération du token
-        $tokens = $request->token;
-
+        $token = $user->createToken('auth_token')->plainTextToken;
+        // $tokens = $request->token;
         return response()->json([
             'user' => $user,
-            'access_token' => $tokens,
+            'access_token' => $token,
             'token_type' => 'Bearer',
             'success' => true,
         ], 200);
