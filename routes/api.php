@@ -104,8 +104,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/panier-show', [CartsController::class, 'show']);
 
-    Route::get('/paniers/{id}', [CartsController::class, 'get_panier']);
-    // Route::get('/paniers/{id}', [CartsController::class, 'show']);
+    // Route::get('/paniers/{id}', [CartsController::class, 'get_panier']);
+    Route::get('/paniers/{id}', [CartsController::class, 'show']);
 
     Route::get('/panier-delete/{id}', [CartsController::class, 'delete_from_cart']);
 
