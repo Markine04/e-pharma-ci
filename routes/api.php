@@ -7,11 +7,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\CartsController;
 use App\Http\Controllers\Api\UsersController;
 use App\Http\Controllers\Api\UploadController;
+use App\Http\Controllers\Api\CommunesController;
+use App\Http\Controllers\Api\QuartiersController;
 use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\PharmaciesController;
 use App\Http\Controllers\Api\MedicamentsController;
-use App\Http\Controllers\Api\CommunesController;
-use App\Http\Controllers\Api\QuartiersController;
+use App\Http\Controllers\Api\FormesGaleniquesController;
 
 
 /*
@@ -85,6 +86,9 @@ Route::put('/quartiers-update/{id}/', [QuartiersController::class, 'update']);
 Route::get('/pharmacies-gardes', [PharmaciesController::class, 'index_pharmacies_gardes']);
 Route::get('/pharmacie-garde-search', [PharmaciesController::class, 'search_pharmacies_gardes']);
 Route::get('/pharmacie-garde-show/{id}', [PharmaciesController::class, 'show_gardes']);
+
+
+Route::get('/formes-galeniques', [FormesGaleniquesController::class, 'index']);
 
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
