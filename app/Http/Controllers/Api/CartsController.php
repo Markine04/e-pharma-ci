@@ -36,18 +36,18 @@ class CartsController extends Controller
         // 🔐 Récupère automatiquement l'utilisateur grâce à Sanctum
         $user = $request->user();
 
-        // if (!$user) {
-        //     return response()->json([
-        //         'message' => 'Utilisateur non authentifié.',
-        //     ], 401);
-        // }
-        // dd($user->id);
-        // 🧠 Option 1 : sécuriser le panier par utilisateur connecté
-        // if ($user->id != $id) {
-        //     return response()->json([
-        //         'message' => 'Accès refusé au panier demandé.',
-        //     ], 403);
-        // }
+        if (!$user) {
+            return response()->json([
+                'message' => 'Utilisateur non authentifié.',
+            ], 401);
+        }
+
+        
+        if ($user->id != $id) {
+            return response()->json([
+                'message' => 'Accès refusé au panier demandé.',
+            ], 403);
+        }
 
         // 🧺 Récupérer le panier
         $paniers = DB::table('paniers')
