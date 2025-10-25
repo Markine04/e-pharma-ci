@@ -90,6 +90,7 @@ Route::get('/pharmacie-garde-show/{id}', [PharmaciesController::class, 'show_gar
 
 Route::get('/formes-galeniques', [FormesGaleniquesController::class, 'index']);
 
+Route::middleware('auth:sanctum')->get('/paniers-show/{id}', [CartsController::class, 'get_panier']);
 
 Route::middleware('auth:sanctum')->group(function () {
 
@@ -102,8 +103,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/panier-store', [CartsController::class, 'addToCart']);
 
-    Route::get('/paniers-show/{id}', [CartsController::class, 'get_panier']);
-    
+    // Route::get('/paniers-show/{id}', [CartsController::class, 'get_panier']);
+
     Route::post('/paniers', [CartsController::class, 'store']);
 
     Route::get('/panier-delete/{id}', [CartsController::class, 'delete_from_cart']);
