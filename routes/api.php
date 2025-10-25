@@ -90,7 +90,7 @@ Route::get('/pharmacie-garde-show/{id}', [PharmaciesController::class, 'show_gar
 
 Route::get('/formes-galeniques', [FormesGaleniquesController::class, 'index']);
 
-Route::get('/paniers-show/{id}', [CartsController::class, 'get_panier']);
+Route::get('/paniers/{id}', [CartsController::class, 'get_panier']);
 
 Route::middleware('auth:sanctum')->group(function () {
 
