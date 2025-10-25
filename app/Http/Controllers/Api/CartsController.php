@@ -30,29 +30,61 @@ class CartsController extends Controller
         return response()->json(["message" => "Produit ajouté au panier"], 200);
     }
 
-    public function get_panier(Request $request)
+
+    public function get_panier(Request $request, $id)
     {
-        dd($request->all());
-        // dd($request->bearerToken());
-        $panier = DB::table('paniers')
+        // 🔐 Récupère automatiquement l'utilisateur grâce à Sanctum
+        $user = $request->user();
+
+        if (!$user) {
+            return response()->json([
+                'message' => 'Utilisateur non authentifié.',
+            ], 401);
+        }
+
+        // 🧠 Option 1 : sécuriser le panier par utilisateur connecté
+        if ($user->id != $id) {
+            return response()->json([
+                'message' => 'Accès refusé au panier demandé.',
+            ], 403);
+        }
+
+        // 🧺 Récupérer le panier
+        $paniers = DB::table('paniers')
             ->join('users', 'paniers.user_id', '=', 'users.id')
             ->join('medicaments', 'paniers.produit_id', '=', 'medicaments.idmedicament')
-            ->where('users.id', $request->id)
+            ->where('users.id', $user->id)
             ->where('statut', 1)
             ->get();
 
-        return response()->json(['panier' => $panier], 200);
+        return response()->json([
+            'user' => $user,
+            'panier' => $paniers,
+        ],200);
     }
 
-    // public function show(Request $request)
-    // {
-    //     return response()->json([
-    //         // 'auth_user' => auth()->user(),
-    //         // 'token' => request()->header('Authorization'),
-    //         'user' => $request->user(),
-    //         'token' => $request->bearerToken(),
-    //     ]);
-    // }
+    public function store(Request $request)
+    {
+        $user = $request->user();
+
+        if (!$user) {
+            return response()->json(['message' => 'Utilisateur non authentifié.'], 401);
+        }
+
+        // 🧠 Exemple d’ajout d’un article au panier
+        $validated = $request->validate([
+            'produit_id' => 'required|integer',
+            'quantite' => 'required|integer|min:1',
+        ]);
+
+        $panier = $user->paniers()->create($validated);
+
+        return response()->json([
+            'message' => 'Produit ajouté au panier avec succès.',
+            'panier' => $panier
+        ]);
+    }
+
 
     public function delete_from_cart($id)
     {
