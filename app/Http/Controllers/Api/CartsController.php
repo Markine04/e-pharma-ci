@@ -42,7 +42,7 @@ class CartsController extends Controller
             ], 401);
         }
 
-        
+
         if ($user->id != $id) {
             return response()->json([
                 'message' => 'Accès refusé au panier demandé.',
@@ -58,7 +58,7 @@ class CartsController extends Controller
             ->get();
 
         return response()->json([
-            'user' => $user,
+            // 'user' => $user,
             'panier' => $paniers,
         ],200);
     }
