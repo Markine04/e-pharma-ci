@@ -41,7 +41,7 @@ class CartsController extends Controller
                 'message' => 'Utilisateur non authentifié.',
             ], 401);
         }
-        dd($user);
+        dd($user->id);
         // 🧠 Option 1 : sécuriser le panier par utilisateur connecté
         if ($user->id != $id) {
             return response()->json([
