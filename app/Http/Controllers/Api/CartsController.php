@@ -86,9 +86,10 @@ class CartsController extends Controller
     }
 
 
-    public function delete_from_cart($id)
+    public function delete_from_cart($produitId, $userId)
     {
-        DB::table('paniers')->where('idpanier', $id)->delete();
+        DB::table('paniers')->where('idpanier', $produitId)->where(
+            'user_id',$userId)->delete();
         return response()->json(["message" => "Produit supprimé du panier"], 200);
     }
 }
