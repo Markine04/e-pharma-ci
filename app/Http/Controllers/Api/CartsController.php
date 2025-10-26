@@ -31,7 +31,7 @@ class CartsController extends Controller
     }
 
 
-    public function get_panier(Request $request, $id)
+    public function get_panier(Request $request)
     {
         // 🔐 Récupère automatiquement l'utilisateur grâce à Sanctum
         // $user = $request->user();
@@ -43,7 +43,7 @@ class CartsController extends Controller
         // }
 
 
-        // if ($user->id != $id) {
+        // if ($user->id != $request->id) {
         //     return response()->json([
         //         'message' => 'Accès refusé au panier demandé.',
         //     ], 403);
