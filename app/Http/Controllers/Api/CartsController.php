@@ -31,7 +31,7 @@ class CartsController extends Controller
     }
 
 
-    public function get_panier(Request $request)
+    public function get_panier(Request $request, $id)
     {
         // 🔐 Récupère automatiquement l'utilisateur grâce à Sanctum
         $user = $request->user();
@@ -43,7 +43,7 @@ class CartsController extends Controller
         }
 
 
-        if ($user->id != $request->id) {
+        if ($user->id != $id) {
             return response()->json([
                 'message' => 'Accès refusé au panier demandé.',
             ], 403);
@@ -53,12 +53,12 @@ class CartsController extends Controller
         $paniers = DB::table('paniers')
             ->join('users', 'paniers.user_id', '=', 'users.id')
             ->join('medicaments', 'paniers.produit_id', '=', 'medicaments.idmedicament')
-            ->where('users.id', $request->id)
+            ->where('users.id', $id)
             ->where('statut', 1)
             ->get();
 
         return response()->json([
-            // 'user' => $user,
+            'user' => $user,
             'panier' => $paniers,
         ],200);
     }
