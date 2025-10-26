@@ -105,7 +105,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/paniers/{id}', [CartsController::class, 'get_panier']);
 
-    Route::delete('/paniers/{userId}/{produitId}', [CartsController::class, 'delete_from_cart']);
+    Route::post('/paniers/{userId}/{produitId}', [CartsController::class, 'delete_from_cart']);
 
     Route::post('/paniers', [CartsController::class, 'store']);
 
