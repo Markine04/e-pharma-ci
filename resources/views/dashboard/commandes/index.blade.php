@@ -26,10 +26,10 @@
                                 <th>Images</th>
                                 <th>Telephones</th>
                                 <th>Produits</th>
-                                <th>Note</th>
                                 <th>Quantités</th>
                                 <th>Montant</th>
                                 <th>Statuts</th>
+                                <th>Date enreg.</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -70,7 +70,7 @@
                                     <td>{{ DB::table('users')->where('id', $items->user_id)->value('number') }}</td>
                                     <td>{{ DB::table('medicaments')->where('idmedicament', $items->produit_id)->value('nom') }} <br>
                                         Dosage: {{ DB::table('medicaments')->where('idmedicament', $items->produit_id)->value('dosage') }}</td>
-                                    <td>{{ $items->notes }}</td>
+                                    
                                     <td>
                                         {{ $items->quantite }}
                                     </td>
@@ -109,6 +109,8 @@
                                         @endswitch --}}
 
                                     </td>
+
+                                    <td>{{ date('d-m-Y H:s:i', strtotime($items->created_at)) }}</td>
 
                                 </tr>
                             @endforeach

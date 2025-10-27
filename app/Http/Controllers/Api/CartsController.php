@@ -95,4 +95,14 @@ class CartsController extends Controller
         // DB::table('paniers')->where('idpanier', $paniers->idpanier)->delete();
         return response()->json(["message" => "Produit supprimé du panier"], 200);
     }
+
+
+    public function delete_all(Request $request)
+    {
+        DB::table('paniers')
+            ->where('user_id', $request->userId)->where('statut', 1)
+            ->delete();
+
+        return response()->json(["message" => "Produit supprimé du panier"], 200);
+    }
 }
