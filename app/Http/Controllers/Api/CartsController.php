@@ -97,7 +97,7 @@ class CartsController extends Controller
             'produits.*.quantite' => 'required|integer|min:1',
             'produits.*.prix_unitaire' => 'required|string',
             'notes' => 'nullable|string',
-            'statut' => 'required|string',
+            'statut' => 'nullable|string',
         ]);
 
         foreach ($validated['produits'] as $p) {
