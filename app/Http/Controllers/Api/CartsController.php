@@ -86,6 +86,49 @@ class CartsController extends Controller
     }
 
 
+
+    public function validerPanier(Request $request)
+    {
+        $validated = $request->validate([
+            'user_id' => 'required|integer',
+            'produits' => 'required|array',
+            'produits.*.panier_id' => 'required|integer',
+            'produits.*.produit_id' => 'required|integer',
+            'produits.*.quantite' => 'required|integer|min:1',
+            'produits.*.prix_unitaire' => 'required|string',
+            'notes' => 'nullable|string',
+            'statut' => 'required|string',
+        ]);
+
+        foreach ($validated['produits'] as $p) {
+
+            DB::table('commandes')->insert([
+            'panier_id' => $p['panier_id'],
+            'notes' => $validated['notes'] ?? null,
+            'statut' => $validated['statut'],
+            'created_at' => now(),
+            ]);
+
+            DB::table('paniers')->where('idpanier', $p['panier_id'])->where('user_id', $validated['user_id'])
+            ->update([
+                'produit_id' => $p['produit_id'],
+                'quantite' => $p['quantite'],
+                'prix_unitaire' => $p['prix_unitaire'],
+                'statut' => 2,
+                'notes' => $validated['notes'] ?? null,
+                'updated_at' => now(),
+            ]);
+
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Commande enregistrée avec succès',
+        ]);
+    }
+
+
+
     public function delete_from_cart(Request $request)
     {
         DB::table('paniers')
