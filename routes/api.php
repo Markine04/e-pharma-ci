@@ -98,7 +98,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Route::get('/pharmacies-gardes', [PharmaciesController::class, 'index_pharmacies_gardes']);
 
-    apply - coupon
+    
+    Route::post('/apply-coupon', [UsersController::class, 'apply_coupon']);
+    
     Route::post('/upload-ordonnances', [UploadController::class, 'store']);
 
     Route::post('/valider-panier', [CartsController::class, 'validerPanier']);

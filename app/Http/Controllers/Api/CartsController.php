@@ -93,7 +93,7 @@ class CartsController extends Controller
             'user_id' => 'required|integer',
             'produits' => 'required|array',
             'produits.*.panier_id' => 'required|integer',
-            'produits.*.produit_id' => 'required|integer',
+            'produits.*.produitID' => 'required|integer',
             'produits.*.quantite' => 'required|integer|min:1',
             'produits.*.prix_unitaire' => 'required|string',
             'notes' => 'nullable|string',
@@ -111,7 +111,7 @@ class CartsController extends Controller
 
             DB::table('paniers')->where('idpanier', $p['panier_id'])->where('user_id', $validated['user_id'])
             ->update([
-                'produit_id' => $p['produit_id'],
+                'produit_id' => $p['produitID'],
                 'quantite' => $p['quantite'],
                 'prix_unitaire' => $p['prix_unitaire'],
                 'statut' => 2,
