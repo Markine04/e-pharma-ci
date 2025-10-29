@@ -12,7 +12,7 @@ class CommandesController extends Controller
      */
     public function index()
     {
-        $commandes = DB::table('paniers')->paginate(10);
+        $commandes = DB::table('commandes')->paginate(10);
         return view('dashboard.commandes.index',compact('commandes'));
     }
 
