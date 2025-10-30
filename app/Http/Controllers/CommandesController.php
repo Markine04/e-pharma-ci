@@ -12,7 +12,11 @@ class CommandesController extends Controller
      */
     public function index()
     {
-        $commandes = DB::table('commandes')->paginate(10);
+        $commandes = DB::table('commandes')
+        ->join('paniers', 'commandes.panier_id', '=', 'paniers.idpanier')
+        ->select(['idcommande', 'paniers.produit_id', 'commandes.created_at', 'commandes.panier_id', 'commandes.statut', 'paniers.user_id', 'paniers.idpanier', 'paniers.quantite', 'paniers.prix_unitaire'])
+        ->paginate(10);
+        // dd($commandes);
         return view('dashboard.commandes.index',compact('commandes'));
     }
 
@@ -33,6 +37,49 @@ class CommandesController extends Controller
         $medicaments = DB::table('medicaments')->where('idmedicament', $id)->first();
         return view('dashboard.commandes.voir-image', compact('medicaments'));
     }
+    
+
+
+    public function traiter(Request $request)
+    {
+        if($request->statut == 'en_attente'){
+            DB::table('commandes')
+            ->where('idcommande', $request->id)
+            ->update(['statut' => 'traitement']);
+            return redirect()->route('commandes.index');
+        }
+
+        if($request->statut == 'traitement'){
+            DB::table('commandes')
+            ->where('idcommande', $request->id)
+            ->update(['statut' => 'livree']);
+            return redirect()->route('commandes.index');
+        }
+
+        if($request->statut == 'livree'){
+            DB::table('commandes')
+            ->where('idcommande', $request->id)
+            ->update(['statut' => 'expediee']);
+            return redirect()->route('commandes.index');
+        }
+        
+        if($request->statut == 'expediee'){
+            DB::table('commandes')
+            ->where('idcommande', $request->id)
+            ->update(['statut' => 'payee']);
+            return redirect()->route('commandes.index');
+        }
+        
+        if($request->statut == 'annulee'){
+            DB::table('commandes')
+            ->where('idcommande', $request->id)
+            ->update(['statut' => $request->statut]);
+            return redirect()->route('commandes.index');
+        }
+        
+        
+    }
+
 
     /**
      * Store a newly created resource in storage.

@@ -8,10 +8,10 @@
             <div class="me-auto container mt-5">
                 <div class="row">
                     <div class="col-md-12 col-lg-12">
-                        <h4>Commandes
+                        <h4>Paniers
                             <div class="ml-8" style="float: right">
                                 <a href="{{ route('pharmacies.create') }}" class="btn btn-primary">Ajouter une
-                                    Commande</a>
+                                    paniers</a>
                             </div>
                         </h4>
                     </div>
@@ -33,7 +33,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($commandes as $items)
+                            @foreach ($paniers as $items)
                                 <tr>
                                     <td>
                                         <div class="dropdown">
@@ -71,55 +71,24 @@
                                         Dosage: {{ DB::table('medicaments')->where('idmedicament', $items->produit_id)->value('dosage') }}</td>
                                     
                                     <td>
-                                        {{ $items->quantite }} x {{ $items->prix_unitaire }}
+                                        {{ $items->quantite }}
                                     </td>
-                                    <td>{{ $items->prix_unitaire * $items->quantite }}</td>
+                                    <td>{{ $items->prix_unitaire }}</td>
                                     
                                     <td>
+
                                         @switch($items->statut)
-                                            @case('en_attente')
-                                            <form action="{{route('commandes.traiter',['id'=>$items->idcommande, 'statut'=>'en_attente'])}}" method="post">
-                                                @csrf
-                                                <button type="submit" class="badge bg-label-warning me-1" style="cursor: pointer;"><i class="si si-note" style="font-size: 15px;"></i> En attente
-                                                        de traitement </button>
-                                            </form>
+                                            @case('1')
+                                                    <span class="badge bg-label-warning me-1" style="cursor: pointer;"> En attente
+                                                        de validation
+                                                    </span>
                                             @break
 
-                                            @case('traitement')
-                                            <form action="{{route('commandes.traiter',['id'=>$items->idcommande, 'statut'=>'traitement'])}}" method="post">
-                                                @csrf
-                                                <button type="submit" class="badge bg-label-secondary me-1" style="cursor: pointer;"><i class="si si-note" style="font-size: 15px;"></i> En cours
-                                                        de traitement </button>
-                                            </form>
+                                            @case('2')
+                                                    <span class="badge bg-label-success me-1" style="cursor: pointer;">Produit Validé</span>
                                             @break
 
-                                            @case('livree')
-
-                                            <form action="{{route('commandes.traiter',['id'=>$items->idcommande, 'statut'=>'livree'])}}" method="post">
-                                                @csrf
-                                                <button type="submit" class="badge bg-label-info me-1" style="cursor: pointer;">En cours de livraison</button>
-                                            </form>
-                                            @break
-
-                                            @case('payee')
-                                            <form action="{{route('commandes.traiter',['id'=>$items->idcommande, 'statut'=>'livree'])}}" method="post">
-                                                @csrf
-                                                <button type="submit" class="badge bg-label-success me-1" style="cursor: pointer;">Livré</button>
-                                            </form>
-                                            @break
-
-                                            
-                                            
-                                            @case('annulee')
-
-                                            <form action="{{route('commandes.traiter',['id'=>$items->idcommande, 'statut'=>'livree'])}}" method="post">
-                                                @csrf
-                                                <button type="submit" class="badge bg-label-danger me-1" style="cursor: pointer;">Annulée</button>
-                                            </form>
-                                            @break
-
-                                            
-                                            @case('expediee')
+                                            @case('3')
                                                 <i class="si si-note" style="font-size: 15px;"></i>
                                                 <span class="badge bg-label-success me-1"> Prèt à livrer
                                                 </span>
@@ -141,7 +110,7 @@
         </div>
         <!--/ Bordered Table -->
         <nav aria-label="Page navigation" class="mt-3">
-            {!! $commandes->links('pagination::bootstrap-5') !!}
+            {!! $paniers->links('pagination::bootstrap-5') !!}
         </nav>
 
     </div>

@@ -116,8 +116,23 @@
 
     <li class="menu-item  {{(Route::is('commandes.index')?'active':'')}}">
       <a href="{{route('commandes.index')}}" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-cart"></i>
+        <i class="menu-icon tf-icons bx bx-detail"></i>
         <div class="text-truncate" data-i18n="Commandes">Commandes</div>
+        <span class="badge rounded-pill bg-danger ms-auto">
+          {{DB::table('commandes')
+        ->join('paniers', 'commandes.panier_id', '=', 'paniers.idpanier')
+        ->select(['idcommande', 'paniers.produit_id', 'commandes.created_at', 'commandes.panier_id', 'commandes.statut', 'paniers.user_id', 'paniers.idpanier', 'paniers.quantite', 'paniers.prix_unitaire'])
+        ->where('commandes.statut','en_attente')
+        ->count()}}
+          
+          </span>
+      </a>
+    </li>
+
+    <li class="menu-item  {{(Route::is('paniers.index')?'active':'')}}">
+      <a href="{{route('paniers.index')}}" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-cart"></i>
+        <div class="text-truncate" data-i18n="paniers">Paniers</div>
       </a>
     </li>
 

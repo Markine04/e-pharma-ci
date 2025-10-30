@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SmsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\PaniersController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegionsController;
@@ -189,7 +190,7 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard/sms', [SmsController::class, 'index'])->name('sms.index');
 
 
-    //Assurances
+    //Commandes
     Route::get('dashboard/commandes', [CommandesController::class, 'index'])->name('commandes.index');
     Route::get('dashboard/commande/create', [CommandesController::class, 'create'])->name('commandes.create');
     Route::post('dashboard/commande', [CommandesController::class, 'store'])->name('commandes.store');
@@ -199,6 +200,25 @@ Route::middleware('auth')->group(function () {
     Route::delete('dashboard/commandes/{id}', [CommandesController::class, 'destroy'])->name('commandes.destroy');
     Route::get('dashboard/commande-uploadImages', [CommandesController::class, 'uploadImages'])->name('commandes.temp');
     Route::get('dashboard/commande-image/{id}', [CommandesController::class, 'show'])->name('commandes.image');
+    Route::post('dashboard/commande-traiter/{id}/{statut}', [CommandesController::class, 'traiter'])->name('commandes.traiter');
+    // Route::get('dashboard/commande-message/{id}', [CommandesController::class, 'message'])->name('commandes.messages');
+
+    
+
+
+
+    //Paniers
+    Route::get('dashboard/paniers', [PaniersController::class, 'index'])->name('paniers.index');
+    Route::get('dashboard/panier/create', [PaniersController::class, 'create'])->name('paniers.create');
+    Route::post('dashboard/panier', [PaniersController::class, 'store'])->name('paniers.store');
+    Route::get('dashboard/panier/{id}/edit', [PaniersController::class, 'edit'])->name('paniers.edit');
+    Route::put('dashboard/panier/{id}', [PaniersController::class, 'update'])->name('paniers.update');
+    Route::get('dashboard/panier/{id}/delete', [PaniersController::class, 'delete'])->name('paniers.delete');
+    Route::delete('dashboard/paniers/{id}', [PaniersController::class, 'destroy'])->name('paniers.destroy');
+    Route::get('dashboard/panier-uploadImages', [PaniersController::class, 'uploadImages'])->name('paniers.temp');
+    Route::get('dashboard/panier-image/{id}', [PaniersController::class, 'show'])->name('paniers.image');
+
+
 
 })->middleware(['auth', 'verified'])->name('dashboard');
 
