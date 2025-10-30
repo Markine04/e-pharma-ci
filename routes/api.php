@@ -87,6 +87,8 @@ Route::get('/pharmacies-gardes', [PharmaciesController::class, 'index_pharmacies
 Route::get('/pharmacie-garde-search', [PharmaciesController::class, 'search_pharmacies_gardes']);
 Route::get('/pharmacie-garde-show/{id}', [PharmaciesController::class, 'show_gardes']);
 
+Route::get('medicaments-by-category/{id}', [MedicamentsController::class, 'getByCategory']);
+
 
 Route::get('/formes-galeniques', [FormesGaleniquesController::class, 'index']);
 
@@ -100,7 +102,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     
     Route::post('/apply-coupon', [UsersController::class, 'apply_coupon']);
-    
+
     Route::post('/upload-ordonnances', [UploadController::class, 'store']);
 
     Route::post('/valider-panier', [CartsController::class, 'validerPanier']);

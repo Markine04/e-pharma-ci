@@ -26,9 +26,22 @@ class MedicamentsController extends Controller
         ], 200);
     }
 
-    
+    public function getByCategory($id)
+    {
+        $medicaments = DB::table('medicaments')
+            ->whereJsonContains('categorie_id', $id)
+            ->select('idmedicament', 'nom', 'prix_vente', 'images')
+            ->get();
 
-        public function search_medicaments(Request $request)
+        return response()->json([
+            'success' => 200,
+            'medicaments' => $medicaments
+        ]);
+    }
+
+
+
+    public function search_medicaments(Request $request)
     {
         $query = $request->get('q', '');
         if (empty($query)) {
