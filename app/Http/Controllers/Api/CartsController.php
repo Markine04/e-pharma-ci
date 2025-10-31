@@ -100,7 +100,7 @@ class CartsController extends Controller
             'statut' => 'nullable|string',
         ]);
         $IDcommande = DB::table('commandes')->insertGetId([
-            'panier_id' => $validated['panier_id'],
+            'panier_id' => json_encode($validated['panier_id']),
             'notes' => $validated['notes'] ?? null,
             'statut' => $validated['statut'],
             'created_at' => now(),
