@@ -147,5 +147,5 @@ class CartsController extends Controller
         return response()->json(["message" => "Produit supprimé du panier"], 200);
     }
 
-    numeroCommande
+    // numeroCommande
 }
