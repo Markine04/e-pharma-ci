@@ -106,7 +106,6 @@ class CartsController extends Controller
             'created_at' => now(),
         ]);
         foreach ($validated['produits'] as $p) {
-
             DB::table('paniers')->where('idpanier', $p['panier_id'])->where('user_id', $validated['user_id'])
             ->update([
                 'produit_id' => $p['produitID'],
