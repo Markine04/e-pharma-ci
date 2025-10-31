@@ -99,15 +99,13 @@ class CartsController extends Controller
             'notes' => 'nullable|string',
             'statut' => 'nullable|string',
         ]);
-
-        foreach ($validated['produits'] as $p) {
-
-            DB::table('commandes')->insert([
-            'panier_id' => $p['panier_id'],
+        $IDcommande = DB::table('commandes')->insertGetId([
+            'panier_id' => json_encode($validated['panier_id']),
             'notes' => $validated['notes'] ?? null,
             'statut' => $validated['statut'],
             'created_at' => now(),
-            ]);
+        ]);
+        foreach ($validated['produits'] as $p) {
 
             DB::table('paniers')->where('idpanier', $p['panier_id'])->where('user_id', $validated['user_id'])
             ->update([
@@ -116,6 +114,7 @@ class CartsController extends Controller
                 'prix_unitaire' => $p['prix_unitaire'],
                 'statut' => 2,
                 'notes' => $validated['notes'] ?? null,
+                'id_commande'=>$IDcommande,
                 'updated_at' => now(),
             ]);
 
