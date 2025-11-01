@@ -158,7 +158,7 @@ class CartsController extends Controller
         ->join('medicaments', 'paniers.produit_id', '=', 'medicaments.idmedicament')
         ->where('users.id', $request->user()->id)
         ->where('paniers.statut', 2)
-        ->select('commandes.statut')
+        ->select('commandes.statut', 'numerocommande')
         ->get();
 
 
@@ -166,6 +166,23 @@ class CartsController extends Controller
         return response()->json([
             'suivicommandes' => $suivicommandes,
         ],200);
+
+    }
+    public function historycommande(Request $request)
+    {
+        $historycommandes = DB::table('commandes')
+            ->join('paniers', 'commandes.panier_id', '=', 'paniers.idpanier')
+            ->join('users', 'paniers.user_id', '=', 'users.id')
+            ->join('medicaments', 'paniers.produit_id', '=', 'medicaments.idmedicament')
+            ->where('users.id', $request->user()->id)
+            ->where('paniers.statut', 2)
+            ->select('commandes.statut', 'commandes.created_at', 'medicaments.nom', 'paniers.prix_unitaire', 'medicaments.images', 'paniers.quantite')
+            ->get();
+
+
+        return response()->json([
+            'historycommandes' => $historycommandes,
+        ], 200);
 
     }
 
