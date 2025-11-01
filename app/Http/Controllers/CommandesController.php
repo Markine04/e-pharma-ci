@@ -12,8 +12,8 @@ class CommandesController extends Controller
      */
     public function index()
     {
-        $commandes = DB::table('commandes')
-        ->join('paniers', 'commandes.panier_id', '=', 'paniers.idpanier')
+        $commandes = DB::table('paniers')
+        ->join('commandes', 'paniers.idpanier', '=', 'commandes.idcommande')
         ->select(['idcommande', 'paniers.produit_id', 'commandes.created_at', 'commandes.panier_id', 'commandes.statut', 'paniers.user_id', 'paniers.idpanier', 'paniers.quantite', 'paniers.prix_unitaire'])
         ->paginate(10);
         // dd($commandes);
