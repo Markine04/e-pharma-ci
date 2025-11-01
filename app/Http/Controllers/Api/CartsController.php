@@ -152,8 +152,8 @@ class CartsController extends Controller
 
     public function suivicommande(Request $request){
 
-        $suivicommandes = DB::table('commandes')
-        ->join('paniers', 'commandes.panier_id', '=', 'paniers.idpanier')
+        $suivicommandes = DB::table('paniers')
+        ->join('commandes', 'paniers.idpanier', '=', 'commandes.id_commande')
         ->join('users', 'paniers.user_id', '=', 'users.id')
         ->join('medicaments', 'paniers.produit_id', '=', 'medicaments.idmedicament')
         ->where('users.id', $request->user()->id)
@@ -179,6 +179,7 @@ class CartsController extends Controller
             ->select('commandes.statut', 'commandes.created_at', 'medicaments.nom', 'paniers.prix_unitaire', 'medicaments.images', 'paniers.quantite')
             ->get();
 
+        dd($historycommandes);
 
         return response()->json([
             'historycommandes' => $historycommandes,
