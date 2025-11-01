@@ -115,10 +115,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/paniers-delete-all/{userId}', [CartsController::class, 'delete_all']);
 
-    Route::get('/paniers-statut/{numeroCommande}', [CartsController::class, 'statut']);
+    Route::get('/commande/statut/{id}', [CartsController::class, 'suivicommande']);
 
     Route::post('/paniers', [CartsController::class, 'store']);
 
-    Route::get('/panier-delete/{id}', [CartsController::class, 'delete_from_cart']);
+    // Route::get('/panier-delete/{id}', [CartsController::class, 'delete_from_cart']);
 
 });

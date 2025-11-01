@@ -85,6 +85,25 @@ class CartsController extends Controller
         ]);
     }
 
+     public function delete_from_cart(Request $request)
+    {
+        DB::table('paniers')
+            ->where('idpanier', $request->produitId)->where('user_id', $request->userId)
+            ->delete();
+
+        return response()->json(["message" => "Produit supprimé du panier"], 200);
+    }
+
+
+    public function delete_all(Request $request)
+    {
+        DB::table('paniers')
+            ->where('user_id', $request->userId)->where('statut', 1)
+            ->delete();
+
+        return response()->json(["message" => "Produit supprimé du panier"], 200);
+    }
+
 
 
     public function validerPanier(Request $request)
@@ -131,26 +150,25 @@ class CartsController extends Controller
     }
 
 
+    public function suivicommande(Request $request){
 
-    public function delete_from_cart(Request $request)
-    {
-        DB::table('paniers')
-            ->where('idpanier', $request->produitId)->where('user_id', $request->userId)
-            ->delete();
+        $suivicommandes = DB::table('commandes')
+        ->join('paniers', 'commandes.panier_id', '=', 'paniers.idpanier')
+        ->join('users', 'paniers.user_id', '=', 'users.id')
+        ->join('medicaments', 'paniers.produit_id', '=', 'medicaments.idmedicament')
+        ->where('users.id', $request->user()->id)
+        ->where('paniers.statut', 2)
+        ->select('commandes.statut')
+        ->get();
 
-        // DB::table('paniers')->where('idpanier', $paniers->idpanier)->delete();
-        return response()->json(["message" => "Produit supprimé du panier"], 200);
+
+
+        return response()->json([
+            'suivicommandes' => $suivicommandes,
+        ],200);
+
     }
 
-
-    public function delete_all(Request $request)
-    {
-        DB::table('paniers')
-            ->where('user_id', $request->userId)->where('statut', 1)
-            ->delete();
-
-        return response()->json(["message" => "Produit supprimé du panier"], 200);
-    }
 
     // numeroCommande
 }
