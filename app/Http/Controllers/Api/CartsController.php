@@ -170,8 +170,8 @@ class CartsController extends Controller
     }
     public function historycommande(Request $request)
     {
-        $historycommandes = DB::table('commandes')
-            ->join('paniers', 'commandes.panier_id', '=', 'paniers.idpanier')
+        $historycommandes = DB::table('paniers')
+            ->join('commandes', 'paniers.idpanier', '=', 'commandes.idcommande')
             ->join('users', 'paniers.user_id', '=', 'users.id')
             ->join('medicaments', 'paniers.produit_id', '=', 'medicaments.idmedicament')
             ->where('users.id', $request->user()->id)
