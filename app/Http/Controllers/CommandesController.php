@@ -45,7 +45,7 @@ class CommandesController extends Controller
         if($request->statut == 'en_attente'){
             DB::table('commandes')
             ->where('idcommande', $request->id)
-            ->update(['statut' => 'traitement']);
+            ->update(['statut' => 'en_traitement']);
             return redirect()->route('commandes.index');
         }
 
