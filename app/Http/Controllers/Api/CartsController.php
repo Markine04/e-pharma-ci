@@ -100,10 +100,11 @@ class CartsController extends Controller
             'statut' => 'nullable|string',
         ]);
 
-        dd($validated['panier_id']);
+        // ✅ Récupérer tous les panier_id depuis le tableau produits
+        $panierIds = collect($validated['produits'])->pluck('panier_id')->toArray();
         
         $IDcommande = DB::table('commandes')->insertGetId([
-            'panier_id' => json_encode($validated['panier_id']),
+            'panier_id' => json_encode($panierIds), // on stocke tous les ID du panier en JSON
             'notes' => $validated['notes'] ?? null,
             'statut' => $validated['statut'],
             'created_at' => now(),
