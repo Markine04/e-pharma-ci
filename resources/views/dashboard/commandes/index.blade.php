@@ -85,8 +85,8 @@
                                             </form>
                                             @break
 
-                                            @case('traitement')
-                                            <form action="{{route('commandes.traiter',['id'=>$items->idcommande, 'statut'=>'traitement'])}}" method="post">
+                                            @case('en_traitement')
+                                            <form action="{{route('commandes.traiter',['id'=>$items->idcommande, 'statut'=>'en_traitement'])}}" method="post">
                                                 @csrf
                                                 <button type="submit" class="badge bg-label-secondary me-1" style="cursor: pointer;"><i class="si si-note" style="font-size: 15px;"></i> En cours
                                                         de traitement </button>
