@@ -179,7 +179,7 @@ class CartsController extends Controller
             ->select('commandes.statut', 'commandes.created_at', 'medicaments.nom', 'paniers.prix_unitaire', 'medicaments.images', 'paniers.quantite')
             ->get();
 
-        dd($historycommandes);
+        // dd($historycommandes);
 
         return response()->json([
             'historycommandes' => $historycommandes,
