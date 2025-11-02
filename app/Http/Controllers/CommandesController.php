@@ -49,7 +49,7 @@ class CommandesController extends Controller
             return redirect()->route('commandes.index');
         }
 
-        if($request->statut == 'traitement'){
+        if($request->statut == 'en_traitement'){
             DB::table('commandes')
             ->where('idcommande', $request->id)
             ->update(['statut' => 'livree']);

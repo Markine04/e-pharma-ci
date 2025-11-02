@@ -110,13 +110,13 @@
 
                                             
                                             
-                                            @case('annulee')
+                                            {{-- @case('annulee')
 
                                             <form action="{{route('commandes.traiter',['id'=>$items->idcommande, 'statut'=>'livree'])}}" method="post">
                                                 @csrf
                                                 <button type="submit" class="badge bg-label-danger me-1" style="cursor: pointer;">Annulée</button>
                                             </form>
-                                            @break
+                                            @break --}}
 
                                             
                                             @case('expediee')
