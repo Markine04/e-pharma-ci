@@ -52,23 +52,25 @@ class CommandesController extends Controller
         if($request->statut == 'en_traitement'){
             DB::table('commandes')
             ->where('idcommande', $request->id)
-            ->update(['statut' => 'livree']);
+            ->update(['statut' => 'expediee']);
+            return redirect()->route('commandes.index');
+        }
+
+        if ($request->statut == 'expediee') {
+            DB::table('commandes')
+                ->where('idcommande', $request->id)
+                ->update(['statut' => 'livree']);
             return redirect()->route('commandes.index');
         }
 
         if($request->statut == 'livree'){
             DB::table('commandes')
             ->where('idcommande', $request->id)
-            ->update(['statut' => 'expediee']);
-            return redirect()->route('commandes.index');
-        }
-        
-        if($request->statut == 'expediee'){
-            DB::table('commandes')
-            ->where('idcommande', $request->id)
             ->update(['statut' => 'payee']);
             return redirect()->route('commandes.index');
         }
+        
+        
         
         if($request->statut == 'annulee'){
             DB::table('commandes')

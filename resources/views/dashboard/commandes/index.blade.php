@@ -93,16 +93,23 @@
                                             </form>
                                             @break
 
+                                            @case('expediee')
+                                            <form action="{{route('commandes.traiter',['id'=>$items->idcommande, 'statut'=>'expediee'])}}" method="post">
+                                                @csrf
+                                                <button type="submit" class="badge bg-label-success me-1" style="cursor: pointer;">En cours de livraison</button>
+                                            </form>
+                                            @break
+
                                             @case('livree')
 
                                             <form action="{{route('commandes.traiter',['id'=>$items->idcommande, 'statut'=>'livree'])}}" method="post">
                                                 @csrf
-                                                <button type="submit" class="badge bg-label-info me-1" style="cursor: pointer;">En cours de livraison</button>
+                                                <button type="submit" class="badge bg-label-info me-1" style="cursor: pointer;">Livrée</button>
                                             </form>
                                             @break
 
                                             @case('payee')
-                                            <form action="{{route('commandes.traiter',['id'=>$items->idcommande, 'statut'=>'livree'])}}" method="post">
+                                            <form action="{{route('commandes.traiter',['id'=>$items->idcommande, 'statut'=>'payee'])}}" method="post">
                                                 @csrf
                                                 <button type="submit" class="badge bg-label-success me-1" style="cursor: pointer;">Livré</button>
                                             </form>
