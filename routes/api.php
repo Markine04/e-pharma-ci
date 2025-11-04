@@ -119,6 +119,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/paniers', [CartsController::class, 'store']);
 
-    Route::get('/history-commande/{id}', [CartsController::class, 'historycommande']);
+    Route::get('/history-commande/{id}/{idcommande}/{numerocommande}', [CartsController::class, 'historycommande']);
 
 });
