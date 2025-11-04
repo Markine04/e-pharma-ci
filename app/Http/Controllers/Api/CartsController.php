@@ -160,7 +160,7 @@ class CartsController extends Controller
         ->where('paniers.statut', 2)
         ->where('commandes.idcommande', $request->idcommande)
         ->where('commandes.numerocommande', $request->numerocommande)
-        ->select('commandes.statut', 'numerocommande', 'commandes.created_at',
+        ->select('users.id as user_id','commandes.statut', 'numerocommande', 'commandes.created_at',
         'medicaments.nom', 'paniers.prix_unitaire', 'medicaments.images', 'paniers.quantite')
         ->get();
 
