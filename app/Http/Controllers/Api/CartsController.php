@@ -168,6 +168,8 @@ class CartsController extends Controller
         ],200);
 
     }
+
+
     public function historycommande(Request $request)
     {
         $historycommandes = DB::table('paniers')
@@ -197,6 +199,39 @@ class CartsController extends Controller
         ], 200);
 
     }
+
+
+    public function detailHistory(Request $request)
+    {
+        $DetailHistroy = DB::table('paniers')
+            ->join('commandes', 'paniers.idpanier', '=', 'commandes.idcommande')
+            ->join('users', 'paniers.user_id', '=', 'users.id')
+            ->join('medicaments', 'paniers.produit_id', '=', 'medicaments.idmedicament')
+            ->where('users.id', $request->user()->id)
+            ->where('paniers.statut', 2)
+            ->where('commandes.idcommande', $request->idcommande)
+            ->where('commandes.numerocommande', $request->numerocommande)
+            ->select(
+                'users.id as user_id',
+                'commandes.statut',
+                'numerocommande',
+                'commandes.created_at',
+                'medicaments.nom',
+                'paniers.prix_unitaire',
+                'medicaments.images',
+                'paniers.quantite'
+            )
+            ->get();
+
+        // dd($historycommandes);
+
+        return response()->json([
+            'detailhistory' => $DetailHistroy,
+        ], 200);
+    }
+
+
+    
 
 
     // numeroCommande
