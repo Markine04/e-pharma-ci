@@ -158,7 +158,7 @@ class CartsController extends Controller
         ->join('medicaments', 'paniers.produit_id', '=', 'medicaments.idmedicament')
         ->where('users.id', $request->user()->id)
         ->where('paniers.statut', 2)
-        ->select('commandes.statut', 'numerocommande')
+        // ->select('commandes.statut', 'numerocommande')
         ->get();
 
 
