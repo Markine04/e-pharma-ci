@@ -190,6 +190,7 @@ class CartsController extends Controller
             ->select(
                 'users.id as user_id',
                 'commandes.statut',
+                'commandes.idcommande',
                 'numerocommande',
                 'commandes.created_at',
                 'medicaments.nom',
