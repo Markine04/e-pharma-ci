@@ -153,12 +153,12 @@ class CartsController extends Controller
     public function suivicommande(Request $request){
 
         $suivicommandes = DB::table('paniers')
-        ->join('commandes', 'paniers.idpanier', '=', 'commandes.id_commande')
+        ->join('commandes', 'paniers.idpanier', '=', 'commandes.idcommande')
         ->join('users', 'paniers.user_id', '=', 'users.id')
         ->join('medicaments', 'paniers.produit_id', '=', 'medicaments.idmedicament')
         ->where('users.id', $request->user()->id)
         ->where('paniers.statut', 2)
-        // ->select('commandes.statut', 'numerocommande')
+        ->select('commandes.statut', 'numerocommande')
         ->get();
 
 
