@@ -158,13 +158,13 @@ class CartsController extends Controller
             ->join('medicaments', 'paniers.produit_id', '=', 'medicaments.idmedicament')
             ->where('users.id', $id)
             ->where('paniers.statut', 2)
-            // ->where('commandes.idcommande', $idcommande)
-            // ->where('commandes.numerocommande', $numerocommande)
+            ->where('commandes.idcommande', $idcommande)
+            ->where('commandes.numerocommande', $numerocommande)
             ->select('commandes.statut')
             ->first(); // ✅ retourne un seul résultat
-        dd($suivicommandes);
+        dd($suivicommandes->statut);
         return response()->json([
-            'suivicommandes' => $suivicommandes,
+            'suivicommandes' => $suivicommandes ? $suivicommandes->statut : 'en_attente',
         ], 200);
     }
 
