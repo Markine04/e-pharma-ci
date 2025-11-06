@@ -157,9 +157,9 @@ class CartsController extends Controller
             ->join('users', 'paniers.user_id', '=', 'users.id')
             ->join('medicaments', 'paniers.produit_id', '=', 'medicaments.idmedicament')
             ->where('users.id', $request->user()->id)
-            // ->where('paniers.statut', 2)
-            // ->where('commandes.idcommande', $idcommande)
-            // ->where('commandes.numerocommande', $numerocommande)
+            ->where('paniers.statut', 2)
+            ->where('commandes.idcommande', $idcommande)
+            ->where('commandes.numerocommande', $numerocommande)
             ->select('commandes.statut')
             ->get(); // ✅ retourne un seul résultat
         dd($suivicommandes);
