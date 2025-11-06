@@ -161,7 +161,7 @@ class CartsController extends Controller
             ->where('commandes.idcommande', $idcommande)
             ->where('commandes.numerocommande', $numerocommande)
             ->select('commandes.statut')
-            ->get(); // ✅ retourne un seul résultat
+            ->first(); // ✅ retourne un seul résultat
         dd($suivicommandes);
         return response()->json([
             'suivicommandes' => $suivicommandes ? $suivicommandes->statut : 'en_attente',
