@@ -150,25 +150,22 @@ class CartsController extends Controller
     }
 
 
-    public function suivicommande(Request $request){
-
+    public function suivicommande($user, $idcommande, $numerocommande)
+    {
         $suivicommandes = DB::table('paniers')
-        ->join('commandes', 'paniers.idpanier', '=', 'commandes.idcommande')
-        ->join('users', 'paniers.user_id', '=', 'users.id')
-        ->join('medicaments', 'paniers.produit_id', '=', 'medicaments.idmedicament')
-        ->where('users.id', $request->user()->id)
-        ->where('paniers.statut', 2)
-        ->where('commandes.idcommande', $request->idcommande)
-        ->where('commandes.numerocommande', $request->numerocommande)
-        ->select(
-                'commandes.statut'
-            )
-        ->get();
+            ->join('commandes', 'paniers.idpanier', '=', 'commandes.idcommande')
+            ->join('users', 'paniers.user_id', '=', 'users.id')
+            ->join('medicaments', 'paniers.produit_id', '=', 'medicaments.idmedicament')
+            ->where('users.id', $user)
+            ->where('paniers.statut', 2)
+            ->where('commandes.idcommande', $idcommande)
+            ->where('commandes.numerocommande', $numerocommande)
+            ->select('commandes.statut')
+            ->first(); // ✅ retourne un seul résultat
 
         return response()->json([
-            'suivicommandes' => $suivicommandes,
-        ],200);
-
+            'suivicommandes' => $suivicommandes ? $suivicommandes->statut : 'en_attente',
+        ], 200);
     }
 
 
