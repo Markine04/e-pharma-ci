@@ -164,7 +164,7 @@ class CartsController extends Controller
             ->first(); // ✅ retourne un seul résultat
         dd($suivicommandes);
         return response()->json([
-            'suivicommandes' => $suivicommandes ? $suivicommandes->statut : 'en_attente',
+            'suivicommandes' => $suivicommandes,
         ], 200);
     }
 
