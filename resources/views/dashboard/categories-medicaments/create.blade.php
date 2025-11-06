@@ -6,7 +6,7 @@
 
 
 
-<form method="post" action="{{ route('categoriemedicaments.store') }}">
+<form method="post" action="{{ route('categoriemedicaments.store') }}" enctype="multipart/form-data"/>
     @csrf
     <div class="form-group">
         <div class="row">
