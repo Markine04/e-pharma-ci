@@ -119,7 +119,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/history-commande/{id}', [CartsController::class, 'historycommande']);    
 
-    Route::get('/commande/statut/{user}/{idcommande}/{numerocommande}', [CartsController::class, 'suivicommande']);
+    Route::get('/commande/statut/{id}/{idcommande}/{numerocommande}', [CartsController::class, 'suivicommande']);
 
     Route::get('/detail-history/{id}/{idcommande}/{numerocommande}', [CartsController::class, 'detailHistory']);
 
