@@ -37,8 +37,8 @@ class CategorieMedicamentsController extends Controller
         ]);
         
         $filename='';
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
+        if ($request->hasFile('images')) {
+            $file = $request->file('images');
             $filename = time() . '_' . $file->getClientOriginalName();
 
             // Stockage temporaire
