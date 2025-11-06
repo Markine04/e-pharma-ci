@@ -152,6 +152,8 @@ class CartsController extends Controller
 
     public function suivicommande(Request $request, $id, $idcommande, $numerocommande)
     {
+        dd($id, $idcommande, $numerocommande);
+        
         $suivicommandes = DB::table('paniers')
             ->join('commandes', 'paniers.idpanier', '=', 'commandes.idcommande')
             ->join('users', 'paniers.user_id', '=', 'users.id')
