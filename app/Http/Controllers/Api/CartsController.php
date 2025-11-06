@@ -158,12 +158,12 @@ class CartsController extends Controller
         ->join('medicaments', 'paniers.produit_id', '=', 'medicaments.idmedicament')
         ->where('users.id', $request->user()->id)
         ->where('paniers.statut', 2)
+        ->where('commandes.idcommande', $request->idcommande)
+        ->where('commandes.numerocommande', $request->numerocommande)
         ->select(
                 'commandes.statut'
             )
         ->get();
-
-
 
         return response()->json([
             'suivicommandes' => $suivicommandes,
