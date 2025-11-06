@@ -52,6 +52,7 @@ class CategorieMedicamentsController extends Controller
             'image' => $filename,
             'parent_id' => $request->parent_id,
             'description'=> $request->description,
+            'statut'=>1,
             'user_enreg' => Auth::user()->id,
             'created_at'=>Carbon::now()
         ]);
