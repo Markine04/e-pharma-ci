@@ -69,7 +69,7 @@
                         <tbody>
                             @foreach ($categories as $items)
                                 <tr>
-                                    <td>
+                                    <td class="text-center">
                                         <img src="{{ asset('/assets/images/categories/' . $items->image) }}" width="50px"
                                             height="50px" alt={{ $items->libelle }} />
 
