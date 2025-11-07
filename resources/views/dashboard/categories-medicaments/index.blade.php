@@ -70,7 +70,7 @@
                             @foreach ($categories as $items)
                                 <tr>
                                     <td>
-                                        <img src={{ asset('/assets/images/categories/'.$items->image)}} width:50px; height:50px; alt={{ $items->libelle }} />
+                                        <img src="{{ asset('/assets/images/categories/'.$items->image)}}" width:50px; height:50px; alt={{ $items->libelle }} />
                                         
                                     </td>
                                     <td>{{ $items->libelle }}</td>
