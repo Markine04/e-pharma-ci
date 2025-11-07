@@ -95,7 +95,11 @@
         <li class="menu-item {{(Route::is('ordonnances.index')?'active':'')}}">
           <a href="{{route('ordonnances.index')}}" class="menu-link">
             <div class="text-truncate" data-i18n="Without navbar">Ordonnances</div>
-            <span class="badge rounded-pill bg-danger ms-auto">5</span>
+            <span class="badge rounded-pill bg-danger ms-auto">
+              {{DB::table('ordonnance_clients')
+              ->where('statut',1)
+              ->count()}}
+              </span>
           </a>
         </li>
 

@@ -24,9 +24,9 @@
                             <tr>
                                 <th>Actions</th>
                                 <th>Images</th>
+                                <th>Telephones</th>
                                 <th>Note</th>
                                 <th>Adresses</th>
-                                <th>Telephones</th>
                                 <th>Communes</th>
                                 <th>Statuts</th>
                             </tr>
@@ -66,14 +66,17 @@
                                                 alt="{{ $items->id_client }}" width="90px" height="70px">
                                         </a>
                                     </td>
-                                    <td>{{ $items->note }}</td>
                                     <td>
-                                        {{ $items->id_client }}
+                                        {{ DB::table('users')->where('id',$items->id_client)->get()[0]->number }}
                                     </td>
-                                    <td>{{ $items->id_client }}</td>
+
+                                    <td>{{ $items->note }}</td>
+                                    
                                     <td>
 
                                     </td>
+                                    <td>{{ DB::table('users')->where('idcommune',$items->id_commune)->get()[0]->name }}</td>
+                                    
 
                                     <td>
 
