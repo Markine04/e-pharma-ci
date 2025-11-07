@@ -52,7 +52,7 @@
               </g>
             </g>
           </svg> --}}
-          <img src="{{asset('assets/logo/logo-pharma.png')}}" alt="logo-pharma" width="46px">
+          <img src="{{asset('assets/logo/logoSiha.png')}}" alt="logo-pharma" width="46px">
         </span>
       </span>
       <span class="app-brand-text demo menu-text fw-bold ms-2">PHARM-<span style="color:rgb(255, 187, 0)">C</span><span style="color:rgb(7, 197, 102)">I</span></span>
