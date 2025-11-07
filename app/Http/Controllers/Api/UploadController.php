@@ -15,6 +15,8 @@ class UploadController extends Controller
     public function index(Request $request)
     {
         $ordonnances = DB::table('ordonnance_clients')
+        ->join('pharmacies', 'ordonnance_clients.id_pharmacie', '=', 'pharmacies.idpharmacie')
+        ->select('ordonnance_clients.*', 'pharmacies.*')
         ->where('id_client',$request->user()->id)->get();
 
         return response()->json([
