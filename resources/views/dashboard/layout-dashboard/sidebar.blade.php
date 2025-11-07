@@ -55,7 +55,7 @@
           <img src="{{asset('assets/logo/logoSiha.png')}}" alt="logo-pharma" width="46px">
         </span>
       </span>
-      <span class="app-brand-text demo menu-text fw-bold ms-2">&nbsp; <span style="color:rgb(14, 108, 248)">SIHA</span></span>
+      <span class="app-brand-text demo menu-text fw-bold ms-2"><span style="color:rgb(14, 108, 248)">SIHA</span></span>
     </a>
 
     <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
