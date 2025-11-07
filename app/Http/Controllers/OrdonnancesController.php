@@ -35,7 +35,7 @@ class OrdonnancesController extends Controller
 
     public function verifier(Request $request)
     {
-        $pharmacie = DB::table('users')->where('id',Auth::user()->id)->first()['pharmacie_id'];
+        $pharmacie = DB::table('users')->where('id',Auth::user()->id)->first()->pharmacie_id;
         DB::table('ordonnance_clients')->where('id_ordonnance', $request->id)->update([
             'image' => $request->image,
             'statut' => $request->statut,
