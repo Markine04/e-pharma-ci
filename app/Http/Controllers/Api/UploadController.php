@@ -43,6 +43,7 @@ class UploadController extends Controller
                 // 'id_ordonnance' => $request->id_ordonnance,
                 'id_client' => $request->id_client,
                 'note' => $request->note,
+                'statut' => 1,
                 "created_at" => Carbon::now(),
             ]);
 
