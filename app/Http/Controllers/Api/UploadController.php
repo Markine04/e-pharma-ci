@@ -12,9 +12,15 @@ class UploadController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $ordonnances = DB::table('ordonnance_clients')
+        ->where('id_client',$request->user()->id)->get();
+
+        return response()->json([
+            'success' => true,
+            'ordonnances' => $ordonnances,
+        ], 200);
     }
 
     /**
