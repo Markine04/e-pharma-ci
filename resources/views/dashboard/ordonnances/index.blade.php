@@ -75,7 +75,7 @@
                                     <td>
 
                                     </td>
-                                    <td>{{ DB::table('users')->where('idcommune',$items->id_commune)->get()[0]->name }}</td>
+                                    <td>{{ DB::table('communes')->where('idcommune',$items->id_commune)->get()[0]->name }}</td>
                                     
 
                                     <td>
