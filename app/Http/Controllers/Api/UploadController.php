@@ -71,7 +71,7 @@ class UploadController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id, Request $request)
     {
         $detailsordonnances = DB::table('ordonnance_clients')
             ->join('pharmacies', 'ordonnance_clients.id_pharmacie', '=', 'pharmacies.idpharmacie')
