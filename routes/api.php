@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\PharmaciesController;
 use App\Http\Controllers\Api\MedicamentsController;
 use App\Http\Controllers\Api\FormesGaleniquesController;
+use App\Http\Controllers\Api\AssurancesController;
 
 
 /*
@@ -109,7 +110,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/ordonnances-detail/{id}', [UploadController::class, 'show']);
 
-
     Route::post('/valider-panier', [CartsController::class, 'validerPanier']);
 
     Route::post('/panier-store', [CartsController::class, 'addToCart']);
@@ -128,6 +128,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/detail-history/{id}/{idcommande}/{numerocommande}', [CartsController::class, 'detailHistory']);
 
-    
+    Route::get('/carte-assurances', [AssurancesController::class, 'index']);
 
 });
