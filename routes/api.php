@@ -107,6 +107,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/ordonnances', [UploadController::class, 'index']);
 
+    Route::get('/ordonnances-detail/{id}', [UploadController::class, 'show']);
+
+
     Route::post('/valider-panier', [CartsController::class, 'validerPanier']);
 
     Route::post('/panier-store', [CartsController::class, 'addToCart']);

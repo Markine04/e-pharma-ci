@@ -73,7 +73,17 @@ class UploadController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $detailsordonnances = DB::table('ordonnance_clients')
+            ->join('pharmacies', 'ordonnance_clients.id_pharmacie', '=', 'pharmacies.idpharmacie')
+            ->select('ordonnance_clients.*', 'pharmacies.*')
+            ->where('id_client', $request->user()->id)
+            ->where('id_ordonnance', $id)
+            ->get();
+
+        return response()->json([
+            'success' => true,
+            'detailsordonnances' => $detailsordonnances,
+        ], 200);
     }
 
     /**
