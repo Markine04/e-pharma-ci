@@ -76,7 +76,7 @@ class UploadController extends Controller
         $detailsordonnances = DB::table('ordonnance_clients')
             ->join('users', 'ordonnance_clients.id_client', '=', 'users.id')
             ->join('pharmacies', 'ordonnance_clients.id_pharmacie', '=', 'pharmacies.idpharmacie')
-            ->select('ordonnance_clients.*', 'pharmacies.*')
+            ->select('ordonnance_clients.*', 'pharmacies.*', 'users.*')
             ->where('id_client', $request->user()->id)
             ->where('id_ordonnance', $id)
             ->get();
