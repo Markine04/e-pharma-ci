@@ -76,6 +76,7 @@ class UploadController extends Controller
             ->join('users', 'ordonnance_clients.id_client', '=', 'users.id')
             ->join('pharmacies', 'ordonnance_clients.id_pharmacie', '=', 'pharmacies.idpharmacie')
             ->select(
+                'ordonnance_clients.id_ordonnance',
                 'ordonnance_clients.image',
                 'ordonnance_clients.note',
                 'ordonnance_clients.statut',
