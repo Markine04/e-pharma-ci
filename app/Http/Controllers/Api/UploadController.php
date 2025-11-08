@@ -15,9 +15,9 @@ class UploadController extends Controller
     public function index(Request $request)
     {
         $ordonnances = DB::table('ordonnance_clients')
-        ->join('pharmacies', 'ordonnance_clients.id_pharmacie', '=', 'pharmacies.idpharmacie')
-        ->select('ordonnance_clients.*', 'pharmacies.*')
-        ->where('id_client',$request->user()->id)->get();
+            ->join('pharmacies', 'ordonnance_clients.id_pharmacie', '=', 'pharmacies.idpharmacie')
+            ->select('ordonnance_clients.*', 'pharmacies.*')
+            ->where('id_client', $request->user()->id)->get();
 
         return response()->json([
             'success' => true,
@@ -57,7 +57,7 @@ class UploadController extends Controller
 
             return response()->json([
                 'success' => true,
-                'note'=> $request->note,
+                'note' => $request->note,
                 'url' => asset('storage/ordonnances-clients/' . $name)
             ], 200);
         }
@@ -65,7 +65,6 @@ class UploadController extends Controller
 
 
         return response()->json(['success' => false, 'message' => 'Aucune image reçue'], 400);
-        
     }
 
     /**
@@ -76,7 +75,22 @@ class UploadController extends Controller
         $detailsordonnances = DB::table('ordonnance_clients')
             ->join('users', 'ordonnance_clients.id_client', '=', 'users.id')
             ->join('pharmacies', 'ordonnance_clients.id_pharmacie', '=', 'pharmacies.idpharmacie')
-            ->select('ordonnance_clients.*', 'pharmacies.*', 'users.*')
+            ->select(
+                'ordonnance_clients.image',
+                'ordonnance_clients.note',
+                'ordonnance_clients.statut',
+                'ordonnance_clients.date_traitement',
+                'ordonnance_clients.created_at',
+                'pharmacies.name as nompharmacie',
+                'pharmacies.address',
+                'pharmacies.phone',
+                'pharmacies.latitude',
+                'pharmacies.longitude',
+                'users.name',
+                'users.number',
+                'users.id_commune',
+                'users.id_assurance'
+            )
             ->where('id_client', $request->user()->id)
             ->where('id_ordonnance', $id)
             ->get();
