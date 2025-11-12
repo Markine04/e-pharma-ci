@@ -53,7 +53,7 @@ Route::get('/single-produits', [ProduitController::class, 'show'])->name('single
 
 // DASHBOARD
 Route::middleware('auth')->group(function () {
-    Route::get('dashboard/home', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     //Produits
     Route::get('dashboard/medicaments', [MedicamentsController::class, 'index'])->name('medicaments.index');
