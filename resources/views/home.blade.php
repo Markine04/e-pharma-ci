@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>{{ config('app.name', 'Laravel') }}</title>
-    <meta name="description" content="" />
+    <meta name="description" content="Application d'achats de produits pharmaceutiques en ligne et consultation des pharmacies de garde" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {{-- <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets_fronts/images/favicon.svg')}}" /> --}}
 
@@ -20,8 +20,6 @@
     <link rel="stylesheet" href="{{ asset('assets_fronts/css/tiny-slider.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets_fronts/css/glightbox.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets_fronts/css/main.css') }}" />
-
-
 
     <style>
         :root {
@@ -261,13 +259,6 @@
 </head>
 
 <body>
-    <!--[if lte IE 9]>
-      <p class="browserupgrade">
-        You are using an <strong>outdated</strong> browser. Please
-        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
-        your experience and security.
-      </p>
-    <![endif]-->
 
     <!-- Preloader -->
     <div class="preloader">
