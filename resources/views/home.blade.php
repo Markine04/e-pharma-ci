@@ -636,9 +636,9 @@
                                 <li><a href="javascript:void(0)"><i class="lni lni-youtube"></i></a></li>
                                 <li><a href="javascript:void(0)"><i class="lni lni-pinterest"></i></a></li>
                             </ul>
-                            <p class="copyright-text">Designed and Developed by <a href="https://uideck.com/"
+                            <p class="copyright-text">Designed and Developed by <a href="https://sihapp.com/"
                                     rel="nofollow" target="_blank">UIdeck</a>. <br> Distributed by <a
-                                    href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                                    href="https://sihapp.com" target="_blank">ThemeWagon</a>
                             </p>
                         </div>
                         <!-- End Single Widget -->
