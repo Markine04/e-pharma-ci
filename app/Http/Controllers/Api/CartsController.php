@@ -188,6 +188,7 @@ class CartsController extends Controller
                 'medicaments.images',
                 'paniers.quantite'
             )
+            ->orderBy('paniers.idpanier', 'desc')
             ->get();
 
         // dd($historycommandes);
@@ -220,6 +221,7 @@ class CartsController extends Controller
                 'medicaments.images',
                 'paniers.quantite'
             )
+            ->orderBy('paniers.idpanier', 'desc')
             ->get();
 
         // dd($historycommandes);
