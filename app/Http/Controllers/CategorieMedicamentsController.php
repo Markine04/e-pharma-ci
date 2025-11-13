@@ -71,9 +71,10 @@ class CategorieMedicamentsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(CategorieMedicaments $categorieMedicaments)
+    public function edit(Request $request)
     {
-        //
+        $categories = DB::table('categories')->where('idcategorie', $request->id)->first();
+        return view('dashboard.categories-medicaments.edit', compact('categories'));
     }
 
     /**
@@ -81,7 +82,29 @@ class CategorieMedicamentsController extends Controller
      */
     public function update(Request $request, CategorieMedicaments $categorieMedicaments)
     {
-        //
+        
+        $filename = '';
+        if ($request->hasFile('images')) {
+            $file = $request->file('images');
+            $filename = time() . '_' . $file->getClientOriginalName();
+
+            // Stockage temporaire
+            $path = $file->move(public_path('/assets/images/categories'), $filename);
+        }
+
+
+        // On crée une nouvelle categories
+        $categories = DB::table('categories')->where('idcategorie', $request->idcategorie)->update([
+            'libelle' => $request->libelle,
+            'image' => $filename,
+            'parent_id' => $request->parent_id,
+            'description' => $request->description,
+            'statut' => 1,
+            'user_enreg' => Auth::user()->id,
+            'updated_at' => Carbon::now()
+        ]);
+
+        return redirect()->back()->with('success', 'Categorie mis à jour avec succès');
     }
 
     /**

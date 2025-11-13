@@ -127,7 +127,7 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard/categorie-medicament/create', [CategorieMedicamentsController::class, 'create'])->name('categoriemedicaments.create');
     Route::post('dashboard/categorie-medicament', [CategorieMedicamentsController::class, 'store'])->name('categoriemedicaments.store');
     Route::get('dashboard/categorie-medicament/{id}/edit', [CategorieMedicamentsController::class, 'edit'])->name('categoriemedicaments.edit');
-    Route::put('dashboard/categorie-medicament/{id}', [CategorieMedicamentsController::class, 'update'])->name('categoriemedicaments.update');
+    Route::post('dashboard/categorie-medicament-update', [CategorieMedicamentsController::class, 'update'])->name('categoriemedicaments.update');
     Route::delete('dashboard/categorie-medicament/{id}', [CategorieMedicamentsController::class, 'destroy'])->name('categoriemedicaments.destroy');
     Route::get('dashboard/categorie-medicament-uploadImages', [CategorieMedicamentsController::class, 'uploadImages'])->name('categoriemedicaments.temp');
 
