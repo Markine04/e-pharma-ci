@@ -55,6 +55,7 @@ class CartsController extends Controller
             ->join('medicaments', 'paniers.produit_id', '=', 'medicaments.idmedicament')
             ->where('users.id', $id)
             ->where('statut', 1)
+            ->orderBy('paniers.created_at', 'desc')
             ->get();
 
         return response()->json([
