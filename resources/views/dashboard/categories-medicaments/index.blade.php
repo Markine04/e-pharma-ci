@@ -98,9 +98,9 @@
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" data-url="{{ route('categoriemedicaments.edit', ['id'=>$items->idcategorie]) }}"data-bs-toggle="modal"
                                                     data-ajax-popup="true" data-size="md"
-                                                    data-title="modifier cette categorie">
+                                                    data-title="modifier cette categorie" style="cursor: pointer">
                                                     <i class="icon-base bx bx-edit-alt me-1"></i> Modifier</a>
-                                                    
+
                                                 <a class="dropdown-item" href="javascript:void(0);"><i
                                                         class="icon-base bx bx-trash me-1"></i> Delete</a>
                                             </div>
