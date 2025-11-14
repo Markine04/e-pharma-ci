@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en" class="layout-menu-fixed layout-compact" data-layout-config='{"menu":{"showByDefault":true},"darkMode":false,"showRightSidebar":true,"showRightSidebarOnPageChange":true,"showRightSidebarOnPageLoad":true,"showRightSidebarOnPageLoad":true,'
+<html lang="en" class="layout-menu-fixed layout-compact"
     data-template="vertical-menu-template-free">
 
 <head>
@@ -35,7 +35,7 @@
 
     <link rel="stylesheet" href="{{ asset('assets/builds/css/select2.min.css') }}" />
 
-    <link rel="stylesheet" href="{{ asset('dashboards/assets/css/demo.css') }}" />
+    {{-- <link rel="stylesheet" href="{{ asset('dashboards/assets/css/demo.css') }}" /> --}}
     
 
     {{-- Datatables --}}
