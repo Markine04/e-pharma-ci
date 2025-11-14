@@ -122,7 +122,7 @@
 
     {{-- <script src="{{ asset('dashboards/assets/builds/custom.js') }}"></script> --}}
 
-    {{-- <script src="{{ asset('assets/builds/custom.js') }}"></script> --}}
+    <script src="{{ asset('assets/builds/custom.js') }}"></script>
 
     {{-- <script src="{{ asset('assets/builds/js/select2.js') }}"></script> --}}
 
