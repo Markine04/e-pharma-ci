@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en" class="layout-menu-fixed layout-compact" data-assets-path="{{ asset('dashboards/assets/') }}"
+<html lang="en" class="layout-menu-fixed layout-compact" data-layout-config='{"menu":{"showByDefault":true},"darkMode":false,"showRightSidebar":true,"showRightSidebarOnPageChange":true,"showRightSidebarOnPageLoad":true,"showRightSidebarOnPageLoad":true,'
     data-template="vertical-menu-template-free">
 
 <head>
