@@ -4,8 +4,6 @@
 <script src="{{ asset('assets/builds/js/select2.min.js') }}"></script>
 
 
-
-
 <form method="post" action="{{ route('categoriemedicaments.update') }}" enctype="multipart/form-data"/>
     @csrf
     <input type="hidden" name="idcategorie" value="{{ $categories->idcategorie }}">

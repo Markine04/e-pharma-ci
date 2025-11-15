@@ -11,12 +11,13 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <meta name="description" content="" />
+    <meta name="google-site-verification" content="MP-PsNpUqipjp3kGMsfBlaiG4M7cfoutiOaC2U1N_bc" />
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/favicon/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/favicon/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/favicon/favicon-16x16.png') }}">
-
+    {{-- <link rel="icon" type="image/x-icon" href="{{ asset('assets/favicon/favicon.ico') }}"> --}}
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -35,7 +36,7 @@
 
     <link rel="stylesheet" href="{{ asset('assets/builds/css/select2.min.css') }}" />
 
-    {{-- <link rel="stylesheet" href="{{ asset('dashboards/assets/css/demo.css') }}" /> --}}
+    <link rel="stylesheet" href="{{ asset('dashboards/assets/css/demo.css') }}" />
     
 
     {{-- Datatables --}}
