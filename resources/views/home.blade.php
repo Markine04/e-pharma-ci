@@ -7,19 +7,19 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     <meta name="description" content="Application d'achats de produits pharmaceutiques en ligne et consultation des pharmacies de garde" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    {{-- <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets_fronts/images/favicon.svg')}}" /> --}}
+    {{-- <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/images/favicon.svg')}}" /> --}}
     <meta name="google-site-verification" content="MP-PsNpUqipjp3kGMsfBlaiG4M7cfoutiOaC2U1N_bc" />
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/favicon/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/favicon/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/favicon/favicon-16x16.png') }}">
     <!-- ========================= CSS here ========================= -->
-    <link rel="stylesheet" href="{{ asset('assets_fronts/css/bootstrap.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets_fronts/css/LineIcons.2.0.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets_fronts/css/animate.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets_fronts/css/tiny-slider.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets_fronts/css/glightbox.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets_fronts/css/main.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/LineIcons.2.0.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/tiny-slider.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/glightbox.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
 
     <style>
         :root {
@@ -280,7 +280,7 @@
                         <!-- Start Navbar -->
                         <nav class="navbar navbar-expand-lg">
                             <a class="navbar-brand" href="{{ route('home') }}">
-                                <img src="{{ asset('dashboards/assets/logo/logo-home.png') }}" alt="Logo">
+                                <img src="{{ asset('assets/logo/logo-home.png') }}" alt="Logo">
                             </a>
                             <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -359,7 +359,7 @@
                 </div>
                 <div class="col-lg-7 col-md-12 col-12">
                     <div class="hero-image wow fadeInRight" data-wow-delay=".4s">
-                        <img src="{{ asset('assets_fronts/images/hero/phone.png') }}" alt="#">
+                        <img src="{{ asset('assets/images/hero/phone.png') }}" alt="#">
                     </div>
                 </div>
             </div>
@@ -715,12 +715,12 @@
     </a>
 
     <!-- ========================= JS here ========================= -->
-    <script src="{{ asset('assets_fronts/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets_fronts/js/wow.min.js') }}"></script>
-    <script src="{{ asset('assets_fronts/js/tiny-slider.js') }}"></script>
-    <script src="{{ asset('assets_fronts/js/glightbox.min.js') }}"></script>
-    <script src="{{ asset('assets_fronts/js/count-up.min.js') }}"></script>
-    <script src="{{ asset('assets_fronts/js/main.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/wow.min.js') }}"></script>
+    <script src="{{ asset('assets/js/tiny-slider.js') }}"></script>
+    <script src="{{ asset('assets/js/glightbox.min.js') }}"></script>
+    <script src="{{ asset('assets/js/count-up.min.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
     <script type="text/javascript">
         //====== counter up 
         var cu = new counterUp({
