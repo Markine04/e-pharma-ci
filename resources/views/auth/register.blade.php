@@ -51,7 +51,161 @@
     </form>
 </x-guest-layout> --}}
 
-@extends('components.master-app')
+
+<!-- Favicon -->
+{{-- <link rel="icon" type="image/x-icon" href="{{ asset('dashboards/assets/img/favicon/favicon.ico') }}" /> --}}
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+    href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet" />
+
+<link rel="stylesheet" href="{{ asset('dashboards/assets/vendor/fonts/iconify-icons.css') }}" />
+
+<!-- Core CSS -->
+<!-- build:css assets/vendor/css/theme.css  -->
+
+<link rel="stylesheet" href="{{ asset('dashboards/assets/vendor/css/core.css') }}" />
+<link rel="stylesheet" href="{{ asset('dashboards/assets/css/demo.css') }}" />
+
+<!-- Vendors CSS -->
+
+<link rel="stylesheet" href="{{ asset('dashboards/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
+
+<!-- endbuild -->
+
+<!-- Page CSS -->
+<!-- Page -->
+<link rel="stylesheet" href="{{ asset('dashboards/assets/vendor/css/pages/page-auth.css') }}" />
+
+<!-- Helpers -->
+<script src="{{ asset('dashboards/assets/vendor/js/helpers.js') }}"></script>
+<!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+
+<!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+
+<script src="{{ asset('dashboards/assets/js/config.js') }}"></script>
+</head>
+
+<!-- Content -->
+
+<div class="container-xxl">
+    <div class="authentication-wrapper authentication-basic container-p-y">
+        <div class="authentication-inner">
+            <!-- Register -->
+            <div class="card px-sm-6 px-0">
+                <div class="card-body">
+                    <!-- Logo -->
+                    <div class="app-brand justify-content-center">
+                        <a href="{{ url('/') }}" class="app-brand-link gap-2">
+                            <span class="app-brand-logo demo">
+                                <span class="text-primary">
+                                    <img src="{{asset('assets/logo/logoSiha.png')}}" alt="{{ config('app.name', 'Laravel') }}" width="40px" height="40px">
+                                </span>
+                            </span>
+                            <span
+                                class="app-brand-text demo text-heading fw-bold">{{ config('app.name', 'Laravel') }}</span>
+                        </a>
+                    </div>
+                    <!-- /Logo -->
+                    <h4 class="mb-1 text-center mt-4">Enregistrez-vous sur {{ config('app.name', 'Laravel') }}</h4>
+                    {{-- <p class="mb-6">Veuillez vous connecter à votre compte et commencer l'aventure.</p> --}}
+
+                    <x-auth-session-status class="mb-4" :status="session('status')" />
+
+                    <form method="POST" action="{{ route('register') }}">
+                        @csrf
+                        <div class="mb-3">
+                            <input type="text" name="name" class="form-control form-control-lg"
+                                :value="old('name')" required autofocus autocomplete="name"
+                                placeholder="Nom & Prenoms">
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="email" name="email" :value="old('email')" required autofocus
+                                autocomplete="username" class="form-control form-control-lg" placeholder="Email"
+                                aria-label="Email">
+                            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                        </div>
+
+                        <!-- Password -->
+
+                        <div class="mb-3">
+                            <input type="password" name="password" required autocomplete="current-password"
+                                class="form-control form-control-lg" placeholder="Password" aria-label="Password">
+                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                        </div>
+
+                        <!-- Confirm Password -->
+
+                        <div class="mb-3">
+                            <input type="password" name="password_confirmation" required autocomplete="new-password"
+                                class="form-control form-control-lg" placeholder="Password" aria-label="Password">
+                            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Sign
+                                in</button>
+                        </div>
+                    </form>
+                    <div class="card-footer text-center pt-0 px-lg-2 px-1">
+                        <p class="mb-4 text-sm mx-auto">
+                            Already registered?
+                            <a href="{{ route('login') }}"
+                                class="text-primary text-gradient font-weight-bold">Connexion</a>
+                        </p>
+                    </div>
+
+                    <p class="text-center">
+                        <span>Nouveau sur Siha?</span>
+                        <a href="{{ route('register') }}">
+                            <span>Créer un compte</span>
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <!-- /Register -->
+        </div>
+    </div>
+</div>
+
+<!-- / Content -->
+
+{{-- <div class="buy-now">
+        <a href="https://themeselection.com/item/sneat-dashboard-pro-bootstrap/" target="_blank"
+            class="btn btn-danger btn-buy-now">Upgrade to Pro</a>
+    </div> --}}
+
+<!-- Core JS -->
+
+<script src="{{ asset('dashboards/assets/vendor/libs/jquery/jquery.js') }}"></script>
+
+<script src="{{ asset('dashboards/assets/vendor/libs/popper/popper.js') }}"></script>
+<script src="{{ asset('dashboards/assets/vendor/js/bootstrap.js') }}"></script>
+
+<script src="{{ asset('dashboards/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+
+<script src="{{ asset('dashboards/assets/vendor/js/menu.js') }}"></script>
+
+<!-- endbuild -->
+
+<!-- Vendors JS -->
+
+<!-- Main JS -->
+
+<script src="{{ asset('dashboards/assets/js/main.js') }}"></script>
+
+<!-- Page JS -->
+
+<!-- Place this tag before closing body tag for github widget button. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+{{-- @extends('components.master-app')
 @section('content')
     <main class="main-content  mt-0">
         <section>
@@ -86,9 +240,9 @@
                                         <!-- Password -->
 
                                         <div class="mb-3">
-                                            <input type="password" name="password" required autocomplete="current-password"
-                                                class="form-control form-control-lg" placeholder="Password"
-                                                aria-label="Password">
+                                            <input type="password" name="password" required
+                                                autocomplete="current-password" class="form-control form-control-lg"
+                                                placeholder="Password" aria-label="Password">
                                             <x-input-error :messages="$errors->get('password')" class="mt-2" />
                                         </div>
 
@@ -135,7 +289,7 @@
             </div>
         </section>
     </main>
-@endsection
+@endsection --}}
 
 
 

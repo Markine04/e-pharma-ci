@@ -100,7 +100,7 @@
                                         </svg>
                                     </span>
                                 </span>
-                                <span class="app-brand-text demo text-heading fw-bold">Siha</span>
+                                <span class="app-brand-text demo text-heading fw-bold">{{ config('app.name', 'Laravel') }}</span>
                             </a>
                         </div>
                         <!-- /Logo -->
