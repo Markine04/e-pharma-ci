@@ -105,7 +105,7 @@
 
     <!-- Core JS -->
 
-    <script src="{{ asset('dashboards/assets/vendor/libs/jquery/jquery.js') }}"></script>
+    {{-- <script src="{{ asset('dashboards/assets/vendor/libs/jquery/jquery.js') }}"></script> --}}
 
     <script src="{{ asset('dashboards/assets/vendor/libs/popper/popper.js') }}"></script>
     <script src="{{ asset('dashboards/assets/vendor/js/bootstrap.js') }}"></script>
@@ -140,14 +140,14 @@
 
 
     {{-- DataTables --}}
-    <script src="{{ asset('dashboards/assets/datatables/js/dataTables.dateTime.min.js') }}"></script>
+    {{-- <script src="{{ asset('dashboards/assets/datatables/js/dataTables.dateTime.min.js') }}"></script>
     <script src="{{ asset('dashboards/assets/datatables/js/dataTables.min.js') }}"></script>
     <script src="{{ asset('dashboards/assets/datatables/js/dataTables.js') }}"></script>
     <script src="{{ asset('dashboards/assets/datatables/js/dataTables.searchBuilder.js') }}"></script>
     <script src="{{ asset('dashboards/assets/datatables/js/jquery-3.7.1.min.js') }}"></script>
-    <script src="{{ asset('dashboards/assets/datatables/js/searchBuilder.dataTables.js') }}"></script>
+    <script src="{{ asset('dashboards/assets/datatables/js/searchBuilder.dataTables.js') }}"></script> --}}
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    {{-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script> --}}
     <script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
 
     <script src="{{ asset('assets/builds/bootstrap-notify.min.js') }}"></script>
