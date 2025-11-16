@@ -280,7 +280,7 @@
                         <!-- Start Navbar -->
                         <nav class="navbar navbar-expand-lg">
                             <a class="navbar-brand" href="{{ route('home') }}">
-                                <img src="{{ asset('assets/logo/logo-home.png') }}" alt="Logo">
+                                <img src="{{ asset('dashboards/assets/logo/logo-home.png') }}" alt="Logo">
                             </a>
                             <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
