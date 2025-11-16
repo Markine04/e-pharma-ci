@@ -47,8 +47,8 @@
     <link rel="stylesheet" href="{{ asset('dashboards/assets/datatables/css/dataTables.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('dashboards/assets/datatables/css/searchBuilder.dataTables.css') }}" />
 
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script> --}}
     <!-- Vendors CSS -->
 
     <link rel="stylesheet"
@@ -148,7 +148,7 @@
     <script src="{{ asset('dashboards/assets/datatables/js/searchBuilder.dataTables.js') }}"></script> --}}
 
     {{-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script> --}}
-    <script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+    {{-- <script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script> --}}
 
     <script src="{{ asset('assets/builds/bootstrap-notify.min.js') }}"></script>
 
