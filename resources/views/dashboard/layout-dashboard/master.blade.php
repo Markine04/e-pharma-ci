@@ -47,8 +47,8 @@
     <link rel="stylesheet" href="{{ asset('dashboards/assets/datatables/css/dataTables.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('dashboards/assets/datatables/css/searchBuilder.dataTables.css') }}" />
 
-    {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script> --}}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <!-- Vendors CSS -->
 
     <link rel="stylesheet"
@@ -58,8 +58,8 @@
 
     <link rel="stylesheet" href="{{ asset('dashboards/assets/vendor/libs/apex-charts/apex-charts.css') }}" />
 
-    {{-- <script src="{{ asset('dashboards/assets/vendor/js/helpers.js') }}"></script>
-    <script src="{{ asset('dashboards/assets/js/config.js') }}"></script> --}}
+    <script src="{{ asset('dashboards/assets/vendor/js/helpers.js') }}"></script>
+    <script src="{{ asset('dashboards/assets/js/config.js') }}"></script>
 </head>
 
 <body>
@@ -117,7 +117,7 @@
     <!-- endbuild -->
 
     <!-- Vendors JS -->
-    {{-- <script src="{{ asset('dashboards/assets/vendor/libs/apex-charts/apexcharts.js') }}"></script> --}}
+    <script src="{{ asset('dashboards/assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
 
     <!-- Main JS -->
 
@@ -131,13 +131,12 @@
 
     {{-- <script src="{{ asset('assets/builds/js/select2.min.js') }}"></script> --}}
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    <script src="{{ asset('assets/builds/jquery-3.6.0.min.js') }}"></script>
 
     <script src="{{ asset('assets/builds/jquery.ui.min.js') }}"></script>
 
     <!-- Page JS -->
-    {{-- <script src="{{ asset('dashboards/assets/js/dashboards-analytics.js') }}"></script> --}}
+    <script src="{{ asset('dashboards/assets/js/dashboards-analytics.js') }}"></script>
 
 
     {{-- DataTables --}}
@@ -151,7 +150,7 @@
     {{-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script> --}}
     {{-- <script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script> --}}
 
-    {{-- <script src="{{ asset('assets/builds/bootstrap-notify.min.js') }}"></script> --}}
+    <script src="{{ asset('assets/builds/bootstrap-notify.min.js') }}"></script>
 
     <script>
         $(document).ready(function() {
