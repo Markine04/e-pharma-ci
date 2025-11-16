@@ -12,6 +12,8 @@
 
     <meta name="description" content="" />
     <meta name="google-site-verification" content="MP-PsNpUqipjp3kGMsfBlaiG4M7cfoutiOaC2U1N_bc" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/logo/logoSiha.png')}}" />
+
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/favicon/apple-touch-icon.png') }}">
