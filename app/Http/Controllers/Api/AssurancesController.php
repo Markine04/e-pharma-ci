@@ -39,6 +39,8 @@ class AssurancesController extends Controller
     }
 
 
+    
+
      public function store(Request $request)
     {
         // Validation des données
@@ -51,8 +53,13 @@ class AssurancesController extends Controller
         ]);
         $user = $request->user()->id;
         // Création du nouvel utilisateur
+        
+        $name = "";
 
-        							created_at	
+        if ($request->hasFile('images')) {
+            $file = $request->file('images');
+            $name = time() . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('assurances-cartes', $name, 'public');
 
         $assurances = DB::table('assurances')->insert([
             'user_id' => $user,
@@ -63,9 +70,16 @@ class AssurancesController extends Controller
             'date_debut' => $request->date_debut,
             'date_fin' => $request->date_fin,
             'type_assurance' => $request->type_assurance,
-            'images' => 1,
+            'images' => $name,
             'created_at' => Carbon::now()
         ]);
+        }
+
+        return response()->json([
+                'success' => true,
+                'assurances'=> $assurances,
+                'url' => asset('storage/assurances-cartes/' . $name)
+            ], 200);
     }
 
 
