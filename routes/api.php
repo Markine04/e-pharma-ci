@@ -128,6 +128,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/detail-history/{id}/{idcommande}/{numerocommande}', [CartsController::class, 'detailHistory']);
 
-    Route::get('/carte-assurances', [AssurancesController::class, 'index']);
+    Route::get('/assurances-user', [AssurancesController::class, 'index']);
+
+    Route::post('/assurances-store', [AssurancesController::class, 'store']);
 
 });
