@@ -90,6 +90,7 @@ Route::get('/pharmacie-garde-show/{id}', [PharmaciesController::class, 'show_gar
 
 Route::get('medicaments-by-category/{id}', [MedicamentsController::class, 'getByCategory']);
 
+Route::get('/assureurs', [AssurancesController::class, 'get_assureur']);
 
 Route::get('/formes-galeniques', [FormesGaleniquesController::class, 'index']);
 
