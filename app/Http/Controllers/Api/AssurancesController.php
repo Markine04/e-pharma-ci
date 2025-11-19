@@ -52,8 +52,8 @@ class AssurancesController extends Controller
         // Validation des données
         $this->validate($request, [
             'date_debut' => 'required',
-            'numero_police' => 'required'
-            'compagnie'	=>	'required'		
+            'numero_police' => 'required',
+            'compagnie'	=>	'required',		
             'date_fin' => 'required',
             'type_assurance' => 'nullable|integer'
         ]);
