@@ -18,7 +18,7 @@ class AssurancesController extends Controller
         $user = $request->user()->id;
 
         $assurances = DB::table('users')
-        ->join('type_assureurs', 'users.idassureur', 'type_assureurs.id_assureur')
+        ->join('assurances', 'users.assurance_id', 'assurances.id_assurance')
         ->where('users.id', $user)
         ->get();
 
@@ -36,6 +36,36 @@ class AssurancesController extends Controller
                 'success' =>true,
                 'assureurs' => $assureurs,
             ],200);
+    }
+
+
+     public function store(Request $request)
+    {
+        // Validation des données
+        $this->validate($request, [
+            'date_debut' => 'required',
+            'numero_police' => 'required'
+            'compagnie'	=>	'required'		
+            'date_fin' => 'required',
+            'type_assurance' => 'nullable|integer'
+        ]);
+        $user = $request->user()->id;
+        // Création du nouvel utilisateur
+
+        							created_at	
+
+        $assurances = DB::table('assurances')->insert([
+            'user_id' => $user,
+            'nom' => $request->nom,
+            'prenom' => $request->prenom,
+            'compagnie' => $request->compagnie,
+            'numero_police' => $request->numero_police,
+            'date_debut' => $request->date_debut,
+            'date_fin' => $request->date_fin,
+            'type_assurance' => $request->type_assurance,
+            'images' => 1,
+            'created_at' => Carbon::now()
+        ]);
     }
 
 
