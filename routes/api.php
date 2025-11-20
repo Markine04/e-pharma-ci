@@ -90,6 +90,8 @@ Route::get('/pharmacie-garde-show/{id}', [PharmaciesController::class, 'show_gar
 
 Route::get('medicaments-by-category/{id}', [MedicamentsController::class, 'getByCategory']);
 
+Route::get('/compagnie-assurances', [AssurancesController::class, 'get_compagnieAssurances']);
+Route::get('/type-assurances', [AssurancesController::class, 'get_typeAssurance']);
 
 Route::get('/formes-galeniques', [FormesGaleniquesController::class, 'index']);
 
@@ -128,6 +130,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/detail-history/{id}/{idcommande}/{numerocommande}', [CartsController::class, 'detailHistory']);
 
-    Route::get('/carte-assurances', [AssurancesController::class, 'index']);
+    Route::get('/assurances-user', [AssurancesController::class, 'index']);
+
+    Route::post('/assurances-store', [AssurancesController::class, 'store']);
 
 });

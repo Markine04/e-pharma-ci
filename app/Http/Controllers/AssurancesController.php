@@ -14,7 +14,7 @@ class AssurancesController extends Controller
      */
     public function index()
     {
-        $assurances = DB::table('assurances')->paginate(10);
+        $assurances = DB::table('type_assureurs')->paginate(10);
 
         return view('dashboard.assurances.index', compact('assurances'));
     }
@@ -32,7 +32,7 @@ class AssurancesController extends Controller
      */
     public function store(Request $request)
     {
-        DB::table('assurances')->insert([
+        DB::table('type_assureurs')->insert([
             'libelle' => $request->libelle,
             'statut' => 1,
             'created_at' => Carbon::now(),
