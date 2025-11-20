@@ -15,7 +15,7 @@ class CategorieMedicamentsController extends Controller
      */
     public function index()
     {
-        $categories = DB::table('categories')->get();
+        $categories = DB::table('categories')->paginate(10);
         return view('dashboard.categories-medicaments.index',compact('categories'));
     }
 
