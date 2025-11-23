@@ -14,7 +14,7 @@ class FormeGaleniquesController extends Controller
      */
     public function index()
     {
-        $formesGaleniques = DB::table('forme_galeniques')->paginate(10);
+        $formesGaleniques = DB::table('forme_galeniques')->get();
 
         return view('dashboard.formes-galeniques.index', compact('formesGaleniques'));
     }

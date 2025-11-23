@@ -1,45 +1,46 @@
-    @extends('dashboard.layouts.master')
-    @section('content')
-        <div class="page-heading">
-            <div class="page-title">
-                <div class="row">
-                    <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Commandes</h3>
-                        <p class="text-subtitle text-muted">Liste des Commandes</p>
-                    </div>
-                    <div class="col-12 col-md-6 order-md-2 order-first">
-                        <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Tableau de bord</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Commandes</li>
-                            </ol>
-                        </nav>
-                    </div>
+@extends('layout.master')
+
+@section('css')
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/datatables.css') }}">
+@endsection
+
+@section('main_content')
+    <div class="container-fluid">
+        <div class="page-title">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3>Commandes</h3>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i data-feather="home"></i></a>
+                        </li>
+                        <li class="breadcrumb-item">Tableau de bord</li>
+                        <li class="breadcrumb-item active">Commandes</li>
+                    </ol>
                 </div>
             </div>
-            <!-- Bordered Table -->
-            <section class="section">
-                <!-- Bordered Table -->
+        </div>
+    </div>
+    <!-- Container-fluid starts-->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Zero Configuration  Starts-->
+            <div class="col-sm-12">
                 <div class="card">
-                    <div class="me-auto container mt-5">
-                        <div class="row">
-                            <div class="col-md-12 col-lg-12">
-                                <h4>
-                                    {{-- Commandes --}}
-                                    <div class="ml-8" style="float: right">
-                                        <a href="{{ route('pharmacies.create') }}" class="btn btn-primary">Ajouter une
-                                            Commande</a>
-                                    </div>
-                                </h4>
-                            </div>
-                        </div>
+                    <div class="card-header pb-0">
+                        <h4>Commandes
+                            {{-- <div class="ml-8" style="float: right">
+                                <a href="{{ route('ordonnances.create') }}" class="btn btn-primary">Ajouter une
+                                    Ordonnance</a>
+                            </div> --}}
+                        </h4>
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive text-nowrap">
-                            <table class="table table-bordered">
+                        <div class="table-responsive theme-scrollbar">
+                            <table class="display" id="basic-1">
                                 <thead>
                                     <tr>
-                                        <th>Actions</th>
                                         <th>Images</th>
                                         <th>Telephones</th>
                                         <th>Produits</th>
@@ -53,34 +54,9 @@
                                     @foreach ($commandes as $items)
                                         <tr>
                                             <td>
-                                                <div class="dropdown">
-                                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                        data-bs-toggle="dropdown">
-                                                        <i class="icon-base bx bx-dots-vertical-rounded"></i>
-                                                    </button>
-                                                    <div class="dropdown-menu">
-
-                                                        {{-- <a class="dropdown-item"
-                                                    href="{{ route('ordonnances.edit', ['id' => $items->id_ordonnance]) }}"><i
-                                                        class="icon-base bx bx-edit-alt me-1"
-                                                        style='color:rgba(0, 119, 255, 0.637);'></i> Modifier</a> --}}
-
-
-                                                        <a class="dropdown-item" style="cursor: pointer;"
-                                                            data-url="{{ route('commandes.delete', ['id' => $items->idpanier]) }}"
-                                                            data-ajax-popup="true" data-size="md"
-                                                            data-title="Supprimer l'ordonnance">
-                                                            <i class="icon-base bx bx-trash me-1"
-                                                                style='color:rgba(255, 0, 0, 0.637);'></i>
-                                                            Supprimer
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
                                                 <a
                                                     href="{{ route('commandes.image', ['id' => $items->produit_id]) }}"target="_blank">
-                                                    <img src="{{ asset('assets/images/produits/' . str_replace('"', '', str_replace('["', '', explode(',', DB::table('medicaments')->where('idmedicament', $items->produit_id)->get()[0]->images)[0]))) }}"
+                                                    <img src="{{ asset('storage/produits/' . str_replace('"', '', str_replace('["', '', explode(',', DB::table('medicaments')->where('idmedicament', $items->produit_id)->get()[0]->images)[0]))) }}"
                                                         alt="{{ DB::table('medicaments')->where('idmedicament', $items->produit_id)->value('nom') }}"
                                                         width="90px" height="70px">
                                                 </a>
@@ -104,8 +80,7 @@
                                                             action="{{ route('commandes.traiter', ['id' => $items->idcommande, 'statut' => 'en_attente']) }}"
                                                             method="post">
                                                             @csrf
-                                                            <button type="submit" class="btn btn-warning me-1"
-                                                                style="cursor: pointer;"><i class="si si-note"
+                                                            <button type="submit" class="btn btn-warning me-1"><i class="si si-note"
                                                                     style="font-size: 15px;"></i> En attente
                                                                 de traitement </button>
                                                         </form>
@@ -116,8 +91,7 @@
                                                             action="{{ route('commandes.traiter', ['id' => $items->idcommande, 'statut' => 'en_traitement']) }}"
                                                             method="post">
                                                             @csrf
-                                                            <button type="submit" class="btn btn-secondary me-1"
-                                                                style="cursor: pointer;"><i class="si si-note"
+                                                            <button type="submit" class="btn btn-secondary me-1"><i class="si si-note"
                                                                     style="font-size: 15px;"></i> En cours
                                                                 de traitement </button>
                                                         </form>
@@ -128,8 +102,7 @@
                                                             action="{{ route('commandes.traiter', ['id' => $items->idcommande, 'statut' => 'expediee']) }}"
                                                             method="post">
                                                             @csrf
-                                                            <button type="submit" class="btn btn-success me-1"
-                                                                style="cursor: pointer;">En cours de livraison</button>
+                                                            <button type="submit" class="btn btn-success me-1">En cours de livraison</button>
                                                         </form>
                                                     @break
 
@@ -138,8 +111,7 @@
                                                             action="{{ route('commandes.traiter', ['id' => $items->idcommande, 'statut' => 'livree']) }}"
                                                             method="post">
                                                             @csrf
-                                                            <button type="submit" class="btn btn-info me-1"
-                                                                style="cursor: pointer;">Livrée</button>
+                                                            <button type="submit" class="btn btn-info me-1">Livrée</button>
                                                         </form>
                                                     @break
 
@@ -148,8 +120,7 @@
                                                             action="{{ route('commandes.traiter', ['id' => $items->idcommande, 'statut' => 'payee']) }}"
                                                             method="post">
                                                             @csrf
-                                                            <button type="submit" class="btn btn-success me-1"
-                                                                style="cursor: pointer;">Livré</button>
+                                                            <button type="submit" class="btn btn-success me-1">Livré</button>
                                                         </form>
                                                     @break
 
@@ -176,15 +147,18 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
-                            </table>
+                             </table>
                         </div>
                     </div>
                 </div>
-                <!--/ Bordered Table -->
-                <nav aria-label="Page navigation" class="mt-3">
-                    {!! $commandes->links('pagination::bootstrap-5') !!}
-                </nav>
-            </section>
+            </div>
+            <!-- Zero Configuration  Ends-->
         </div>
-        <!-- / Content -->
-    @endsection
+    </div>
+    <!-- Container-fluid Ends-->
+@endsection
+@section('scripts')
+    <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/js/datatable/datatables/datatable.custom.js') }}"></script>
+    <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
+@endsection

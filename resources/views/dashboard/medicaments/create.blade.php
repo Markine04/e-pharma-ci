@@ -4,8 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enregistrement de Produit - Laravel</title>
-
+    <title>{{ config('app.name', 'Laravel') }} | Dashboard</title>
+    <meta name="description"
+        content="Application d'achats de produits pharmaceutiques en ligne et consultation des pharmacies de garde" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('fronts/assets/logo/logoSiha.png') }}" />
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -259,6 +262,14 @@
 
 <body>
     <div class="container">
+        <div class="col-sm-6">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="fas fa-home"></i></a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="{{ route('medicaments.index') }}" style='text-decoration: none;'><i class="fas fa-pills"></i>Medicaments</a></li>
+                        <li class="breadcrumb-item active">Formulaire d'Enregistrement</li>
+                    </ol>
+                </div>
         <header>
             <h1><i class="fas fa-pills"></i> Formulaire d'Enregistrement de Produit</h1>
             <p>Veuillez remplir tous les champs obligatoires (*)</p>
@@ -272,7 +283,7 @@
             <div class="form-section">
                 <h2><i class="fas fa-barcode"></i> Identification du Produit</h2>
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-lg-4 col-md-12 col-sm-12 col-xl-4">
                         <div class="form-group">
                             <label for="barcode" class="required">Code Barre</label>
                             <input type="text" id="barcode" name="barcode" value="{{ old('barcode') }}" required
@@ -283,7 +294,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-lg-4 col-md-12 col-sm-12 col-xl-4">
                         <div class="form-group">
                             <label for="name" class="required">Nom du Produit</label>
                             <input type="text" id="name" name="name" value="{{ old('name') }}" required
@@ -294,7 +305,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-lg-4 col-md-12 col-sm-12 col-xl-4">
                         <div class="form-group">
                             <label for="active_ingredient" class="required">Principe Actif</label>
                             <input type="text" id="active_ingredient" name="active_ingredient"
@@ -311,7 +322,7 @@
             <div class="form-section">
                 <h2><i class="fas fa-file-medical"></i> Caractéristiques du Produit</h2>
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-lg-4 col-md-12 col-sm-12 col-xl-">
                         <div class="form-group">
                             <label for="dosage" class="required">Dosage</label>
                             <input type="text" id="dosage" name="dosage" value="{{ old('dosage') }}"
@@ -322,7 +333,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-lg-4 col-md-12 col-sm-12 col-xl-4">
                         <div class="form-group">
                             <label for="galenic_form" class="required">Forme Galénique</label>
                             <select id="galenic_form" name="galenic_form" class="form-control select2" required>
@@ -337,11 +348,10 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="category" class="required">Catégorie</label>
-                            <select id="category" name="category[]" class="form-control select2" multiple
-                                required>
+                            <select id="category" name="category[]" class="form-control select2" multiple required>
                                 <option value="">Sélectionnez...</option>
                                 @foreach ($categories as $items)
                                     <option value="{{ $items->idcategorie }}">{{ $items->libelle }}</option>
@@ -427,7 +437,7 @@
             <div class="form-section">
                 <h2><i class="fas fa-truck"></i> Fournisseur et Prix</h2>
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-lg-4 col-md-12 col-sm-12 col-xl-4">
                         <div class="form-group">
                             <label for="supplier" class="required">Fournisseur</label>
                             <select id="supplier" name="supplier" class="form-control select2" required>
@@ -457,7 +467,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-lg-4 col-md-12 col-sm-12 col-xl-4">
                         <div class="form-group">
                             <label for="purchase_price" class="required">Prix d'Achat (€)</label>
                             <input type="number" id="purchase_price" name="purchase_price"
@@ -469,7 +479,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-lg-4 col-md-12 col-sm-12 col-xl-4">
                         <div class="form-group">
                             <label for="selling_price" class="required">Prix de Vente (€)</label>
                             <input type="number" id="selling_price" name="selling_price"
@@ -483,7 +493,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-lg-4 col-md-12 col-sm-12 col-xl-4">
                         <div class="form-group">
                             <label for="vat_rate" class="required">Taux de TVA (%)</label>
                             <input type="number" id="vat_rate" name="vat_rate" value="{{ old('vat_rate', 20) }}"
@@ -494,7 +504,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-lg-4 col-md-12 col-sm-12 col-xl-4">
                         <div class="form-group">
                             <label for="packaging" class="required">Conditionnement</label>
                             <input type="text" id="packaging" name="packaging" value="{{ old('packaging') }}"
@@ -505,7 +515,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-lg-4 col-md-12 col-sm-12 col-xl-4">
                         <div class="form-group">
                             <label for="storage_temperature">Température de Conservation (°C)</label>
                             <input type="text" id="storage_temperature" name="storage_temperature"
@@ -523,7 +533,7 @@
             <div class="form-section">
                 <h2><i class="fas fa-info-circle"></i> Informations Supplémentaires</h2>
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-lg-4 col-md-12 col-sm-12 col-xl-4">
                         <div class="form-group">
                             <label for="prescription_required">Prescription Requise</label>
                             <div class="checkbox-group">
@@ -566,6 +576,7 @@
 
                 <div class="preview-container" id="previewContainer">
                     <!-- Les images prévisualisées apparaîtront ici -->
+
                 </div>
                 @error('images.*')
                     <div class="text-danger">{{ $message }}</div>
@@ -591,7 +602,9 @@
             $('.select2').select2({
                 placeholder: "Sélectionnez une option",
                 allowClear: true,
-                width: '100%'
+                width: '100% !important',
+                // width: 'resolve'
+                tags: true
             });
 
             // $(document).ready(function() {
@@ -634,97 +647,89 @@
                 document.getElementById('selling_price').value = priceWithVat.toFixed(2);
             }
         });
-        // Gestion de la dropzone
-        const dropzone = document.getElementById('dropzone');
-        const fileInput = document.getElementById('images');
-        const previewContainer = document.getElementById('previewContainer');
 
-        // Stockage global des fichiers sélectionnés
-        let dt = new DataTransfer();
 
-        // Ouvrir l'explorateur de fichiers en cliquant sur la dropzone
-        dropzone.addEventListener('click', () => {
-            fileInput.click();
-        });
+        const dropZone = document.getElementById("dropzone");
+        const fileInput = document.getElementById("images"); // correction
+        const previewContainer = document.getElementById("previewContainer");
+        const form = document.getElementById("productForm");
 
-        // Gérer le glisser-déposer
-        dropzone.addEventListener('dragover', (e) => {
+        // Click → ouvrir l’explorateur
+        dropZone.addEventListener("click", () => fileInput.click());
+
+        // Drag over
+        dropZone.addEventListener("dragover", (e) => {
             e.preventDefault();
-            dropzone.style.background = '#e3f2fd';
-            dropzone.style.borderColor = '#2980b9';
+            dropZone.classList.add("dragover");
+            dropZone.style.background = '#e3f2fd';
+            dropZone.style.borderColor = '#2980b9';
         });
 
-        dropzone.addEventListener('dragleave', () => {
-            dropzone.style.background = '#f8f9fa';
-            dropzone.style.borderColor = '#3498db';
+        // Drag leave
+        dropZone.addEventListener("dragleave", () => {
+            dropZone.classList.remove("dragover");
+            dropZone.style.background = '#f8f9fa';
+            dropZone.style.borderColor = '#3498db';
         });
 
-        dropzone.addEventListener('drop', (e) => {
+        // Drop
+        dropZone.addEventListener("drop", (e) => {
             e.preventDefault();
-            dropzone.style.background = '#f8f9fa';
-            dropzone.style.borderColor = '#3498db';
+            dropZone.classList.remove("dragover");
+            uploadFiles(e.dataTransfer.files);
 
-            if (e.dataTransfer.files.length > 0) {
-                handleFiles(e.dataTransfer.files);
-            }
+            dropZone.style.background = '#f8f9fa';
+            dropZone.style.borderColor = '#3498db';
         });
 
-        // Gérer la sélection de fichiers via l'input
-        fileInput.addEventListener('change', () => {
-            if (fileInput.files.length > 0) {
-                handleFiles(fileInput.files);
-            }
-        });
+        // Input file classique
+        fileInput.addEventListener("change", () => uploadFiles(fileInput.files));
 
-        // Traiter les fichiers images
-        function handleFiles(files) {
-            for (let i = 0; i < files.length; i++) {
-                const file = files[i];
 
-                if (!file.type.match('image.*')) {
-                    alert('Veuillez sélectionner uniquement des images.');
-                    continue;
-                }
+        // Fonction upload AJAX → upload/temp
+        function uploadFiles(files) {
+            [...files].forEach(file => {
 
-                // Ajouter le fichier au DataTransfer
-                dt.items.add(file);
+                let formData = new FormData();
+                formData.append("file", file);
+                formData.append("_token", "{{ csrf_token() }}");
 
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const previewItem = document.createElement('div');
-                    previewItem.className = 'preview-item';
+                fetch("{{ route('upload.temp') }}", {
+                        method: "POST", // IMPORTANT
+                        body: formData
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success) {
 
-                    const img = document.createElement('img');
-                    img.src = e.target.result;
+                            // Ajout input hidden pour store()
+                            let hidden = document.createElement("input");
+                            hidden.type = "hidden";
+                            hidden.name = "temp_images[]";
+                            hidden.value = data.temp_filename;
+                            form.appendChild(hidden);
 
-                    const removeBtn = document.createElement('button');
-                    removeBtn.innerHTML = '×';
-                    removeBtn.onclick = function() {
-                        previewItem.remove();
-                        // Supprimer le fichier du DataTransfer
-                        let newDt = new DataTransfer();
-                        for (let j = 0; j < dt.items.length; j++) {
-                            if (dt.items[j].getAsFile() !== file) {
-                                newDt.items.add(dt.items[j].getAsFile());
-                            }
+                            // Zone preview
+                            const previewItem = document.createElement("div");
+                            previewItem.className = "preview-item";
+
+                            const img = document.createElement("img");
+                            img.src = "/storage/temp/" + data.temp_filename;
+
+                            const removeBtn = document.createElement("button");
+                            removeBtn.innerHTML = "×";
+                            removeBtn.onclick = function(e) {
+                                e.preventDefault();
+                                previewItem.remove();
+                                hidden.remove();
+                            };
+
+                            previewItem.appendChild(img);
+                            previewItem.appendChild(removeBtn);
+                            previewContainer.appendChild(previewItem);
                         }
-                        dt = newDt;
-                        fileInput.files = dt.files;
-                    };
-
-                    previewItem.appendChild(img);
-                    previewItem.appendChild(removeBtn);
-                    previewContainer.appendChild(previewItem);
-                };
-
-                reader.readAsDataURL(file);
-            }
-
-            // Mettre à jour l'input file avec tous les fichiers
-            fileInput.files = dt.files;
-
-
-            // console.log(reader);
+                    });
+            });
         }
     </script>
 </body>

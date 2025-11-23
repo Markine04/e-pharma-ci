@@ -1,25 +1,47 @@
-@extends('dashboard.layout-dashboard.master')
-@section('content')
-    <!-- Content -->
-    <div class="container-xxl flex-grow-1 container-p-y">
+@extends('layout.master')
 
+@section('css')
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/datatables.css') }}">
+@endsection
 
-        <!-- Bordered Table -->
-        <div class="card">
-            <div class="navbar-nav me-auto container mt-5">
-                <div class="row">
-                    <div class="col-md-12 col-lg-12">
-                        <h4>Regions
+@section('main_content')
+    <div class="container-fluid">
+        <div class="page-title">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3>Régions</h3>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i data-feather="home"></i></a>
+                        </li>
+                        <li class="breadcrumb-item">Tableau de bord</li>
+                        <li class="breadcrumb-item active">Régions</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Container-fluid starts-->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Zero Configuration  Starts-->
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header pb-0">
+                        <h4>Régions
                             <div class="ml-8" style="float: right">
-                                <a href="{{ route('regions.create') }}" class="btn btn-primary">Ajouter une regions</a>
+                                <a data-url="{{ route('regions.create') }}" class="btn btn-primary text-white"
+                                    data-bs-toggle="modal" data-ajax-popup="true" data-size="md"
+                                    data-title="Ajouter une region">
+                                    <i class="si si-note" style="font-size: 15px;"></i>Ajouter une
+                                    region</a>
                             </div>
                         </h4>
                     </div>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive text-nowrap">
-                    <table class="table table-bordered">
+                    <div class="card-body">
+                        <div class="table-responsive theme-scrollbar">
+                            <table class="display" id="basic-1">
                         <thead>
                             <tr>
                                 <th>Libelles</th>
@@ -55,29 +77,18 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                    </table>
-                    {{-- {!! $regiregionsons->links() !!} --}}
+                     </table>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <!-- Zero Configuration  Ends-->
         </div>
-        <!--/ Bordered Table --><br>
-
-        <nav aria-label="Page navigation" class="mt-3">
-            {!! $regions->links('pagination::bootstrap-5') !!}
-        </nav>
-
-        {{-- <nav aria-label="Page navigation example">
-            <ul class="pagination">
-                <li class="page-item">{{ $regions->links() }}</li>
-            </ul>
-        </nav> --}}
-
-
-        <!--/ Bordered Table -->
-
-
     </div>
-    <!-- / Content -->
+    <!-- Container-fluid Ends-->
 @endsection
-
-{{-- <h1>Bienvenue</h1> --}}
+@section('scripts')
+    <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/js/datatable/datatables/datatable.custom.js') }}"></script>
+    <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
+@endsection

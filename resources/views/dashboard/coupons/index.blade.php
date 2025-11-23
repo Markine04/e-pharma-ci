@@ -1,4 +1,4 @@
-@extends('dashboard.layout-dashboard.master')
+@extends('layout.master')
 @section('content')
     <!-- Content -->
     <div class="container-xxl flex-grow-1 container-p-y">

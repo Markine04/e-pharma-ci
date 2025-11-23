@@ -12,7 +12,7 @@ class PaniersController extends Controller
      */
     public function index()
     {
-        $paniers = DB::table('paniers')->paginate(10);
+        $paniers = DB::table('paniers')->get();
         return view('dashboard.paniers.index',compact('paniers'));
     }
 

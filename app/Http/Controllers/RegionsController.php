@@ -13,7 +13,7 @@ class RegionsController extends Controller
      */
     public function index()
     {
-        $regions = DB::table('regions')->paginate(10);
+        $regions = DB::table('regions')->get();
         return view('dashboard.regions.index',compact('regions'));
     }
 

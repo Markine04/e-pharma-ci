@@ -1,7 +1,14 @@
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+@extends('layout.master')
+
+@section('css')
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/datatables.css') }}">
+    
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-@extends('dashboard.layout-dashboard.master')
-@section('content')
+@endsection
+
+@section('main_content')
     <style>
         :root {
             --primary: #0d6efd;
@@ -92,7 +99,7 @@
                             <div class="col-12">
                                 <div class="card p-3">
                                     <div class="d-flex align-items-start">
-                                        <img class="avatar-sm me-3" src="{{ asset('pharmacies/' . $pharmacie->images) }}"
+                                        <img class="avatar-sm me-3" src="{{ asset('storage/pharmacies/' . $pharmacie->images) }}"
                                             alt="{{ $pharmacie->name }}" width="90px" height="70px">
                                         <div class="flex-grow-1">
                                             <h5 class="mb-0 name">{{ $pharmacie->name }}</h5>

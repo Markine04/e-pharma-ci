@@ -13,7 +13,7 @@ class CommunesController extends Controller
      */
     public function index()
     {
-        $communes = DB::table('communes')->paginate(10);
+        $communes = DB::table('communes')->get();
         return view('dashboard.communes.index', compact('communes'));
     }
 

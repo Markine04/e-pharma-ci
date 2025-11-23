@@ -24,7 +24,6 @@
             </div>
         </div>
     </div>
-    <br>
     <hr>
     <center><button type="submit" class="btn btn-success text-center mt-3">Enregistrer</button></center>
 </form>
@@ -36,5 +35,11 @@
             dropdownParent: $('#formSchedule')
             
         });
+
+        $('.js-example-basic-multiple').select2({
+            dropdownParent: $('#formSchedule')
+            
+        });
+
     });
 </script>

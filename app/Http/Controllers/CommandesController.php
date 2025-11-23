@@ -15,7 +15,7 @@ class CommandesController extends Controller
         $commandes = DB::table('paniers')
         ->join('commandes', 'paniers.idpanier', '=', 'commandes.idcommande')
         ->select(['idcommande', 'paniers.produit_id', 'commandes.created_at', 'commandes.panier_id', 'commandes.statut', 'paniers.user_id', 'paniers.idpanier', 'paniers.quantite', 'paniers.prix_unitaire'])
-        ->paginate(10);
+        ->get();
         // dd($commandes);
         return view('dashboard.commandes.index',compact('commandes'));
     }

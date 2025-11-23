@@ -1,140 +1,105 @@
-@extends('dashboard.layout-dashboard.master')
-@section('content')
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.3.4/css/dataTables.dataTables.css">
-    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
-    {{-- <script>
-        $(document).ready(function () {
-            $('#example').DataTable({
-            paging: false,
-            searching: false,
-            info: false,
-            pagingType: "full_numbers",
-            lengthMenu: [
-                [10, 25, 50, -1],
-                [10, 25, 50, "All"]
-            ],
-            });
-        });
-    </script> --}}
-    <script>
-        $(document).ready(function() {
-            $('#example').DataTable({
-                // info: "",
-                    // topStart: 'pageLength',
-                ordering: false,
-                // pagingType: "full_numbers",
-                
-                layout: {
-                    // topStart: 'pageLength',
-                    topEnd: 'search',
-                    bottomStart: 'info',
-                    bottomEnd: 'paging',
+@extends('layout.master')
 
-                }
-            });
-        });
-    </script>
-    <!-- Content -->
-    <div class="container-xxl flex-grow-1 container-p-y">
-        <!-- Bordered Table -->
-        <div class="card">
-            <div class="navbar-nav me-auto container mt-5">
-                <div class="row">
-                    <div class="col-md-12 col-lg-12">
-                        <h4>Utilisateurs
-                            {{-- <div class="ml-8" style="float: right">
-                                <a data-url="{{ route('categoriemedicaments.create') }}" class="btn btn-primary text-white"
-                                    data-bs-toggle="modal" data-ajax-popup="true" data-size="md"
-                                    data-title="Ajouter une categories">
-                                    <i class="si si-note" style="font-size: 15px;"></i>Ajouter une
-                                    categorie</a>
-                            </div> --}}
-                        </h4>
-                    </div>
+@section('css')
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/datatables.css') }}">
+@endsection
+
+@section('main_content')
+    <div class="container-fluid">
+        <div class="page-title">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3>Utilisateurs</h3>
                 </div>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table id="example" class="cell-border table table-bordered" aria-label="Page navigation">
-                        <thead>
-                            <tr>
-                                <th>Telephone</th>
-                                <th>Communes</th>
-                                <th>Type Assurance</th>
-                                <th>Opt</th>
-                                <th>Statuts</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($users as $items)
-                                <tr>
-                                    <td>
-                                        <span>{{ $items->number }}</span>
-                                    </td>
-                                    <td>
-                                        @if($items->id_commune!=null)
-                                        {{ DB::table('communes')->where('idcommune',$items->id_commune)->get()[0]->name  }}
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if($items->id_assurance!=null)
-                                        {{ DB::table('assurances')->where('id_assurance',$items->id_assurance)->get()[0]->libelle  }}
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <span>{{ $items->otp }}</span>
-                                    </td>
-                                    <td>
-                                        @switch($items->otp_valid)
-                                            @case('2')
-                                                <span class="badge bg-label-success me-1">Active</span>
-                                            @break
-
-                                            @case('1')
-                                                <span class="badge bg-label-secondary me-1">Désactivé</span>
-                                            @break
-
-                                            @default
-                                        @endswitch
-                                    </td>
-                                    <td>
-                                        <div class="dropdown">
-                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                data-bs-toggle="dropdown">
-                                                <i class="icon-base bx bx-dots-vertical-rounded"></i>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item text-blue" style="cursor: pointer; color:blue;" data-url="javascript:void(0);" data-bs-toggle="modal" data-ajax-popup="true" data-size="md"
-                                                    data-title="Modifier cet utilisateur"><i
-                                                        class="icon-base bx bx-edit-alt me-1"style="cursor: pointer; color:blue;"></i> Edit</a>
-
-                                                <a class="dropdown-item text-red" style='color:red; cursor:pointer;' data-url="{{route('users.delete',['id'=>$items->id])}}" data-bs-toggle="modal" data-ajax-popup="true" data-size="md"
-                                                    data-title="Supprimer cet utilisateur"><i
-                                                        class="icon-base bx bx-trash-alt me-1 text-red"style="cursor: pointer; color:red;"></i> Supprimer</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i data-feather="home"></i></a>
+                        </li>
+                        <li class="breadcrumb-item">Tableau de bord</li>
+                        <li class="breadcrumb-item active">Utilisateurs</li>
+                    </ol>
                 </div>
             </div>
         </div>
-        <!--/ Bordered Table -->
-        {{-- <nav aria-label="Page navigation" class="mt-3">
-            {!! $categories->links('pagination::bootstrap-5') !!}
-        </nav> --}}
-
     </div>
-    <!-- / Content -->
+    <!-- Container-fluid starts-->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Zero Configuration  Starts-->
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header pb-0">
+                        <h4>Utilisateurs
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive theme-scrollbar">
+                            <table class="display" id="basic-1">
+                                <thead>
+                                    <tr>
+                                        <th>Telephone</th>
+                                        <th>Communes</th>
+                                        <th>Type Assurance</th>
+                                        <th>Opt</th>
+                                        <th>Statuts</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($users as $items)
+                                        <tr>
+                                            <td>
+                                                <span>{{ $items->number }}</span>
+                                            </td>
+                                            <td>
+                                                @if ($items->id_commune != null)
+                                                    {{ DB::table('communes')->where('idcommune', $items->id_commune)->get()[0]->name }}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($items->compagnie_assurance != null)
+                                                    {{ DB::table('assurances')->where('id_assurance', $items->compagnie_assurance)->get()[0]->libelle }}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <span>{{ $items->otp }}</span>
+                                            </td>
+                                            <td>
+                                                @switch($items->otp_valid)
+                                                    @case('2')
+                                                        <span class="badge rounded-pill badge-light-success me-1">Active</span>
+                                                    @break
+
+                                                    @case('1')
+                                                        <span class="badge rounded-pill badge-light-secondary me-1">Désactivé</span>
+                                                    @break
+
+                                                    @default
+                                                @endswitch
+                                            </td>
+                                            <td>
+                                                <ul class="action">
+                                                    <li class="edit"> <a href="#"><i
+                                                                class="icon-pencil-alt"></i></a></li>
+                                                    <li class="delete"><a href="#"><i class="icon-trash"></i></a>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Zero Configuration  Ends-->
+        </div>
+    </div>
+    <!-- Container-fluid Ends-->
 @endsection
-
-
-{{-- <script>
-    $(document).ready(function () {
-            $('#example').DataTable();
-        });
-</script> --}}
+@section('scripts')
+    <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/js/datatable/datatables/datatable.custom.js') }}"></script>
+    <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
+@endsection

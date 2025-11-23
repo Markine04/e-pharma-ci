@@ -15,7 +15,7 @@ class MedicamentsController extends Controller
      */
     public function index()
     {
-        $medicaments = DB::table('medicaments')->paginate(10);
+        $medicaments = DB::table('medicaments')->get();
 
         return view('dashboard.medicaments.index', compact('medicaments'));
     }
@@ -48,11 +48,11 @@ class MedicamentsController extends Controller
             $filename = time() . '_' . $file->getClientOriginalName();
 
             // Stockage temporaire
-            $path = $file->move(public_path('/assets/images/produits'), $filename);
+            $path = $file->move(public_path('storage/temp'), $filename);
 
             return response()->json([
                 'success' => true,
-                'filename' => $filename,
+                'temp_filename' => $filename,
                 'original_name' => $file->getClientOriginalName(),
                 'temp_path' => $path
             ]);
@@ -67,13 +67,23 @@ class MedicamentsController extends Controller
         // dd($request->all());
 
         $recupererImages = [];
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-                $path = $image->move(public_path('/assets/images/produits/'), $imageName);
-                $recupererImages[] = $imageName;
+
+        if ($request->temp_images) {
+            foreach ($request->temp_images as $tempImage) {
+
+                $tempPath = public_path('storage/temp/' . $tempImage);
+
+                if (file_exists($tempPath)) {
+                    $newName = time() . '_' . uniqid() . '.' . pathinfo($tempImage, PATHINFO_EXTENSION);
+
+                    // Déplacer du temp -> produits
+                    rename($tempPath, public_path('storage/produits/' . $newName));
+
+                    $recupererImages[] = $newName;
+                }
             }
         }
+
 
 
         DB::table('medicaments')->insert([

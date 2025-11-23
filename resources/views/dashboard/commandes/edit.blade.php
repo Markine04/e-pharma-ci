@@ -1,4 +1,4 @@
-@extends('dashboard.layout-dashboard.master')
+@extends('layout.master')
 @section('content')
     <div class="container mt-8">
         <div class="card container">

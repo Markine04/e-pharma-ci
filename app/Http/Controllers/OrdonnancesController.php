@@ -14,7 +14,7 @@ class OrdonnancesController extends Controller
      */
     public function index()
     {
-        $ordonnances = DB::table('ordonnance_clients')->paginate(10);
+        $ordonnances = DB::table('ordonnance_clients')->get();
         return view('dashboard.ordonnances.index',compact('ordonnances'));
     }
 

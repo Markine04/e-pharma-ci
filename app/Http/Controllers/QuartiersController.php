@@ -6,6 +6,7 @@ use App\Models\Communes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class QuartiersController extends Controller
 {
@@ -40,7 +41,7 @@ class QuartiersController extends Controller
         DB::table('quartiers')->insert([
             'nom' => $data['libelle'],
             'id_commune' => $data['commune'],
-            'user_enreg'=> Auth()->user()->id,
+            'user_enreg'=> Auth::user()->id,
             'created_at' => Carbon::now(),
 
         ]);

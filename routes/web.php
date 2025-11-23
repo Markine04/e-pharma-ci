@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\Regions;
-use App\Models\Medicaments;
 use App\Models\CategorieMedicaments;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SmsController;
@@ -19,11 +17,10 @@ use App\Http\Controllers\PharmaciesController;
 use App\Http\Controllers\MedicamentsController;
 use App\Http\Controllers\OrdonnancesController;
 use App\Http\Controllers\AffichageAppsController;
+use App\Http\Controllers\DatePhcieGardeController;
 use App\Http\Controllers\FormeGaleniquesController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\CategorieMedicamentsController;
-
-
 
 /*
 |--------------------------------------------------------------------------
@@ -31,27 +28,26 @@ use App\Http\Controllers\CategorieMedicamentsController;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+//Dashboards
+// Route::get('/', function () {
+//     return redirect()->route('dashboard');
 // });
 
-Route::get('/produits', [ProduitController::class, 'index'])->name('produits');
-Route::get('/single-produits', [ProduitController::class, 'show'])->name('single-produit');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// DASHBOARD
+
+//faq
+Route::view('faq', 'faq')->name('faq');
+
+//support_ticket
+Route::view('support-ticket', 'support_ticket')->name('support_ticket');
+
+
 Route::middleware('auth')->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -62,7 +58,7 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard/medicament/{id}/edit', [MedicamentsController::class, 'edit'])->name('medicaments.edit');
     Route::put('dashboard/medicament/{id}', [MedicamentsController::class, 'update'])->name('medicaments.update');
     Route::delete('dashboard/medicament/{id}', [MedicamentsController::class, 'destroy'])->name('medicaments.destroy');
-    Route::get('dashboard/medicaments-uploadImages', [MedicamentsController::class, 'uploadImages'])->name('upload.temp');
+    Route::post('dashboard/medicaments-uploadImages', [MedicamentsController::class, 'uploadImages'])->name('upload.temp');
 
 
     //Pharmacies
@@ -88,9 +84,6 @@ Route::middleware('auth')->group(function () {
     Route::post('dashboard/pharmacie-garde/{id}', [PharmaciesController::class, 'update'])->name('pharmacies-gardes.update');
     Route::delete('dashboard/pharmacie-garde/{id}', [PharmaciesController::class, 'destroy'])->name('pharmacies-gardes.destroy');
     Route::get('dashboard/pharmacie-garde-uploadImages', [PharmaciesController::class, 'upload'])->name('pharmacies-gardes.upload');
-
-
-
 
     //Communes
     Route::get('dashboard/communes', [CommunesController::class, 'index'])->name('communes.index');
@@ -128,7 +121,8 @@ Route::middleware('auth')->group(function () {
     Route::post('dashboard/categorie-medicament', [CategorieMedicamentsController::class, 'store'])->name('categoriemedicaments.store');
     Route::get('dashboard/categorie-medicament/{id}/edit', [CategorieMedicamentsController::class, 'edit'])->name('categoriemedicaments.edit');
     Route::post('dashboard/categorie-medicament-update', [CategorieMedicamentsController::class, 'update'])->name('categoriemedicaments.update');
-    Route::delete('dashboard/categorie-medicament/{id}', [CategorieMedicamentsController::class, 'destroy'])->name('categoriemedicaments.destroy');
+    Route::get('dashboard/categorie-medicament/{id}/delete', [CategorieMedicamentsController::class, 'delete'])->name('categoriemedicaments.delete');
+    Route::post('dashboard/categorie-medicament-destroy', [CategorieMedicamentsController::class, 'destroy'])->name('categoriemedicaments.destroy');
     Route::get('dashboard/categorie-medicament-uploadImages', [CategorieMedicamentsController::class, 'uploadImages'])->name('categoriemedicaments.temp');
 
 
@@ -143,8 +137,6 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard/ordonnance-image/{id}', [OrdonnancesController::class, 'show'])->name('ordonnances.image');
     Route::get('dashboard/ordonnance-traiter/{id}', [OrdonnancesController::class, 'traiter'])->name('ordonnances.traiter');
     Route::post('dashboard/ordonnance-verifier', [OrdonnancesController::class, 'verifier'])->name('ordonnances.verifier');
-
-
 
 
     //Assurances
@@ -167,7 +159,6 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard/formegalenique/{id}-delete', [FormeGaleniquesController::class, 'delete'])->name('formegaleniques.delete');
     Route::get('dashboard/formegalenique-uploadImages', [FormeGaleniquesController::class, 'uploadImages'])->name('formegaleniques.temp');
 
-
     //Affichage App
 
     Route::get('dashboard/affiche-apps', [AffichageAppsController::class, 'index'])->name('afficheApp.index');
@@ -179,12 +170,10 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard/affiche-app/{id}-delete', [AffichageAppsController::class, 'delete'])->name('afficheApp.delete');
     Route::get('dashboard/affiche-app-uploadImages', [AffichageAppsController::class, 'uploadImages'])->name('afficheApp.temp');
 
-
     //Utilisateurs
     Route::get('dashboard/users', [UsersController::class, 'index'])->name('users.index');
     Route::get('dashboard/delete/{id}', [UsersController::class, 'delete'])->name('users.delete');
     Route::post('dashboard/destroy', [UsersController::class, 'destroy'])->name('users.destroy');
-
 
     //SMS
     Route::get('dashboard/sms', [SmsController::class, 'index'])->name('sms.index');
@@ -203,9 +192,6 @@ Route::middleware('auth')->group(function () {
     Route::post('dashboard/commande-traiter/{id}/{statut}', [CommandesController::class, 'traiter'])->name('commandes.traiter');
     // Route::get('dashboard/commande-message/{id}', [CommandesController::class, 'message'])->name('commandes.messages');
 
-    
-
-
 
     //Paniers
     Route::get('dashboard/paniers', [PaniersController::class, 'index'])->name('paniers.index');
@@ -219,7 +205,21 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard/panier-image/{id}', [PaniersController::class, 'show'])->name('paniers.image');
 
 
+    //DatePhcieGardes
+    Route::get('dashboard/datephciegardes', [DatePhcieGardeController::class, 'index'])->name('datephciegardes.index');
+    Route::get('dashboard/datephciegarde/create', [DatePhcieGardeController::class, 'create'])->name('datephciegardes.create');
+    Route::post('dashboard/datephciegarde', [DatePhcieGardeController::class, 'store'])->name('datephciegardes.store');
+    Route::get('dashboard/datephciegarde/{id}/edit', [DatePhcieGardeController::class, 'edit'])->name('datephciegardes.edit');
+    Route::post('dashboard/datephciegarde-update', [DatePhcieGardeController::class, 'update'])->name('datephciegardes.update');
+    Route::get('dashboard/datephciegarde-delete/{id}', [DatePhcieGardeController::class, 'delete'])->name('datephciegardes.delete');
+    Route::post('dashboard/datephciegarde-destroy', [DatePhcieGardeController::class, 'destroy'])->name('datephciegardes.destroy');
+
+    // Route::get('')->view('users.user_profile');
+
+    Route::view('user_profile', 'users.user_profile')->name('user_profile');
 
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__ . '/auth.php';
+
+

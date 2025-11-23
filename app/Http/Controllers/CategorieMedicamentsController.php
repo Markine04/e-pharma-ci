@@ -15,7 +15,7 @@ class CategorieMedicamentsController extends Controller
      */
     public function index()
     {
-        $categories = DB::table('categories')->paginate(10);
+        $categories = DB::table('categories')->get();
         return view('dashboard.categories-medicaments.index',compact('categories'));
     }
 
@@ -107,11 +107,20 @@ class CategorieMedicamentsController extends Controller
         return redirect()->back()->with('success', 'Categorie mis à jour avec succès');
     }
 
+
+    public function delete(Request $request)
+    {
+        $categories = DB::table('categories')->where('idcategorie', $request->id)->first();
+        return view('dashboard.categories-medicaments.delete', compact('categories'));
+    }
+
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CategorieMedicaments $categorieMedicaments)
+    public function destroy(string $id)
     {
-        //
+        DB::table('categories')->where('idcategorie', $id)->delete();
+
+        return redirect()->back()->with('success', 'Catégorie de médicament supprimée avec succès');
     }
 }

@@ -19,19 +19,21 @@
         <label class="form-label">Pharmacie</label> <br>
         <select id="pharmacySelect" name="pharmacie[]" class="form-select js-example-basic-multiple" required multiple style="width: 100%; height: 200px">
             <option value="">Sélectionner une pharmacie</option>
-            {{-- Options will be populated based on the selected commune --}}
-
         </select>
     </div>
 
     <div class="row">
-        <div class="col-md-6 mb-3">
-            <label class="form-label">Date début</label>
-            <input id="startDate" type="date" name="date_debut" class="form-control" required />
-        </div>
-        <div class="col-md-6 mb-3">
-            <label class="form-label">Date fin</label>
-            <input id="endDate" type="date" name="date_fin" class="form-control" required />
+        <div class="col-md-12 mb-3">
+            <label class="form-label" for="startDateSelect">Date début et fin</label>
+            <select name="periode" id="startDateSelect" class="form-select js-example-basic-single">
+                <option>Sélectionner une date</option>
+                @foreach($datePhcieGarde as $date)
+                    <option value="{{$date->idatephciegardes}} }}">
+                       De {{ date('d-m-Y', strtotime($date->date_debut)) }} Au {{ date('d-m-Y', strtotime($date->date_fin)) }}
+                    </option>
+                @endforeach
+            </select>
+            {{-- <input id="startDate" type="date" name="date_debut" class="form-control" required /> --}}
         </div>
     </div>
 

@@ -1,45 +1,47 @@
-    @extends('dashboard.layouts.master')
-    @section('content')
-        <div class="page-heading">
-            <div class="page-title">
-                <div class="row">
-                    <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Communes</h3>
-                        <p class="text-subtitle text-muted">Liste des Communes</p>
-                    </div>
-                    <div class="col-12 col-md-6 order-md-2 order-first">
-                        <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Tableau de bord</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Communes</li>
-                            </ol>
-                        </nav>
-                    </div>
+@extends('layout.master')
+
+@section('css')
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/datatables.css') }}">
+@endsection
+
+@section('main_content')
+    <div class="container-fluid">
+        <div class="page-title">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3>Communes</h3>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i data-feather="home"></i></a>
+                        </li>
+                        <li class="breadcrumb-item">Tableau de bord</li>
+                        <li class="breadcrumb-item active">Communes</li>
+                    </ol>
                 </div>
             </div>
-            <!-- Bordered Table -->
-            <section class="section">
+        </div>
+    </div>
+    <!-- Container-fluid starts-->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Zero Configuration  Starts-->
+            <div class="col-sm-12">
                 <div class="card">
-                    <div class="me-auto container mt-5">
-                        <div class="row">
-                            <div class="col-md-12 col-lg-12">
-                                <h4>
-                                    {{-- Communes --}}
-                                    <div class="ml-8" style="float: right">
-                                        <a data-url="{{ route('communes.create') }}" class="btn btn-primary text-white"
-                                            data-bs-toggle="modal" data-ajax-popup="true" data-size="md"
-                                            data-title="Ajouter une commune">
+                    <div class="card-header pb-0">
+                        <h4>Communes
+                            <div class="ml-8" style="float: right">
+                                    <a data-url="{{ route('communes.create') }}"
+                                            class="btn btn-primary text-white" data-bs-toggle="modal" data-ajax-popup="true"
+                                            data-size="md" data-title="Ajouter une Commune">
                                             <i class="si si-note" style="font-size: 15px;"></i>Ajouter une
-                                            commune</a>
-                                    </div>
-
-                                </h4>
+                                    Commune</a>
                             </div>
-                        </div>
+                        </h4>
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive text-nowrap">
-                            <table class="table table-bordered">
+                        <div class="table-responsive theme-scrollbar">
+                            <table class="display" id="basic-1">
                                 <thead>
                                     <tr>
                                         <th>Libelles</th>
@@ -55,45 +57,38 @@
                                                 {{ DB::table('regions')->where('idregion', $items->region_id)->get()[0]->name }}
                                             </td>
                                             <td>
-                                                <div class="dropdown">
-                                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                        data-bs-toggle="dropdown">
-                                                        <i class="icon-base bx bx-dots-vertical-rounded"></i>
-                                                    </button>
-                                                    <div class="dropdown-menu">
-                                                        <a data-url="{{ route('communes.edit', ['id' => $items->idcommune]) }}"
+                                                <ul class="action">
+                                                    <li class="edit"> <a
+                                                            data-url="{{ route('communes.edit', ['id' => $items->idcommune]) }}"
                                                             class="dropdown-item" data-bs-toggle="modal"
                                                             data-ajax-popup="true" data-size="md"
-                                                            data-title="modifier cette commune" style="cursor: pointer"><i
-                                                                class="icon-base bx bx-edit-alt me-1 text-blue"
-                                                                style="cursor: pointer; color:blue;"></i> Modifier</a>
-
-                                                        <a data-url="{{ route('communes.delete', ['id' => $items->idcommune]) }}"
+                                                            data-title="Modifier ce quartier" style="cursor: pointer">
+                                                                <i class="icon-pencil-alt"></i></a>
+                                                    </li>
+                                                    <li class="delete"><a
+                                                            data-url="{{ route('communes.delete', ['id' => $items->idcommune]) }}"
                                                             class="dropdown-item" data-bs-toggle="modal"
                                                             data-ajax-popup="true" data-size="md"
-                                                            data-title="supprimer cette commune" style="cursor: pointer"><i
-                                                                class="icon-base bx bx-trash me-1"
-                                                                style="cursor: pointer; color:red;"></i> Supprimer</a>
-                                                    </div>
-                                                </div>
+                                                            data-title="Supprimer ce quartier" style="cursor: pointer"><i
+                                                                class="icon-trash"></i></a>
+                                                    </li>
+                                                </ul>
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
-
-                            </table>
-                            <nav aria-label="Page navigation" class="mt-3">
-                                {!! $communes->links('pagination::bootstrap-5') !!}
-                            </nav>
+                         </table>
                         </div>
                     </div>
                 </div>
-            </section>
-            <!--/ Bordered Table -->
-
-
+            </div>
+            <!-- Zero Configuration  Ends-->
         </div>
-        <!-- / Content -->
-    @endsection
-
-    {{-- <h1>Bienvenue</h1> --}}
+    </div>
+    <!-- Container-fluid Ends-->
+@endsection
+@section('scripts')
+    <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/js/datatable/datatables/datatable.custom.js') }}"></script>
+    <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
+@endsection

@@ -14,7 +14,7 @@ class AssurancesController extends Controller
      */
     public function index()
     {
-        $assurances = DB::table('type_assureurs')->paginate(10);
+        $assurances = DB::table('compagnie_assurances')->get();
 
         return view('dashboard.assurances.index', compact('assurances'));
     }

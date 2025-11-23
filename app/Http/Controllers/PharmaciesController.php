@@ -16,7 +16,7 @@ class PharmaciesController extends Controller
     public function index()
     {
         
-        $pharmacies = DB::table('pharmacies')->paginate(10);
+        $pharmacies = DB::table('pharmacies')->get();
         return view('dashboard.pharmacies.index', compact('pharmacies'));
     }
 
@@ -38,7 +38,7 @@ class PharmaciesController extends Controller
             $filename = time() . '_' . $file->getClientOriginalName();
 
             // Stockage temporaire
-            $path = $file->move(public_path('/assets/pharmacies/'), $filename);
+            $path = $file->move(public_path('storage/pharmacies/'), $filename);
 
             return response()->json([
                 'success' => true,
@@ -60,7 +60,7 @@ class PharmaciesController extends Controller
         $filename = '';
         if ($request->hasfile('images')) {
             $filename = time() . '.' . $request->images->getClientOriginalExtension();
-            $request->images->move(public_path('pharmacies/'), $filename);
+            $request->images->move(public_path('storage/pharmacies/'), $filename);
         }
 
         // dd($filename);
@@ -109,7 +109,7 @@ class PharmaciesController extends Controller
         }else{
             if ($request->hasfile('images')) {
                 $filename = time() . '.' . $request->images->getClientOriginalExtension();
-                $request->images->move(public_path('pharmacies/'), $filename);
+                $request->images->move(public_path('storage/pharmacies/'), $filename);
             }
         }
 
@@ -150,10 +150,12 @@ class PharmaciesController extends Controller
 
 
 
-
     public function index_gardes()
     {
-        $pharmaciesGardes = DB::table('pharmacie_gardes')->paginate(10);
+        $pharmaciesGardes = DB::table('pharmacie_gardes')
+        ->join('date_phcie_gardes', 'pharmacie_gardes.periode', '=', 'date_phcie_gardes.idatephciegardes')
+        ->paginate(10);
+        dd($pharmaciesGardes);
         $Communes = DB::table('communes')->get();
         $currentDate = Carbon::now()->format('Y-m-d');
         return view('dashboard.pharmacies-gardes.index', compact('pharmaciesGardes', 'Communes', 'currentDate'));
@@ -180,8 +182,11 @@ class PharmaciesController extends Controller
         
     }
 
+        // $pharmaciesGardes = DB::table('pharmacie_gardes')->get();
+        $datePhcieGarde = DB::table('date_phcie_gardes')->get();
+
         $communes = DB::table('communes')->get();
-        return view('dashboard.pharmacies-gardes.create', compact('communes'));
+        return view('dashboard.pharmacies-gardes.create', compact('communes', 'datePhcieGarde'));
     }
 
     public function store_garde(Request $request)
@@ -191,8 +196,7 @@ class PharmaciesController extends Controller
         $request->validate([
             'commune' => 'required|exists:communes,idcommune',
             'pharmacie' => 'required|exists:pharmacies,idpharmacie',
-            'date_debut' => 'required|date',
-            'date_fin' => 'required|date|after_or_equal:date_debut',
+            'periode' => 'required|exists:date_phcie_gardes,idatephciegardes',
             'note' => 'nullable|string|max:255',
         ]);
 
@@ -200,8 +204,7 @@ class PharmaciesController extends Controller
         DB::table('pharmacie_gardes')->insert([
             'commune_id' => $request->commune,
             'pharmacie_id' => json_encode($request->pharmacie),
-            'date_debut' => $request->date_debut,
-            'date_fin' => $request->date_fin,
+            'periode' => $request->periode,
             'note' => $request->note,
             'user_enreg' => Auth::user()->id,
             'created_at' => Carbon::now(),

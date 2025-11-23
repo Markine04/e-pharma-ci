@@ -14,7 +14,7 @@ class AffichageAppsController extends Controller
      */
     public function index()
     {
-        $AffichagesApp = DB::table('categories')->paginate(10);
+        $AffichagesApp = DB::table('categories')->get();
 
         return view('dashboard.affichage-apps.index', compact('AffichagesApp'));
     }
