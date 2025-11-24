@@ -17,7 +17,7 @@
                     <select name="commune" id="commune" class="form-select js-example-basic-single" required style="width: 100%;">
                         <option value="0">Sélectionner une commune</option>
                         @foreach ($communes as $city)
-                            <option value="{{ $city->idcommune }}" {{ $quartiers->commune_id == $city->idcommune ? 'selected' : '' }}>{{ $city->name }}</option>
+                            <option value="{{ $city->idcommune }}" {{ $quartiers->id_commune == $city->idcommune ? 'selected' : '' }}>{{ $city->name }}</option>
                         @endforeach
                     </select>
                 </div>
