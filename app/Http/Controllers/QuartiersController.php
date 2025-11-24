@@ -60,9 +60,11 @@ class QuartiersController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Communes $communes)
+    public function edit(Request $request)
     {
-        //
+        $quartiers = DB::table('quartiers')->where('idquartier', $request->id)->first();
+        // dd($pharmacies);
+        return view('dashboard.quartiers.edit', compact('quartiers'));
     }
 
     /**
@@ -70,7 +72,14 @@ class QuartiersController extends Controller
      */
     public function update(Request $request, Communes $communes)
     {
-        //
+        DB::table('quartiers')->where('idquartier', $request->id)->update([
+            'nom' => $request->libelle,
+            'id_commune' => $request->commune,
+            'user_enreg' => Auth::user()->id,
+            'created_at' => Carbon::now(),
+
+        ]);
+        return redirect()->route('quartiers.index')->with('success', 'Le quartier a été mis à jour avec succès');
     }
 
     /**
