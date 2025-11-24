@@ -55,17 +55,25 @@ class CommunesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Communes $communes)
+    
+    public function edit(Request $request)
     {
-        //
+        $communes = DB::table('communes')->where('idcommune', $request->id)->first();
+        $regions = DB::table('regions')->get();
+        return view('dashboard.communes.edit', compact('regions', 'communes'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Communes $communes)
+    public function update(Request $request)
     {
-        //
+        DB::table('communes')->where('idcommune', $request->id)->update([
+            'name' => $request->name,
+            'region_id' => $request->region_id,
+        ]);
+
+        return redirect()->route('communes.index')->with('success', 'La commune a été ajoutée avec succès');
     }
 
     /**
@@ -80,7 +88,7 @@ class CommunesController extends Controller
 
     public function destroy(Request $request)
     {
-        DB::table('communes')->where('idcommune', $request->commune)->delete();
+        DB::table('communes')->where('idcommune', $request->id)->delete();
         return redirect()->route('communes.index')->with('success', 'La commune a été supprimée avec succès');
     }
 }
