@@ -2,7 +2,7 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 @php
-    $communes = DB::table('communes')->where('id_commune', $pharmacies->commune_id)->get();
+    $communes = DB::table('communes')->get();
     // $quartiers = DB::table('quartiers')->where('id_commune', $pharmacies->id_commune)->get();
 
 @endphp
