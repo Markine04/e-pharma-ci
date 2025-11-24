@@ -29,9 +29,9 @@
             </div>
             <div class="col-6">
                 <div class="mb-3">
-                    <label for="city_id">Ville</label>
+                    <label for="city_id">Ville ou Commune</label>
                     <select name="commune_id" id="city_id" class="form-select js-example-basic-single" required style="width: 100%; height: 38px;">
-                        <option value="">-- Sélectionner une ville --</option>
+                        <option value="">-- Sélectionner --</option>
                         @foreach ($communes as $city)
                             <option value="{{ $city->idcommune }}">{{ $city->name }}</option>
                         @endforeach
