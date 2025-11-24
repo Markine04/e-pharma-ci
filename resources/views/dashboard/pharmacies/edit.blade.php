@@ -24,7 +24,7 @@
                 <div class="mb-3">
                     <label for="address">Adresse</label>
                     <input type="text" name="address" class="form-control" id="address"
-                        value="{{ $pharmacies->address }}" required />
+                        value="{{ $pharmacies->address }}"/>
                 </div>
             </div>
         </div>
@@ -35,7 +35,7 @@
                 <div class="mb-3">
                     <label for="telephone">Telephone</label>
                     <input type="text" name="telephone" class="form-control" id="telephone"
-                        value="{{ $pharmacies->phone }}" required />
+                        value="{{ $pharmacies->phone }}"/>
                 </div>
             </div>
             <div class="col-6">
@@ -82,7 +82,7 @@
             <div class="col-6">
                 <div class="mb-3">
                     <label for="quartier_id">Quartiers</label>
-                    <select name="quartier_id" id="quartier_id" class="form-select js-example-basic-single" required>
+                    <select name="quartier_id" id="quartier_id" class="form-select js-example-basic-single">
                         <option value="">-- Sélectionner un quartier --</option>
                         @foreach ($quartiers as $quartier)
                             <option
