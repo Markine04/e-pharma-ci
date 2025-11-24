@@ -9,14 +9,14 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-sm-6">
-                    <h3>Categories de Medicaments</h3>
+                    <h3>Pharmacies</h3>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i data-feather="home"></i></a>
                         </li>
                         <li class="breadcrumb-item">Tableau de bord</li>
-                        <li class="breadcrumb-item active">Categories de Medicaments</li>
+                        <li class="breadcrumb-item active">Pharmacies</li>
                     </ol>
                 </div>
             </div>
@@ -67,13 +67,13 @@
                                                     <li class="edit"> <a class="dropdown-item"
                                                         data-url="{{ route('pharmacies.edit', ['id' => $items->idpharmacie]) }}"data-bs-toggle="modal"
                                                         data-ajax-popup="true" data-size="md"
-                                                        data-title="Modifier cette categorie" style="cursor: pointer"><i
+                                                        data-title="Modifier cette pharmacie" style="cursor: pointer"><i
                                                                 class="icon-pencil-alt"></i></a>
                                                             </li>
                                                     <li class="delete"><a class="dropdown-item"
                                                         data-url="{{ route('pharmacies.delete', ['id' => $items->idpharmacie]) }}"data-bs-toggle="modal"
                                                         data-ajax-popup="true" data-size="md"
-                                                        data-title="Supprimer cette categorie" style="cursor: pointer"><i class="icon-trash"></i></a>
+                                                        data-title="Supprimer cette pharmacie" style="cursor: pointer"><i class="icon-trash"></i></a>
                                                     </li>
                                                 </ul>
                                             </td>
