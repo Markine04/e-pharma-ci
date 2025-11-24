@@ -81,7 +81,7 @@
                                             <td>
                                                 @if ($items->images == null)
                                                     <img src="{{ asset('assets/logo/logoSiha.png') }}"
-                                                        alt="{{ $items->name }}" width="90px" height="70px">
+                                                        alt="{{ $items->name }}" width="80px" height="70px">
                                                 @else
                                                     <img src="{{ asset('storage/pharmacies/' . $items->images) }}"
                                                         alt="{{ $items->name }}" width="90px" height="70px">
