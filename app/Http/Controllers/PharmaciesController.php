@@ -95,6 +95,7 @@ class PharmaciesController extends Controller
     public function edit(Request $request)
     {
         $pharmacies = DB::table('pharmacies')->where('idpharmacie', $request->id)->first();
+        // dd($pharmacies);
         return view('dashboard.pharmacies.edit', compact('pharmacies'));
     }
 
@@ -138,6 +139,7 @@ class PharmaciesController extends Controller
     public function delete(Request $request)
     {
         $pharmacies = DB::table('pharmacies')->where('idpharmacie', $request->id)->first();
+        // dd($pharmacies);
         return view('dashboard.pharmacies.delete', compact('pharmacies'));
     }
 
