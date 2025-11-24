@@ -1,8 +1,5 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<link rel="stylesheet" href="{{ asset('assets/builds/css/select2.min.css') }}" />
-<script src="{{ asset('assets/builds/js/select2.min.js') }}"></script>
-
 
 <form method="post" id="formSchedule" action="{{ route('pharmacies.store') }}" enctype="multipart/form-data">
     @csrf
