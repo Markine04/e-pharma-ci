@@ -14,10 +14,11 @@
 
             @endphp
             <div class="card-body">
-                <form method="post" id="formSchedule" action="{{ route('pharmacies.update',['id'=>$pharmacies->idpharmacie]) }}" enctype="multipart/form-data">
+                <form method="post" id="formSchedule" action="{{ route('pharmacies.update') }}" enctype="multipart/form-data">
                     @csrf
 
                     <input type="hidden" name="lastimages" value="{{$pharmacies->images}}">
+                    <input type="hidden" name="id" value="{{$pharmacies->idpharmacie}}">
                     <div class="form-group">
                         <div class="row">
                             <div class="col-6">

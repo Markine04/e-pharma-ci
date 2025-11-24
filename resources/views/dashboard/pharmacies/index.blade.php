@@ -66,10 +66,16 @@
                                                 <ul class="action">
                                                     <li class="edit"> <a class="dropdown-item"
                                                         data-url="{{ route('pharmacies.edit', ['id' => $items->idpharmacie]) }}"data-bs-toggle="modal"
-                                                        data-ajax-popup="true" data-size="md"
+                                                        data-ajax-popup="true" data-size="lg"
                                                         data-title="Modifier cette pharmacie" style="cursor: pointer"><i
                                                                 class="icon-pencil-alt"></i></a>
                                                             </li>
+                                                    {{-- <li class="view"><a class="dropdown-item"
+                                                        data-url="{{ route('pharmacies.edit', ['id' => $items->idpharmacie]) }}"data-bs-toggle="modal"
+                                                        data-ajax-popup="true" data-size="md"
+                                                        data-title="Détails de la pharmacie" style="cursor: pointer"><i
+                                                                class="icon-eye"></i></a>
+                                                            </li> --}}
                                                     <li class="delete"><a class="dropdown-item"
                                                         data-url="{{ route('pharmacies.delete', ['id' => $items->idpharmacie]) }}"data-bs-toggle="modal"
                                                         data-ajax-popup="true" data-size="md"
