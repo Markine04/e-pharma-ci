@@ -25,7 +25,7 @@
             <div class="col-12">
                 <div class="mb-3">
                     <label for="libelle">Libelle</label><br>
-                    <input type="text" name="libelle" class="form-control" id="libelle" value="{{$quartiers->libelle}}" />
+                    <input type="text" name="libelle" class="form-control" id="libelle" value="{{$quartiers->nom}}" />
                 </div>
             </div>
         </div>
