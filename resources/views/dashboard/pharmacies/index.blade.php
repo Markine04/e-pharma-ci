@@ -65,21 +65,27 @@
                                             <td>
                                                 <ul class="action">
                                                     <li class="edit"> <a class="dropdown-item"
-                                                        data-url="{{ route('pharmacies.edit', ['id' => $items->idpharmacie]) }}"data-bs-toggle="modal"
-                                                        data-ajax-popup="true" data-size="lg"
-                                                        data-title="Modifier cette pharmacie" style="cursor: pointer"><i
+                                                            data-url="{{ route('pharmacies.edit', ['id' => $items->idpharmacie]) }}"data-bs-toggle="modal"
+                                                            data-ajax-popup="true" data-size="lg"
+                                                            data-title="Modifier cette pharmacie" style="cursor: pointer"><i
                                                                 class="icon-pencil-alt"></i></a>
-                                                            </li>
+                                                    </li>
                                                     <li class="delete"><a class="dropdown-item"
-                                                        data-url="{{ route('pharmacies.delete', ['id' => $items->idpharmacie]) }}"data-bs-toggle="modal"
-                                                        data-ajax-popup="true" data-size="md"
-                                                        data-title="Supprimer cette pharmacie" style="cursor: pointer"><i class="icon-trash"></i></a>
+                                                            data-url="{{ route('pharmacies.delete', ['id' => $items->idpharmacie]) }}"data-bs-toggle="modal"
+                                                            data-ajax-popup="true" data-size="md"
+                                                            data-title="Supprimer cette pharmacie"
+                                                            style="cursor: pointer"><i class="icon-trash"></i></a>
                                                     </li>
                                                 </ul>
                                             </td>
                                             <td>
-                                                <img src="{{ asset('storage/pharmacies/' . $items->images) }}"
-                                                    alt="{{ $items->name }}" width="90px" height="70px">
+                                                @if ($items->images == null)
+                                                    <img src="{{ asset('assets/logo/logoSiha.png') }}"
+                                                        alt="{{ $items->name }}" width="90px" height="70px">
+                                                @else
+                                                    <img src="{{ asset('storage/pharmacies/' . $items->images) }}"
+                                                        alt="{{ $items->name }}" width="90px" height="70px">
+                                                @endif
 
                                             </td>
                                             <td>{{ $items->name }}</td>
