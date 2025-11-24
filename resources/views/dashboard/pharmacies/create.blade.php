@@ -87,8 +87,8 @@
     $(document).ready(function() {
         // Active Select2
         $('.js-example-basic-single').select2({
-            dropdownParent: $('#formSchedule')
-
+            dropdownParent: $('#formSchedule'),
+            width: '100%'
         });
     });
 </script>
