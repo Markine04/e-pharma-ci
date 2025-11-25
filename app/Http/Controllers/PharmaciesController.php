@@ -157,7 +157,7 @@ class PharmaciesController extends Controller
         $pharmaciesGardes = DB::table('pharmacie_gardes')
         ->join('date_phcie_gardes', 'pharmacie_gardes.periode', '=', 'date_phcie_gardes.idatephciegardes')
         ->paginate(10);
-        dd($pharmaciesGardes);
+        // dd($pharmaciesGardes);
         $Communes = DB::table('communes')->get();
         $currentDate = Carbon::now()->format('Y-m-d');
         return view('dashboard.pharmacies-gardes.index', compact('pharmaciesGardes', 'Communes', 'currentDate'));
