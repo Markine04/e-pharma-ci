@@ -94,7 +94,7 @@ class QuartiersController extends Controller
 
     public function destroy(Request $request)
     {
-        DB::table('quartiers')->where('idquartier', $request->quartier)->delete();
+        DB::table('quartiers')->where('idquartier', $request->id)->delete();
         return redirect()->route('quartiers.index')->with('success', 'Le quartier a été supprimé avec succès');
     }
 }
