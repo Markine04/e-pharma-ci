@@ -286,7 +286,7 @@
                     <div class="col-lg-4 col-md-12 col-sm-12 col-xl-4">
                         <div class="form-group">
                             <label for="barcode" class="required">Code Barre</label>
-                            <input type="text" id="barcode" name="barcode" value="{{ old('barcode') }}" required
+                            <input type="text" id="barcode" name="barcode" value="{{ $code }}" disabled required
                                 class="form-control">
                             @error('barcode')
                                 <div class="text-danger">{{ $message }}</div>

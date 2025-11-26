@@ -29,7 +29,19 @@ class MedicamentsController extends Controller
         $suppliers = DB::table('fournisseurs')->get();
         $formesGaleniques = DB::table('forme_galeniques')->get();
 
-        return view('dashboard.medicaments.create', compact('categories', 'suppliers', 'formesGaleniques'));
+        do {
+            // Génère un code aléatoire entre 1000000 et 9999999
+            $code = rand(1000000, 9999999);
+
+            // Vérifie si le code existe déjà en base
+            $exists = DB::table('medicaments')   // <-- change le nom de la table
+                ->where('code_barre', $code)
+                ->exists();
+        } while ($exists);
+
+        // return $code;
+
+        return view('dashboard.medicaments.create', compact('categories', 'suppliers', 'formesGaleniques','code'));
     }
 
     /**
@@ -83,8 +95,6 @@ class MedicamentsController extends Controller
                 }
             }
         }
-
-
 
         DB::table('medicaments')->insert([
             "code_barre" => $request->barcode,
