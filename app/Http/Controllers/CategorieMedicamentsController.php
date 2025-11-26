@@ -42,7 +42,7 @@ class CategorieMedicamentsController extends Controller
             $filename = time() . '_' . $file->getClientOriginalName();
 
             // Stockage temporaire
-            $path = $file->move(public_path('/assets/images/categories'), $filename);
+            $path = $file->move(public_path('storage/categories'), $filename);
         }
 
         
@@ -89,7 +89,7 @@ class CategorieMedicamentsController extends Controller
             $filename = time() . '_' . $file->getClientOriginalName();
 
             // Stockage temporaire
-            $path = $file->move(public_path('/assets/images/categories'), $filename);
+            $path = $file->move(public_path('storage/categories'), $filename);
         }
 
 
