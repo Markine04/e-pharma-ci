@@ -1,7 +1,7 @@
 <div class="sidebar-wrapper">
     <div>
         <div class="logo-wrapper"><a href="{{ route('dashboard') }}"><img class="img-fluid for-light"
-                    src="{{ asset('assets/logo/logo-home.png') }}" alt="" width="150px"></a>
+                    src="{{ asset('assets/logo/logo-home.png') }}" alt="" width="140px"></a>
             <div class="back-btn"><i data-feather="grid"></i></div>
             <div class="toggle-sidebar icon-box-sidebar"><i class="status_toggle middle sidebar-toggle"
                     data-feather="grid"> </i></div>
