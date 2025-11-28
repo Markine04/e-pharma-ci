@@ -68,7 +68,7 @@
                                                     <span class="badge rounded-pill badge-light-success me-1">Oui</span>
                                                 @break
 
-                                                @case('0')
+                                                @case('')
                                                     <span class="badge rounded-pill badge-light-secondary me-1">Non</span>
                                                 @break
 
