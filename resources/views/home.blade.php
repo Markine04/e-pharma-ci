@@ -328,7 +328,7 @@
                             </div> <!-- navbar collapse -->
 
                             <div class="button add-list-button">
-                                <a href="{{ route('dashboard') }}" class="btn">Se Connecter</a>
+                                <a href="{{ route('dashboard') }}" aria-label="Toggle navigation" class="btn">Se Connecter</a>
                             </div>
                         </nav>
                         <!-- End Navbar -->
@@ -347,8 +347,7 @@
                     <div class="hero-content">
                         <h1 class="wow fadeInLeft" data-wow-delay=".4s">Expérimenter Siha pour vos médicaments</h1>
                         <p class="wow fadeInLeft" data-wow-delay=".6s">Application d'achats de produits
-                            pharmaceutiques
-                            en ligne et consultation des pharmacies de garde. </p>
+                            pharmaceutiques en ligne et consultation des pharmacies de garde. </p>
                         <div class="button wow fadeInLeft" data-wow-delay=".8s">
                             <a href="javascript:void(0)" class="btn"><i class="lni lni-apple"></i> App Store</a>
                             <a href="javascript:void(0)" class="btn btn-alt"><i class="lni lni-play-store"></i>

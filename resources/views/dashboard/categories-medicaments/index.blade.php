@@ -46,7 +46,8 @@
                                 <tr>
                                     <th>Images</th>
                                     <th>Libelle</th>
-                                    <th>Description</th>
+                                    <th>Description</th> 
+                                    <th>Afficher app</th>
                                     <th>Statuts</th>
                                     <th>Actions</th>
                                 </tr>
@@ -61,6 +62,19 @@
                                         </td>
                                         <td>{{ $items->libelle }}</td>
                                         <td>{{ $items->description }}</td>
+                                        <td>
+                                            @switch($items->show_app)
+                                                @case('1')
+                                                    <span class="badge rounded-pill badge-light-success me-1">Oui</span>
+                                                @break
+
+                                                @case('0')
+                                                    <span class="badge rounded-pill badge-light-secondary me-1">Non</span>
+                                                @break
+
+                                                @default
+                                            @endswitch
+                                        </td>
                                         <td>
                                             @switch($items->statut)
                                                 @case('1')
