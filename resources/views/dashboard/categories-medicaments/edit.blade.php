@@ -12,13 +12,13 @@
     @endphp
     <div class="form-group">
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 col-md-12 col-lg-12 col-xl-12 col-sm-12">
                 <div class="mb-3">
-                    <label for="libelle">Libelle</label> <br><br>
+                    <label for="libelle">Libelle</label> <br>
                     <input type="text" name="libelle" value='{{$categories->libelle}}' class="form-control" id="libelle" required />
                 </div>
                 <div class="mb-3">
-                    <label for="parent_id">Parent</label> <br><br>
+                    <label for="parent_id">Parent</label> <br>
                     <select id="parent_id" name="parent_id" class="form-control">
                     {{-- <select id="parent_id" name="parent_id" class="form-control js-example-basic-single"> --}}
                         <option value="">Selectionner une categorie</option>
@@ -28,17 +28,16 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="description">Description</label> <br><br>
+                    <label for="description">Description</label> <br>
                     <input type="text" name="description" value="{{ $categories->description }}" class="form-control"  id="description" />
                 </div>
                 <div class="mb-3">
-                    <label for="images">Images</label> <br><br>
+                    <label for="images">Images</label> <br>
                     <input type="file" name="images" value="{{$categories->image}}" class="form-control" id="images" />
                 </div>
             </div>
         </div>
     </div>
-    <br>
     <hr>
     <center><button type="submit" class="btn btn-success text-center mt-3">Enregistrer</button></center>
 </form>
