@@ -12,6 +12,9 @@
   <script src="{{ asset('assets/js/config.js') }}"></script>
   <script src="{{ asset('assets/js/sidebar-menu.js') }}"></script>
 
+    <script src="{{ asset('assets/js/notify/bootstrap-notify.min.js') }}"></script>
+    <script src="{{ asset('assets/js/notify/notify-script.js') }}"></script>
+
   {{-- scripts includes --}}
   @yield('scripts')
   {{--end scripts includes --}}

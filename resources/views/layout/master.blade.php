@@ -28,6 +28,17 @@
         <body>
 @endswitch
 
+    {{-- @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif --}}
 
     <!-- tap on top starts-->
     <div class="tap-top"><i data-feather="chevrons-up"></i></div>
@@ -85,6 +96,51 @@
     {{-- scripts --}}
     @include('layout.script')
     {{--end scripts --}}
+
+   <script>
+@if(session('success'))
+    $.notify({
+        message: "{{ session('success') }}"
+    },
+        {
+        type: 'success',
+        allow_dismiss: true,
+        placement: { from: 'top', align: 'right' },
+        delay: 3000,
+        timer: 500,
+        z_index: 9999,
+        animate: { enter: 'animated fadeInDown', exit: 'animated fadeOutUp' }
+    });
+@endif
+
+@if(session('error'))
+    $.notify({
+        message: "{{ session('error') }}"
+    },{
+        type: 'danger',
+        allow_dismiss: true,
+        placement: { from: 'top', align: 'right' },
+        delay: 3000,
+        timer: 500,
+        z_index: 9999,
+        animate: { enter: 'animated fadeInDown', exit: 'animated fadeOutUp' }
+    });
+@endif
+
+@if(session('warning'))
+    $.notify({
+        message: "{{ session('warning') }}"
+    },{
+        type: 'warning',
+        allow_dismiss: true,
+        placement: { from: 'top', align: 'right' },
+        delay: 3000,
+        timer: 500,
+        z_index: 9999,
+        animate: { enter: 'animated fadeInDown', exit: 'animated fadeOutUp' }
+    });
+@endif
+</script>
 
 </body>
 </html>
