@@ -44,14 +44,17 @@
                             <table class="display" id="basic-1">
                                 <thead>
                                     <tr>
+                                        <th>#</th>
                                         <th>Date debut</th>
                                         <th>Date fin</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php $i = 1; ?>
                                     @foreach ($datePhcieGarde as $items)
                                         <tr>
+                                            <td>{{$i++}}</td>
                                             <td>{{ date('d-m-Y', strtotime($items->date_debut)) }}</td>
                                             <td>{{ date('d-m-Y', strtotime($items->date_fin)) }}</td>
                                             <td>
