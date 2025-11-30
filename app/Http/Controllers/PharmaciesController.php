@@ -193,7 +193,7 @@ class PharmaciesController extends Controller
 
     public function store_garde(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         // Validation
         $request->validate([
             'commune' => 'required|exists:communes,idcommune',

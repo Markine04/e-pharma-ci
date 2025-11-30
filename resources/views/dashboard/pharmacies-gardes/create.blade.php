@@ -28,7 +28,7 @@
             <select name="periode" id="startDateSelect" class="form-select js-example-basic-single">
                 <option>Sélectionner une date</option>
                 @foreach($datePhcieGarde as $date)
-                    <option value="{{$date->idatephciegardes}} }}">
+                    <option value="{{$date->idatephciegardes}}">
                        De {{ date('d-m-Y', strtotime($date->date_debut)) }} Au {{ date('d-m-Y', strtotime($date->date_fin)) }}
                     </option>
                 @endforeach
