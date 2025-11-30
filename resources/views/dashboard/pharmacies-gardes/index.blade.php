@@ -5,6 +5,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 @endsection
 
 @section('main_content')
@@ -62,7 +63,7 @@
                 @csrf
                 <div class="row mb-3">
                     <div class="col-md-4 mb-2">
-                        <select name="date" class="form-select js-example-basic-single">
+                        <select id="selection" name="date" class="form-select selection">
                             <option value="">Toutes les Dates</option>
                             @foreach ($datePhcieGarde as $item)
                                 <option value="{{ $item->idatephciegardes }}">De
@@ -136,9 +137,12 @@
     @endsection
 
     <script>
+        
         $(document).ready(function() {
-            $('.js-example-basic-single').select2({
-                dropdownParent: $('#body')
+            $('#selection').select2({
+                placeholder: "Sélectionner une date",
+                width: '100%',
+                // allowClear: true
             });
         });
     </script>
