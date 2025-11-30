@@ -1,11 +1,10 @@
-
 @extends('layout.master')
 
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/datatables.css') }}">
-    
+
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 @endsection
 
 @section('main_content')
@@ -65,8 +64,8 @@
                     <div class="col-md-4 mb-2">
                         <select name="date" class="form-select js-example-basic-single">
                             <option value="">Toutes les Dates</option>
-                            @foreach ($pharmaciesGardes as $item)
-                                    <option value="{{$item->idpharmacie_garde}}">De
+                            @foreach ($datePhcieGarde as $item)
+                                <option value="{{ $item->idatephciegardes }}">De
                                     {{ date('d/m/Y', strtotime($item->date_debut)) }} à
                                     {{ date('d/m/Y', strtotime($item->date_fin)) }}</option>
                             @endforeach
@@ -99,8 +98,14 @@
                             <div class="col-12">
                                 <div class="card p-3">
                                     <div class="d-flex align-items-start">
-                                        <img class="avatar-sm me-3" src="{{ asset('storage/pharmacies/' . $pharmacie->images) }}"
-                                            alt="{{ $pharmacie->name }}" width="90px" height="70px">
+                                        @if ($pharmacie->images == null)
+                                            <img class="avatar-sm me-3" src="{{ asset('assets/logo/logoSiha.png') }}"
+                                                alt="{{ $pharmacie->name }}" width="90px" height="70px">
+                                        @else
+                                            <img class="avatar-sm me-3"
+                                                src="{{ asset('storage/pharmacies/' . $pharmacie->images) }}"
+                                                alt="{{ $pharmacie->name }}" width="90px" height="70px">
+                                        @endif
                                         <div class="flex-grow-1">
                                             <h5 class="mb-0 name">{{ $pharmacie->name }}</h5>
                                             <div class="text-muted small commune">

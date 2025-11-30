@@ -50,7 +50,7 @@ class DatePhcieGardeController extends Controller
         $annee = $debut->year;
 
         // (Optionnel) On supprime toutes les semaines existantes pour cette année
-        DB::table('date_phcie_gardes')->where('annee', $annee)->delete();
+        // DB::table('date_phcie_gardes')->where('annee', $annee)->delete();
 
         $numero = 1;
 
