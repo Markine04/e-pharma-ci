@@ -124,6 +124,8 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard/categorie-medicament/{id}/delete', [CategorieMedicamentsController::class, 'delete'])->name('categoriemedicaments.delete');
     Route::post('dashboard/categorie-medicament-destroy', [CategorieMedicamentsController::class, 'destroy'])->name('categoriemedicaments.destroy');
     Route::get('dashboard/categorie-medicament-uploadImages', [CategorieMedicamentsController::class, 'uploadImages'])->name('categoriemedicaments.temp');
+    Route::get('dashboard/categorie-apps', [CategorieMedicamentsController::class, 'show'])->name('categorieapps.show');
+    Route::post('dashboard/categorie-apps-store', [CategorieMedicamentsController::class, 'storeshowapp'])->name('categorieapps.storeshowapp');
 
 
     //Ordonnances

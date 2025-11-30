@@ -34,8 +34,12 @@
                                     <a data-url="{{ route('categoriemedicaments.create') }}"
                                             class="btn btn-primary text-white" data-bs-toggle="modal" data-ajax-popup="true"
                                             data-size="md" data-title="Ajouter une Categorie de Medicament">
-                                            <i class="si si-note" style="font-size: 15px;"></i>Ajouter une
+                                            <i class="icon-plus" style="font-size: 15px;"></i> Ajouter une
                                     Categorie de Medicament</a>
+
+                                    <a data-url="{{ route('categorieapps.show') }}"
+                                            class="btn btn-danger text-white" data-bs-toggle="modal" data-ajax-popup="true"
+                                            data-size="md" data-title="Ajouter une Categorie de Medicament"> <i class="icon-mobile" style="font-size: 15px;"></i> Afficher app</a>
                             </div>
                         </h4>
                     </div>

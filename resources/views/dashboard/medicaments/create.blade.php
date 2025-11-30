@@ -601,7 +601,7 @@
         $(document).ready(function() {
             $('.select2').select2({
                 placeholder: "Sélectionnez une option",
-                allowClear: true,
+                // allowClear: true,
                 width: '100% !important',
                 // width: 'resolve'
                 tags: true

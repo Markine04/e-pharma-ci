@@ -63,11 +63,36 @@ class CategorieMedicamentsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(CategorieMedicaments $categorieMedicaments)
+    public function show(Request $request)
     {
-        //
+        $categories = DB::table('categories')
+            ->where('show_app', 1)
+            ->get(); // garder tous les champs pour afficher libelle
+
+        $selected = $categories->pluck('idcategorie')->toArray();
+
+        return view('dashboard.categories-medicaments.show', compact('categories', 'selected'));
     }
 
+    public function storeshowapp(Request $request)
+    {
+        // Tableau des IDs sélectionnés
+        $selected = $request->parent_id ?? [];
+
+        // 1. Mettre show_app = 1 uniquement pour les IDs sélectionnés
+        DB::table('categories')
+            ->whereIn('idcategorie', $selected)
+            ->update(['show_app' => 1]);
+
+        // 2. Mettre show_app = null pour tous les autres
+        DB::table('categories')
+            ->whereNotIn('idcategorie', $selected)
+            ->update(['show_app' => null]);
+
+        return redirect()->back()->with('success', 'Catégorie affichée avec succès dans l\'application mobile');
+        // dd( $categories);
+    }
+    
     /**
      * Show the form for editing the specified resource.
      */
