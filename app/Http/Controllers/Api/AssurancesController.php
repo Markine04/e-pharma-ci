@@ -64,7 +64,7 @@ class AssurancesController extends Controller
         if ($request->hasFile('images')) {
             $file = $request->file('images');
             $name = time() . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('storage/assurances-cartes/', $name, 'public');
+            $file->storeAs('assurances-cartes/', $name, 'public');
 
         $assurances = DB::table('assurances')->insert([
             'user_id' => $user,
@@ -84,7 +84,7 @@ class AssurancesController extends Controller
         return response()->json([
                 'success' => true,
                 'assurances'=> $assurances,
-                'url' => asset('storage/assurances-cartes/' . $name)
+                'url' => asset('assurances-cartes/' . $name)
             ], 200);
     }
 }
