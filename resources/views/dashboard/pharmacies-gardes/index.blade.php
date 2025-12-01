@@ -121,7 +121,7 @@
                                                 @endif
                                             </div>
                                             <div class="mt-2">
-                                                <span class="badge bg-info text-dark period">En garde</span>
+                                                <span class="badge bg-info text-white period">En garde</span>
                                                 <span class="ms-2 note text-muted small">De
                                                     {{ date('d/m/Y', strtotime($item->date_debut)) }} à
                                                     {{ date('d/m/Y', strtotime($item->date_fin)) }}</span>
