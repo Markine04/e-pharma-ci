@@ -44,7 +44,7 @@ class UploadController extends Controller
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $name = time() . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('storage/ordonnances-clients/', $name, 'public');
+            $file->storeAs('ordonnances-clients/', $name, 'public');
 
             DB::table('ordonnance_clients')->insert([
                 'image' => $name,
@@ -58,7 +58,7 @@ class UploadController extends Controller
             return response()->json([
                 'success' => true,
                 'note' => $request->note,
-                'url' => asset('storage/ordonnances-clients/' . $name)
+                'url' => asset('ordonnances-clients/' . $name)
             ], 200);
         }
 
