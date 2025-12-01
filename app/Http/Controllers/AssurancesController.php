@@ -56,6 +56,13 @@ class AssurancesController extends Controller
         return view('dashboard.assurances.show', compact('assurances'));
     }
 
+
+    public function voir(string $id)
+    {
+        $assurances = DB::table('assurances')->where('id_assurance', $id)->first();
+        return view('dashboard.assurances.voir-image', compact('assurances'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      */

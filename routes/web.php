@@ -151,6 +151,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('dashboard/assurance/{id}', [AssurancesController::class, 'destroy'])->name('assurances.destroy');
     Route::get('dashboard/assurance-uploadImages', [AssurancesController::class, 'uploadImages'])->name('assurances.temp');
     Route::get('dashboard/assurance/cartAssurance/{id}', [AssurancesController::class, 'show_cartAssurance'])->name('assurance.cartAssurance');
+    Route::get('dashboard/assurance/voir/{id}', [AssurancesController::class, 'voir'])->name('assurances.voir');
 
     //Assurances
     Route::get('dashboard/formegaleniques', [FormeGaleniquesController::class, 'index'])->name('formegaleniques.index');
