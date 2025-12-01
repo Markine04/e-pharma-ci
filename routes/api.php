@@ -49,9 +49,6 @@ Route::post('/categories-store', [CategoriesController::class, 'register_categor
 Route::put('/categories-update/{id}/', [CategoriesController::class, 'update']);
 
 
-
-
-
 Route::get('/medicaments', [MedicamentsController::class, 'index_medicaments']);
 Route::get('/medicament-show/{id}', [MedicamentsController::class, 'show']);
 Route::get('/medicament-search', [MedicamentsController::class, 'search_medicaments']);
@@ -76,6 +73,7 @@ Route::get('/communes', [CommunesController::class, 'index']);
 Route::get('/communes/{id}', [CommunesController::class, 'show']);
 Route::get('/communes-search', [CommunesController::class, 'search_communes']);
 Route::post('/communes-store', [CommunesController::class, 'register_communes']);
+
 
 Route::get('/quartiers', [QuartiersController::class, 'index']);
 Route::get('/quartiers/{id}', [QuartiersController::class, 'show']);
@@ -102,7 +100,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/users-info/{user_id}', [UsersController::class, 'info'])->name('users.info');
 
     // Route::get('/pharmacies-gardes', [PharmaciesController::class, 'index_pharmacies_gardes']);
-
     
     Route::post('/apply-coupon', [UsersController::class, 'apply_coupon']);
 
