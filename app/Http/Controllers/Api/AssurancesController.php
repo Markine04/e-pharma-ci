@@ -68,7 +68,6 @@ class AssurancesController extends Controller
             $file->storeAs('storage/assurances-cartes/', $name, 'public');
 
         $assurances = DB::table('assurances')->insert([
-                
             'user_id' => $user,
             'nom' => $request->nom,
             'prenom' => $request->prenom,
