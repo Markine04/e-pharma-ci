@@ -54,29 +54,28 @@
                                     @foreach ($ordonnances as $items)
                                         <tr>
                                             <td>
-                                                <div class="dropdown">
-                                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                        data-bs-toggle="dropdown">
-                                                        <i class="icon-base bx bx-dots-vertical-rounded"></i>
-                                                    </button>
-                                                    <div class="dropdown-menu">
-
-                                                        {{-- <a class="dropdown-item"
-                                                    href="{{ route('ordonnances.edit', ['id' => $items->id_ordonnance]) }}"><i
-                                                        class="icon-base bx bx-edit-alt me-1"
-                                                        style='color:rgba(0, 119, 255, 0.637);'></i> Modifier</a> --}}
-
-
-                                                        <a class="dropdown-item" style="cursor: pointer;"
-                                                            data-url="{{ route('ordonnances.delete', ['id' => $items->id_ordonnance]) }}"
+                                                <ul class="action">
+                                                    <li class="show"> <a
+                                                            data-url="{{ route('ordonnances.show', ['id' => $items->id_ordonnance]) }}"
+                                                            class="dropdown-item" data-bs-toggle="modal"
                                                             data-ajax-popup="true" data-size="md"
-                                                            data-title="Supprimer l'ordonnance">
-                                                            <i class="icon-base bx bx-trash me-1"
-                                                                style='color:rgba(255, 0, 0, 0.637);'></i>
-                                                            Supprimer
-                                                        </a>
-                                                    </div>
-                                                </div>
+                                                            data-title="voir la carte assurance" style="cursor: pointer">
+                                                            <i class="icon-pencil-alt"></i></a>
+                                                    </li> 
+                                                    <li class="edit"> <a
+                                                            data-url="{{ route('ordonnances.edit', ['id' => $items->id_ordonnance]) }}"
+                                                            class="dropdown-item" data-bs-toggle="modal"
+                                                            data-ajax-popup="true" data-size="md"
+                                                            data-title="Modifier cet ordonnance" style="cursor: pointer">
+                                                            <i class="icon-pencil-alt"></i></a>
+                                                    </li>
+                                                    <li class="delete"><a
+                                                            data-url="{{ route('ordonnances.delete', ['id' => $items->id_ordonnance]) }}"data-bs-toggle="modal"
+                                                            data-ajax-popup="true" data-size="md"
+                                                            data-title="Supprimer cet ordonnance" style="cursor: pointer"><i
+                                                                class="icon-trash"></i></a>
+                                                    </li>
+                                                </ul>
                                             </td>
                                             <td>
                                                 <a href="{{ route('ordonnances.image', ['id' => $items->id_ordonnance]) }}"
@@ -108,7 +107,8 @@
                                                         <a data-url="{{ route('ordonnances.traiter', ['id' => $items->id_ordonnance]) }}"
                                                             data-ajax-popup="true" data-size="md" data-title="Traiter l'ordonnance">
                                                             <i class="si si-note" style="font-size: 15px;"></i>
-                                                            <span class="badge bg-label-warning me-1" style="cursor: pointer;"> En
+                                                            <span class="badge rounded-pill badge-light-warning me-1"
+                                                                style="cursor: pointer;"> En
                                                                 attente
                                                                 de traitement
                                                             </span>
@@ -119,7 +119,8 @@
                                                         <a data-url="{{ route('ordonnances.traiter', ['id' => $items->id_ordonnance]) }}"
                                                             data-ajax-popup="true" data-size="md" data-title="Traiter l'ordonnance">
                                                             <i class="si si-note" style="font-size: 15px;"></i>
-                                                            <span class="badge bg-label-primary me-1" style="cursor: pointer;"> En
+                                                            <span class="badge rounded-pill badge-light-primary me-1"
+                                                                style="cursor: pointer;"> En
                                                                 cours de
                                                                 traitement
                                                             </span>
@@ -128,7 +129,7 @@
 
                                                     @case('3')
                                                         <i class="si si-note" style="font-size: 15px;"></i>
-                                                        <span class="badge bg-label-success me-1"> Prèt à livrer
+                                                        <span class="badge rounded-pill badge-light-success me-1"> Prèt à livrer
                                                         </span>
                                                     @break
 
