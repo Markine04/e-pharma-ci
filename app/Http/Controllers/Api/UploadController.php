@@ -44,8 +44,8 @@ class UploadController extends Controller
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $name = time() . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('storage/ordonnances-clients/', $name, 'public');
-            // $file->move(public_path('storage/ordonnances-clients/'), $name);
+            // $file->storeAs('storage/ordonnances-clients/', $name, 'public');
+            $file->move(public_path('storage/ordonnances-clients/'), $name);
 
             DB::table('ordonnance_clients')->insert([
                 'image' => $name,
