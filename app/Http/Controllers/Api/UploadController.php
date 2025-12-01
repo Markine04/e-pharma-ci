@@ -61,11 +61,10 @@ class UploadController extends Controller
                 'note' => $request->note,
                 'url' => asset('ordonnances-clients/' . $name)
             ], 200);
+        }else {
+            return response()->json(['success' => false, 'message' => 'Aucune image reçue'], 400);
         }
-
-
-
-        return response()->json(['success' => false, 'message' => 'Aucune image reçue'], 400);
+  
     }
 
     /**
