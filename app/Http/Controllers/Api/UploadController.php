@@ -46,7 +46,7 @@ class UploadController extends Controller
             $name = time() . '.' . $file->getClientOriginalExtension();
 
             // $file->storeAs('ordonnances-clients/', $name, 'public');
-            $path = $file->move(public_path('storage/ordonnances-clients/'), $name);
+            $file->move(public_path('storage/ordonnances-clients/'), $name);
 
 
             DB::table('ordonnance_clients')->insert([
@@ -61,11 +61,9 @@ class UploadController extends Controller
             return response()->json([
                 'success' => true,
                 'note' => $request->note,
-                'url' => $path
+                // 'url' => $path
             ], 200);
         }
-
-
 
         return response()->json(['success' => false, 'message' => 'Aucune image reçue'], 400);
     }

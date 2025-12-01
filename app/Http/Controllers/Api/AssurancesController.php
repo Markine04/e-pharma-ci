@@ -18,8 +18,10 @@ class AssurancesController extends Controller
         $user = $request->user()->id;
         // dd($user);
         $assurances = DB::table('assurances')
-        ->where('user_id', $user)
-        ->get();
+            ->join('type_assurances', 'assurances.type_assurance', '=', 'type_assurances.id_typeassurance')
+            ->join('compagnie_assurances', 'assurances.compagnie', '=', 'compagnie_assurances.id_compagnie')
+            ->where('user_id', $user)
+            ->get();
 
         return response()->json([
             'success' => true,
@@ -28,63 +30,65 @@ class AssurancesController extends Controller
     }
 
 
-    public function get_typeAssurance(){
+    public function get_typeAssurance()
+    {
         $typeAssurances = DB::table('type_assurances')->where('statut', 1)->get();
 
         return response()->json([
-                'success' =>true,
-                'typeAssurances' => $typeAssurances,
-            ],200);
+            'success' => true,
+            'typeAssurances' => $typeAssurances,
+        ], 200);
     }
 
-    public function get_compagnieAssurances(){
+    public function get_compagnieAssurances()
+    {
         $compagnieAssurances = DB::table('compagnie_assurances')->where('statut', 1)->get();
 
         return response()->json([
-                'success' =>true,
-                'compagnieAssurances' => $compagnieAssurances,
-            ],200);
+            'success' => true,
+            'compagnieAssurances' => $compagnieAssurances,
+        ], 200);
     }
 
-     public function store(Request $request)
+    public function store(Request $request)
     {
         // Validation des données
         $this->validate($request, [
             'date_debut' => 'required',
             'numero_police' => 'required',
-            'compagnie'	=>	'required',		
+            'compagnie'    =>    'required',
             'date_fin' => 'required',
             'type_assurance' => 'nullable|integer'
         ]);
         $user = $request->user()->id;
         // Création du nouvel utilisateur
-        
+
         $name = "";
 
         if ($request->hasFile('images')) {
             $file = $request->file('images');
             $name = time() . '.' . $file->getClientOriginalExtension();
-            $path = $file->move(public_path('storage/assurances-cartes/'), $name);
+            $file->move(public_path('storage/assurances-cartes/'), $name);
 
-        $assurances = DB::table('assurances')->insert([
-            'user_id' => $user,
-            'nom' => $request->nom,
-            'prenom' => $request->prenom,
-            'compagnie' => $request->compagnie,
-            'numero_police' => $request->numero_police,
-            'date_debut' => $request->date_debut,
-            'date_fin' => $request->date_fin,
-            'type_assurance' => $request->type_assurance,
-            'images' => $name,
-            'libelle_carte' => $request->libelle_carte,
-            'created_at' => Carbon::now()
-        ]);
+            $assurances = DB::table('assurances')->insert([
+                'user_id' => $user,
+                'nom' => $request->nom,
+                'prenom' => $request->prenom,
+                'compagnie' => $request->compagnie,
+                'numero_police' => $request->numero_police,
+                'date_debut' => $request->date_debut,
+                'date_fin' => $request->date_fin,
+                'type_assurance' => $request->type_assurance,
+                'images' => $name,
+                'libelle_carte' => $request->libelle_carte,
+                'created_at' => Carbon::now()
+            ]);
         }
 
         return response()->json([
-                'success' => true,
-                'assurances'=> $assurances,
-                'url' => $path
-            ], 200);
+            'success' => true,
+            'assurances' => $assurances,
+            // 'url' => $path
+        ], 200);
     }
 }
