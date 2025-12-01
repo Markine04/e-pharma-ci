@@ -57,8 +57,8 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                @if ($items->compagnie_assurance != null)
-                                                    {{ DB::table('assurances')->where('id_assurance', $items->compagnie_assurance)->get()[0]->libelle }}
+                                                @if ($items->assurance_id != null)
+                                                    {{ DB::table('assurances')->where('id_assurance', $items->assurance_id)->get()[0]->libelle_carte }}
                                                 @endif
                                             </td>
                                             <td>
