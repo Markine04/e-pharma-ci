@@ -84,7 +84,7 @@
                                                             class="dropdown-item" data-bs-toggle="modal"
                                                             data-ajax-popup="true" data-size="lg"
                                                             data-title="voir la carte assurance" style="cursor: pointer"><i
-                                                                class="icon-eyes-alt"></i>
+                                                                class="icon-eyes"></i>
                                                         </a>
                                                     </li>
                                                     <li class="edit"> <a href="#"><i
