@@ -110,12 +110,11 @@
                                         <div class="flex-grow-1">
                                             <h5 class="mb-0 name">{{ $pharmacie->name }}</h5>
                                             <div class="text-muted small commune">
-                                                
+
                                                 {{ DB::table('communes')->where('idcommune', $pharmacie->commune_id)->get()[0]->name }}
                                                 -
                                                 @if ($pharmacie->quartier_id == null) 
                                                     <span class="text-danger">Quartier non défini</span>
-                                                    
                                                 @else
                                                 {{ DB::table('quartiers')->where('idquartier', $pharmacie->quartier_id)->get()[0]->nom }}
                                                     

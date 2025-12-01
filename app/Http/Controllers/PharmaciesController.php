@@ -154,10 +154,14 @@ class PharmaciesController extends Controller
     public function index_gardes()
     {
         $datePhcieGarde = DB::table('date_phcie_gardes')->get();
+        $today = now()->toDateString();
+
         $pharmaciesGardes = DB::table('pharmacie_gardes')
-        ->join('date_phcie_gardes', 'pharmacie_gardes.periode', '=', 'date_phcie_gardes.idatephciegardes')
-        ->paginate(10);
-        // dd($datePhcieGarde);
+            ->join('date_phcie_gardes', 'pharmacie_gardes.periode', '=', 'date_phcie_gardes.idatephciegardes')
+            ->where('date_phcie_gardes.date_debut', '<=', $today)
+            ->where('date_phcie_gardes.date_fin', '>=', $today)
+            ->paginate(10);
+            
         $Communes = DB::table('communes')->get();
         $currentDate = Carbon::now()->format('Y-m-d');
         return view('dashboard.pharmacies-gardes.index', compact('pharmaciesGardes', 'Communes', 'currentDate', 'datePhcieGarde'));
