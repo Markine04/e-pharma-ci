@@ -50,6 +50,12 @@ class AssurancesController extends Controller
         //
     }
 
+    public function show_cartAssurance(string $id)
+    {
+        $assurances = DB::table('assurances')->where('user_id', $id)->get();
+        return view('dashboard.assurances.show', compact('assurances'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      */

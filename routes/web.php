@@ -150,7 +150,7 @@ Route::middleware('auth')->group(function () {
     Route::post('dashboard/assurance-update', [AssurancesController::class, 'update'])->name('assurances.update');
     Route::delete('dashboard/assurance/{id}', [AssurancesController::class, 'destroy'])->name('assurances.destroy');
     Route::get('dashboard/assurance-uploadImages', [AssurancesController::class, 'uploadImages'])->name('assurances.temp');
-
+    Route::get('dashboard/assurance/cartAssurance/{id}', [AssurancesController::class, 'show_cartAssurance'])->name('assurance.cartAssurance');
 
     //Assurances
     Route::get('dashboard/formegaleniques', [FormeGaleniquesController::class, 'index'])->name('formegaleniques.index');
