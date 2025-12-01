@@ -14,7 +14,7 @@
     }
 
     /* Style pour la version agrandie */
-    #fullImage {
+    .fullImage {
         display: none;
         position: fixed;
         top: 0;
@@ -28,12 +28,10 @@
 </style>
 
 <body style="background-color:rgba(0, 0, 0, 0.8);">
-    <div class="fullImage">
-        <center>
-            <img src="{{ asset('storage/assurances-cartes/' . $assurances->images) }}"
-                alt="{{ $assurances->id_assurance }}">
-        </center>
-    </div>
+
+    <center>
+        <img src="{{ asset('storage/assurances-cartes/' . $assurances->images) }}" alt="{{ $assurances->id_assurance }}">
+    </center>
 
 </body>
 
