@@ -30,7 +30,7 @@ class AssurancesController extends Controller
 
 
     public function get_typeAssurance(){
-        $typeAssurances = DB::table('type_assurances')->get();
+        $typeAssurances = DB::table('type_assurances')->where('statut', 1)->get();
 
         return response()->json([
                 'success' =>true,
@@ -39,7 +39,7 @@ class AssurancesController extends Controller
     }
 
      public function get_compagnieAssurances(){
-        $compagnieAssurances = DB::table('compagnie_assurances')->get();
+        $compagnieAssurances = DB::table('compagnie_assurances')->where('statut', 1)->get();
 
         return response()->json([
                 'success' =>true,
