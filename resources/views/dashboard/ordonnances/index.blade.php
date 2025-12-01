@@ -45,7 +45,7 @@
                                         <th>Images</th>
                                         <th>Telephones</th>
                                         <th>Note</th>
-                                        <th>Adresses</th>
+                                        <th>Carte Assurance</th>
                                         <th>Communes</th>
                                         <th>Statuts</th>
                                     </tr>
@@ -56,12 +56,12 @@
                                             <td>
                                                 <ul class="action">
                                                     <li class="show"> <a
-                                                            data-url="{{ route('ordonnances.show', ['id' => $items->id_ordonnance]) }}"
+                                                            data-url="{{ route('ordonnances.show_cartAssurance', ['id' => $items->id_ordonnance]) }}"
                                                             class="dropdown-item" data-bs-toggle="modal"
                                                             data-ajax-popup="true" data-size="md"
                                                             data-title="voir la carte assurance" style="cursor: pointer">
-                                                            <i class="icon-pencil-alt"></i></a>
-                                                    </li> 
+                                                            <i class="icon-eyes-alt"></i></a>
+                                                    </li>
                                                     <li class="edit"> <a
                                                             data-url="{{ route('ordonnances.edit', ['id' => $items->id_ordonnance]) }}"
                                                             class="dropdown-item" data-bs-toggle="modal"
@@ -90,13 +90,25 @@
 
                                             <td>{{ $items->note }}</td>
 
-                                            <td>
-
-                                            </td>
                                             @php
                                                 $comm = DB::table('users')->where('id', $items->id_client)->get()[0]
                                                     ->id_commune;
+
+                                                    $cartAssurance = DB::table('users')->where('id', $items->id_client)
+                                                        ->get()[0]->image_assurance;
+       
                                             @endphp
+
+                                            <td>
+                                                @if ($items->cartAssurance == 1)
+                                                    <a href="{{ route('ordonnances.cartAssurance', ['id' => $items->id_ordonnance]) }}"
+                                                        target="_blank">
+                                                        <img src="{{ asset('storage/cartAssurance/' . $cartAssurance) }}"
+                                                            alt="{{ $items->id_client }}" width="90px" height="70px">
+                                                    </a>
+                                                @endif
+                                            </td>
+
                                             <td>{{ DB::table('communes')->where('idcommune', $comm)->get()[0]->name }}</td>
 
 

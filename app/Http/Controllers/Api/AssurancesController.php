@@ -65,9 +65,10 @@ class AssurancesController extends Controller
         if ($request->hasFile('images')) {
             $file = $request->file('images');
             $name = time() . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('assurances-cartes', $name, 'public');
+            $file->storeAs('storage/assurances-cartes/', $name, 'public');
 
         $assurances = DB::table('assurances')->insert([
+                
             'user_id' => $user,
             'nom' => $request->nom,
             'prenom' => $request->prenom,
@@ -77,6 +78,7 @@ class AssurancesController extends Controller
             'date_fin' => $request->date_fin,
             'type_assurance' => $request->type_assurance,
             'images' => $name,
+            'libelle_carte' => $request->libelle_carte,
             'created_at' => Carbon::now()
         ]);
         }

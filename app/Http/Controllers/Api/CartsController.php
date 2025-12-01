@@ -125,7 +125,7 @@ class CartsController extends Controller
         
         $IDcommande = DB::table('commandes')->insertGetId([
             'panier_id' => json_encode($panierIds), // on stocke tous les ID du panier en JSON
-            'numerocommande'=>'CMD'.date('Ys').'-'.date('si'),
+            'numerocommande'=>'CMD'.date('Ymd').'-'.time(),
             'notes' => $validated['notes'] ?? null,
             'statut' => $validated['statut'],
             'created_at' => now(),

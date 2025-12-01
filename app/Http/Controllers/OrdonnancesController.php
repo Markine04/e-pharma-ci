@@ -24,6 +24,12 @@ class OrdonnancesController extends Controller
         return view('dashboard.ordonnances.voir-image', compact('ordonnances'));
     }
 
+    public function show_cartAssurance(string $id)
+    {
+        $ordonnances = DB::table('ordonnance_clients')->where('id_ordonnance', $id)->first();
+        return view('dashboard.ordonnances.voir-cartAssurance', compact('ordonnances'));
+    }
+
     public function traiter(string $id)
     {
         $ordonnances = DB::table('ordonnance_clients')->where('id_ordonnance', $id)->first();

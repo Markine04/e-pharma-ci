@@ -139,6 +139,7 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard/ordonnance-image/{id}', [OrdonnancesController::class, 'show'])->name('ordonnances.image');
     Route::get('dashboard/ordonnance-traiter/{id}', [OrdonnancesController::class, 'traiter'])->name('ordonnances.traiter');
     Route::post('dashboard/ordonnance-verifier', [OrdonnancesController::class, 'verifier'])->name('ordonnances.verifier');
+    Route::get('dashboard/ordonnance/show/{id}', [OrdonnancesController::class, 'show_cartAssurance'])->name('ordonnances.show_cartAssurance');
 
 
     //Assurances
