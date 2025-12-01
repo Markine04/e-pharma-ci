@@ -14,7 +14,7 @@
     }
 
     /* Style pour la version agrandie */
-    .fullImage {
+    #fullImage {
         display: none;
         position: fixed;
         top: 0;
