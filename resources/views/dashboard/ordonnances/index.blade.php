@@ -100,13 +100,13 @@
                                             @endphp
 
                                             <td>
-                                                @if ($items->cartAssurance == 1)
+                                                {{-- @if ($items->cartAssurance == 1)
                                                     <a href="{{ route('ordonnances.cartAssurance', ['id' => $items->id_ordonnance]) }}"
                                                         target="_blank">
-                                                        <img src="{{ asset('storage/cartAssurance/' . $cartAssurance) }}"
+                                                        <img src="{{ asset('storage/assurances-cartes/' . $cartAssurance) }}"
                                                             alt="{{ $items->id_client }}" width="90px" height="70px">
                                                     </a>
-                                                @endif
+                                                @endif --}}
                                             </td>
 
                                             <td>{{ DB::table('communes')->where('idcommune', $comm)->get()[0]->name }}</td>
