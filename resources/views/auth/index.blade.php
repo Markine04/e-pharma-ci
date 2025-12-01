@@ -83,7 +83,7 @@
                                                             data-url="{{ route('assurance.cartAssurance', ['id' => $items->id]) }}"
                                                             class="dropdown-item" data-bs-toggle="modal"
                                                             data-ajax-popup="true" data-size="lg"
-                                                            data-title="voir la carte assurance" style="cursor: pointer"><i
+                                                            data-title="voir les cartes assurance" style="cursor: pointer"><i
                                                                 class="icon-eyes"></i>
                                                         </a>
                                                     </li>
