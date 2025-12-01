@@ -97,7 +97,7 @@
                         @endphp
                         @foreach ($pharmacieDetails as $pharmacie)
                             <div class="col-12">
-                                <div class="card p-3">
+                                <div class="card p-2 card-ghost">
                                     <div class="d-flex align-items-start">
                                         @if ($pharmacie->images == null)
                                             <img class="avatar-sm me-3" src="{{ asset('assets/logo/logoSiha.png') }}"
