@@ -18,8 +18,8 @@ class AssurancesController extends Controller
         $user = $request->user()->id;
         // dd($user);
         $assurances = DB::table('users')
-        ->join('assurances', 'users.assurance_id', 'assurances.id_assurance')
-        // ->where('users.id', $user)
+        // ->join('assurances', 'users.assurance_id', 'assurances.id_assurance')
+        ->where('users.id', $user)
         ->get();
 
         return response()->json([
@@ -38,7 +38,7 @@ class AssurancesController extends Controller
             ],200);
     }
 
-     public function get_compagnieAssurances(){
+    public function get_compagnieAssurances(){
         $compagnieAssurances = DB::table('compagnie_assurances')->where('statut', 1)->get();
 
         return response()->json([
