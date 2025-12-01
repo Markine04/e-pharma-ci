@@ -21,6 +21,7 @@ class AssurancesController extends Controller
             ->join('type_assurances', 'assurances.type_assurance', '=', 'type_assurances.id_typeassurance')
             ->join('compagnie_assurances', 'assurances.compagnie', '=', 'compagnie_assurances.id_compagnie')
             ->where('user_id', $user)
+            ->select('assurances.*', 'type_assurances.libelle as type_assurance_libelle', 'compagnie_assurances.libelle as compagnie_nom')
             ->get();
 
         return response()->json([
