@@ -86,7 +86,7 @@
                                                             data-title="Voir les cartes assurance" style="cursor: pointer;"><i
                                                                 class="icon-eye" style=" color: blue; font-size: 20px;"></i>
                                                         </a>
-                                                    </li>
+                                                    </li>&nbsp;&nbsp;
                                                     <li class="edit"> <a href="#"><i
                                                                 class="icon-pencil-alt"></i></a></li>
                                                     <li class="delete"><a href="#"><i class="icon-trash"></i></a>
