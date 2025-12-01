@@ -19,8 +19,7 @@ class PharmaciesController extends Controller
     public function index_pharmacies()
     {
         $pharmacies = DB::table('pharmacies')->get();
-
-        return response()->json([
+                return response()->json([
             // 'message' => 'Liste de toutes les categories existente',
             'pharmacies' => $pharmacies,
         ], 200);
@@ -109,7 +108,14 @@ class PharmaciesController extends Controller
     public function index_pharmacies_gardes()
     {
         $ids_pharmacies = [];
-        $pharmacies_gardes = DB::table('pharmacie_gardes')->get();
+        // $pharmacies_gardes = DB::table('pharmacie_gardes')->get();
+        $today = now()->toDateString();
+
+        $pharmacies_gardes = DB::table('pharmacie_gardes')
+            ->join('date_phcie_gardes', 'pharmacie_gardes.periode', '=', 'date_phcie_gardes.idatephciegardes')
+            ->where('date_phcie_gardes.date_debut', '<=', $today)
+            ->where('date_phcie_gardes.date_fin', '>=', $today)
+            ->get();
 
         foreach ($pharmacies_gardes as $pharmacie_garde) {
             $ids = json_decode($pharmacie_garde->pharmacie_id, true);

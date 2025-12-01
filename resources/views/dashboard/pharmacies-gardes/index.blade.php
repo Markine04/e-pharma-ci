@@ -76,7 +76,7 @@
                         <select name="commune_id" class="form-select js-example-basic-single">
                             <option value="">Toutes les communes</option>
                             @foreach ($Communes as $commune)
-                                <option value="{{ $commune->idcommune }}">{{ $commune->name }}</option>
+                                <option value="{{ $commune->idcommune }}"{{$re}}>{{ $commune->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -101,7 +101,7 @@
                                     <div class="d-flex align-items-start">
                                         @if ($pharmacie->images == null)
                                             <img class="avatar-sm me-3" src="{{ asset('assets/logo/logoSiha.png') }}"
-                                                alt="{{ $pharmacie->name }}" width="90px" height="70px">
+                                                alt="{{ $pharmacie->name }}" width="80px" height="70px">
                                         @else
                                             <img class="avatar-sm me-3"
                                                 src="{{ asset('storage/pharmacies/' . $pharmacie->images) }}"
