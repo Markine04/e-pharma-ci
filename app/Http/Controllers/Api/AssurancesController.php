@@ -16,7 +16,7 @@ class AssurancesController extends Controller
     {
         // 🔐 Récupère automatiquement l'utilisateur grâce à Sanctum
         $user = $request->user()->id;
-
+        dd($user);
         $assurances = DB::table('users')
         ->join('assurances', 'users.assurance_id', 'assurances.id_assurance')
         ->where('users.id', $user)
