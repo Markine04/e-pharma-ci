@@ -128,7 +128,10 @@ class PharmaciesController extends Controller
         $ids_pharmacies = array_unique($ids_pharmacies);
 
         // Requête unique
-        $data = DB::table('pharmacies')
+        $data = DB::table('pharmacie_gardes')
+            ->join('date_phcie_gardes', 'pharmacie_gardes.periode', '=', 'date_phcie_gardes.idatephciegardes')
+            ->where('date_phcie_gardes.date_debut', '<=', $today)
+            ->where('date_phcie_gardes.date_fin', '>=', $today)
             ->whereIn('idpharmacie', $ids_pharmacies)
             ->get();
 
