@@ -105,8 +105,8 @@
                                                 <td>
                                                     <ul class="action">
                                                         <li class="edit"> <a href="{{route('medicaments.edit', ['id' => $items->idmedicament])}}"><i
-                                                                    class="icon-pencil-alt"></i></a></li>
-                                                        <li class="delete"><a href="#"><i class="icon-trash"></i></a>
+                                                                    class="icon-pencil-alt" style="font-size: 25px"></i></a></li>
+                                                        <li class="delete"><a href="#"><i class="icon-trash" style="font-size: 25px"></i></a>
                                                         </li>
                                                     </ul>
                                                 </td>
