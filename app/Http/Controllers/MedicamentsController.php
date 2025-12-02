@@ -150,19 +150,15 @@ class MedicamentsController extends Controller
      */
     public function update(Request $request, Medicaments $medicaments)
     {
-        dd($request->all());
-        $recupererImages = json_decode($request->existing_images ?? '[]', true);
 
-        if($request->existing_images){
-            $recupererImages = json_decode($request->existing_images, true);
-        } else {
-            $recupererImages = [];
-        }
+
+        
+        $recupererImages = [];
 
         if ($request->temp_images) {
             foreach ($request->temp_images as $tempImage) {
 
-                $tempPath = public_path('storage/produits/' . $tempImage);
+                $tempPath = public_path('storage/temp/' . $tempImage);
 
                 if (file_exists($tempPath)) {
                     $newName = time() . '_' . uniqid() . '.' . pathinfo($tempImage, PATHINFO_EXTENSION);
@@ -173,6 +169,8 @@ class MedicamentsController extends Controller
                     $recupererImages[] = $newName;
                 }
             }
+        }else{
+            $recupererImages[] = $request->existing_images;
         }
 
         DB::table('medicaments')->where('idmedicament', $request->id_medicament)->update([
