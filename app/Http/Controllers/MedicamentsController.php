@@ -194,7 +194,7 @@ class MedicamentsController extends Controller
         ]);
 
 
-        return redirect()->back()->with('success', 'Medicament ajouté avec succès');
+        return redirect()->route('medicaments.index')->with('success', 'Medicament ajouté avec succès');
     }
 
     /**
