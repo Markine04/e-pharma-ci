@@ -268,7 +268,7 @@
         <!-- Formulaire Laravel -->
         <form id="productForm" method="POST" action="{{ route('medicaments.update') }}" enctype="multipart/form-data">
             @csrf <!-- Token de sécurité Laravel -->
-            <input type="hidden" name="id_medicament" value="{{ $medicament->id_medicament }}">
+            <input type="hidden" name="id_medicament" value="{{ $medicaments->idmedicament }}">
             <!-- Section Identification -->
             <div class="form-section">
                 <h2><i class="fas fa-barcode"></i> Identification du Produit</h2>
