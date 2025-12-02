@@ -138,7 +138,11 @@ class MedicamentsController extends Controller
     public function edit(Request $request)
     {
         $medicaments = DB::table('medicaments')->where('idmedicament', $request->id)->first();
-        return view('dashboard.medicaments.edit', compact('medicaments'));
+        $categories = DB::table('categories')->get();
+        $suppliers = DB::table('fournisseurs')->get();
+        $formesGaleniques = DB::table('forme_galeniques')->get();
+        
+        return view('dashboard.medicaments.edit', compact('medicaments', 'categories', 'suppliers', 'formesGaleniques'));
     }
 
     /**
