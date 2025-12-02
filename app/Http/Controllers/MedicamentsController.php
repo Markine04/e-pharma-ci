@@ -141,7 +141,7 @@ class MedicamentsController extends Controller
         $categories = DB::table('categories')->get();
         $suppliers = DB::table('fournisseurs')->get();
         $formesGaleniques = DB::table('forme_galeniques')->get();
-        
+
         return view('dashboard.medicaments.edit', compact('medicaments', 'categories', 'suppliers', 'formesGaleniques'));
     }
 
