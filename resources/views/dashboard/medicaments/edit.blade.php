@@ -334,7 +334,7 @@
                             <select id="galenic_form" name="galenic_form" class="form-control select2" required>
                                 <option value="">Sélectionnez...</option>
                                 @foreach ($formesGaleniques as $items)
-                                    <option value="{{ $items->id_formegalenique }}{{$formesGale->id_formegalenique==$items->id_formegalenique ? 'selected' : ''}}">{{ $items->libelle }}</option>
+                                    <option value="{{ $items->id_formegalenique }}"{{$formesGale->id_formegalenique==$items->id_formegalenique ? 'selected' : ''}}>{{ $items->libelle }}</option>
                                 @endforeach
                             </select>
                             @error('galenic_form')
@@ -350,7 +350,7 @@
                                 required>
                                 <option value="">Sélectionnez...</option>
                                 @foreach ($categories as $items)
-                                    <option value="{{ $items->idcategorie }} {{$categoriesMed->idcategorie==$items->idcategorie ? 'selected' : ''}}">{{ $items->libelle }}</option>
+                                    <option value="{{ $items->idcategorie }}"{{$categoriesMed->idcategorie==$items->idcategorie ? 'selected' : ''}}>{{ $items->libelle }}</option>
                                 @endforeach
                                 {{-- <option value="1">Analgésique</option>
                                 <option value="2">Antibiotique</option>
