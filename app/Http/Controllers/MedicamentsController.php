@@ -151,33 +151,40 @@ class MedicamentsController extends Controller
     public function update(Request $request, Medicaments $medicaments)
     {
 
+        // On récupère les anciennes images comme tableau (jamais string JSON)
+        $existingImages = json_decode($medicaments->images ?? '[]', true);
+
+        // Tableau final
         $recupererImages = [];
 
-        // 1️⃣ Si de nouvelles images TEMP sont envoyées
+        // 1️⃣ S'il y a des nouvelles images TEMP
         if (!empty($request->temp_images)) {
 
+            // On supprime les anciennes images du dossier produits
+            foreach ($existingImages as $oldImg) {
+                $oldPath = public_path('storage/produits/' . $oldImg);
+                if (file_exists($oldPath)) {
+                    unlink($oldPath);
+                }
+            }
+
+            // On remplace par les nouvelles
             foreach ($request->temp_images as $tempImage) {
 
                 $tempPath = public_path('storage/temp/' . $tempImage);
 
                 if (file_exists($tempPath)) {
-
-                    // Nouveau nom unique
                     $newName = time() . '_' . uniqid() . '.' . pathinfo($tempImage, PATHINFO_EXTENSION);
 
-                    // Déplacement vers produits
                     rename($tempPath, public_path('storage/produits/' . $newName));
 
                     $recupererImages[] = $newName;
                 }
             }
-
-            // 2️⃣ Sinon → garder les anciennes images existantes
-        } else {
-            // existing_images doit être un tableau JSON → on le force en tableau
-            $recupererImages = is_array($request->existing_images)
-                ? $request->existing_images
-                : json_decode($request->existing_images ?? '[]', true);
+        }
+        // 2️⃣ Aucune nouvelle image → on garde les anciennes
+        else {
+            $recupererImages = $existingImages;
         }
 
 
