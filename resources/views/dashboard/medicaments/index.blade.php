@@ -104,7 +104,7 @@
                                                 </td>
                                                 <td>
                                                     <ul class="action">
-                                                        <li class="edit"> <a href="{{route('medicaments.edit', ['id' => $items->id])}}"><i
+                                                        <li class="edit"> <a href="{{route('medicaments.edit', ['id' => $items->idmedicament])}}"><i
                                                                     class="icon-pencil-alt"></i></a></li>
                                                         <li class="delete"><a href="#"><i class="icon-trash"></i></a>
                                                         </li>
