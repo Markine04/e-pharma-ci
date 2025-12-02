@@ -281,7 +281,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="barcode" class="required">Code Barre</label>
-                            <input type="text" id="barcode" name="barcode" value="{{ old('barcode') }}" required
+                            <input type="text" id="barcode" name="barcode" value="{{ $medicaments->code_barre }}" required
                                 class="form-control">
                             @error('barcode')
                                 <div class="text-danger">{{ $message }}</div>
@@ -292,7 +292,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="name" class="required">Nom du Produit</label>
-                            <input type="text" id="name" name="name" value="{{ old('name') }}" required
+                            <input type="text" id="name" name="name" value="{{ $medicaments->nom }}" required
                                 class="form-control">
                             @error('name')
                                 <div class="text-danger">{{ $message }}</div>
@@ -304,7 +304,7 @@
                         <div class="form-group">
                             <label for="active_ingredient" class="required">Principe Actif</label>
                             <input type="text" id="active_ingredient" name="active_ingredient"
-                                value="{{ old('active_ingredient') }}" required class="form-control">
+                                value="{{ $medicaments->principe_actif }}" required class="form-control">
                             @error('active_ingredient')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -320,7 +320,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="dosage" class="required">Dosage</label>
-                            <input type="text" id="dosage" name="dosage" value="{{ old('dosage') }}"
+                            <input type="text" id="dosage" name="dosage" value="{{ $medicaments->dosage }}"
                                 placeholder="ex: 500mg" required class="form-control">
                             @error('dosage')
                                 <div class="text-danger">{{ $message }}</div>
@@ -375,7 +375,7 @@
                         <div class="form-group">
                             <label for="indication">Description indication</label>
                             <textarea id="indication" name="indication" placeholder="indication détaillée du produit..." class="form-control"
-                                rows="5">{{ old('description') }}</textarea>
+                                rows="5">{{ $medicaments->indications }}</textarea>
                             @error('indication')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -390,7 +390,7 @@
                         <div class="form-group">
                             <label for="posologie">Description posologie</label>
                             <textarea id="posologie" name="posologie" placeholder="posologie détaillée du produit..." class="form-control"
-                                rows="5">{{ old('posologie') }}</textarea>
+                                rows="5">{{ $medicaments->posologies }}</textarea>
                             @error('posologie')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -405,7 +405,7 @@
                         <div class="form-group">
                             <label for="contreindication">Description contre-indication</label>
                             <textarea id="contreindication" name="contreindication" placeholder="contre-indication détaillée du produit..."
-                                class="form-control" rows="5">{{ old('contreindication') }}</textarea>
+                                class="form-control" rows="5">{{ $medicaments->contreindications }}</textarea>
                             @error('contreindication')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -420,7 +420,7 @@
                         <div class="form-group">
                             <label for="composition">Description composition</label>
                             <textarea id="composition" name="composition" placeholder="composition détaillée du produit..." class="form-control"
-                                rows="5">{{ old('composition') }}</textarea>
+                                rows="5">{{ $medicaments->compositions }}</textarea>
                             @error('composition')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -467,7 +467,7 @@
                         <div class="form-group">
                             <label for="purchase_price" class="required">Prix d'Achat (€)</label>
                             <input type="number" id="purchase_price" name="purchase_price"
-                                value="{{ old('purchase_price') }}" step="0.01" min="0" required
+                                value="{{ $medicaments->prix_achat }}" step="0.01" min="0" required
                                 class="form-control">
                             @error('purchase_price')
                                 <div class="text-danger">{{ $message }}</div>
@@ -479,7 +479,7 @@
                         <div class="form-group">
                             <label for="selling_price" class="required">Prix de Vente (€)</label>
                             <input type="number" id="selling_price" name="selling_price"
-                                value="{{ old('selling_price') }}" step="0.01" min="0" required
+                                value="{{ $medicaments->prix_vente }}" step="0.01" min="0" required
                                 class="form-control">
                             @error('selling_price')
                                 <div class="text-danger">{{ $message }}</div>
@@ -492,7 +492,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="vat_rate" class="required">Taux de TVA (%)</label>
-                            <input type="number" id="vat_rate" name="vat_rate" value="{{ old('vat_rate', 20) }}"
+                            <input type="number" id="vat_rate" name="vat_rate" value="{{ $medicaments->taux_tva }}"
                                 min="0" max="30" required class="form-control">
                             @error('vat_rate')
                                 <div class="text-danger">{{ $message }}</div>
@@ -503,7 +503,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="packaging" class="required">Conditionnement</label>
-                            <input type="text" id="packaging" name="packaging" value="{{ old('packaging') }}"
+                            <input type="text" id="packaging" name="packaging" value="{{ $medicaments->conditionnement }}"
                                 placeholder="ex: Boîte de 30" required class="form-control">
                             @error('packaging')
                                 <div class="text-danger">{{ $message }}</div>
@@ -515,7 +515,7 @@
                         <div class="form-group">
                             <label for="storage_temperature">Température de Conservation (°C)</label>
                             <input type="text" id="storage_temperature" name="storage_temperature"
-                                value="{{ old('storage_temperature') }}" placeholder="ex: Entre 15 et 25"
+                                value="{{ $medicaments->temperature_conservation }}" placeholder="ex: Entre 15 et 25"
                                 class="form-control">
                             @error('storage_temperature')
                                 <div class="text-danger">{{ $message }}</div>
@@ -550,7 +550,7 @@
                         <div class="form-group">
                             <label for="description">Description</label>
                             <textarea id="description" name="description" placeholder="Description détaillée du produit..."
-                                class="form-control">{{ old('description') }}</textarea>
+                                class="form-control">{{ $medicaments->description }}</textarea>
                             @error('description')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -578,7 +578,7 @@
                 @enderror
             </div>
 
-            <button type="submit" class="btn-submit"><i class="fas fa-save"></i> Enregistrer le Produit</button>
+            <button type="submit" class="btn-submit"><i class="fas fa-save"></i> Modifier le Medicament</button>
         </form>
     </div>
 
