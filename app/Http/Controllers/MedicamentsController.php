@@ -151,27 +151,35 @@ class MedicamentsController extends Controller
     public function update(Request $request, Medicaments $medicaments)
     {
 
-
-        
         $recupererImages = [];
 
-        if ($request->temp_images) {
+        // 1️⃣ Si de nouvelles images TEMP sont envoyées
+        if (!empty($request->temp_images)) {
+
             foreach ($request->temp_images as $tempImage) {
 
                 $tempPath = public_path('storage/temp/' . $tempImage);
 
                 if (file_exists($tempPath)) {
+
+                    // Nouveau nom unique
                     $newName = time() . '_' . uniqid() . '.' . pathinfo($tempImage, PATHINFO_EXTENSION);
 
-                    // Déplacer du temp -> produits
+                    // Déplacement vers produits
                     rename($tempPath, public_path('storage/produits/' . $newName));
 
                     $recupererImages[] = $newName;
                 }
             }
-        }else{
-            $recupererImages[] = $request->existing_images;
+
+            // 2️⃣ Sinon → garder les anciennes images existantes
+        } else {
+            // existing_images doit être un tableau JSON → on le force en tableau
+            $recupererImages = is_array($request->existing_images)
+                ? $request->existing_images
+                : json_decode($request->existing_images ?? '[]', true);
         }
+
 
         DB::table('medicaments')->where('idmedicament', $request->id_medicament)->update([
             "code_barre" => $request->barcode,
