@@ -150,13 +150,19 @@ class MedicamentsController extends Controller
      */
     public function update(Request $request, Medicaments $medicaments)
     {
+        dd($request->all());
+        $recupererImages = json_decode($request->existing_images ?? '[]', true);
 
-        $recupererImages = [];
+        if($request->existing_images){
+            $recupererImages = json_decode($request->existing_images, true);
+        } else {
+            $recupererImages = [];
+        }
 
         if ($request->temp_images) {
             foreach ($request->temp_images as $tempImage) {
 
-                $tempPath = public_path('storage/temp/' . $tempImage);
+                $tempPath = public_path('storage/produits/' . $tempImage);
 
                 if (file_exists($tempPath)) {
                     $newName = time() . '_' . uniqid() . '.' . pathinfo($tempImage, PATHINFO_EXTENSION);

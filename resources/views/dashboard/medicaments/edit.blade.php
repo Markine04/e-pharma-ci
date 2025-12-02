@@ -274,6 +274,7 @@
         <form id="productForm" method="POST" action="{{ route('medicaments.update') }}" enctype="multipart/form-data">
             @csrf <!-- Token de sécurité Laravel -->
             <input type="hidden" name="id_medicament" value="{{ $medicaments->idmedicament }}">
+            <input type="hidden" name="existing_images[]" value='{{ $medicaments->images }}'>
             <!-- Section Identification -->
             <div class="form-section">
                 <h2><i class="fas fa-barcode"></i> Identification du Produit</h2>

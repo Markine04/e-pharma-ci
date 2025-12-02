@@ -7,6 +7,7 @@
 <form method="post" action="{{ route('categoriemedicaments.update') }}" enctype="multipart/form-data"/>
     @csrf
     <input type="hidden" name="idcategorie" value="{{ $categories->idcategorie }}">
+    <input type="hidden" name="existing_images" value='{{ $categories->image }}'>
     @php
         $elements = DB::table('categories')->get();
     @endphp
