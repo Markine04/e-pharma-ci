@@ -152,7 +152,7 @@ class MedicamentsController extends Controller
     {
 
         // On récupère les anciennes images comme tableau (jamais string JSON)
-        $existingImages = json_decode($medicaments->images ?? '[]', true);
+        $existingImages = json_decode($request->existing_images ?? '[]', true);
 
         // Tableau final
         $recupererImages = [];
