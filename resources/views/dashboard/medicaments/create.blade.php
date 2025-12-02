@@ -283,6 +283,7 @@
             <div class="form-section">
                 <h2><i class="fas fa-barcode"></i> Identification du Produit</h2>
                 <div class="row">
+                    <input type="hidden" name="barcode" value="{{ $code }}">
                     <div class="col-lg-4 col-md-12 col-sm-12 col-xl-4">
                         <div class="form-group">
                             <label for="barcode" class="required">Code Barre</label>
