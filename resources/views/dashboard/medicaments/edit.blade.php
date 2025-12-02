@@ -266,9 +266,9 @@
         </header>
 
         @php
-            $formesGale = DB::table('forme_galeniques')->where('id_formegalenique', $medicaments->forme_galenique)->get();
-            $categoriesMed = DB::table('categories')->whereIn('idcategorie', json_decode($medicaments->categorie_id))->get();
-            $fournisseurMed = DB::table('fournisseurs')->where('idfournisseur', $medicaments->fournisseur_id)->get();
+            $formesGale = DB::table('forme_galeniques')->where('id_formegalenique', $medicaments->forme_galenique)->first();
+            $categoriesMed = DB::table('categories')->whereIn('idcategorie', json_decode($medicaments->categorie_id))->first();
+            $fournisseurMed = DB::table('fournisseurs')->where('idfournisseur', $medicaments->fournisseur_id)->first();
         @endphp
         <!-- Formulaire Laravel -->
         <form id="productForm" method="POST" action="{{ route('medicaments.update') }}" enctype="multipart/form-data">
