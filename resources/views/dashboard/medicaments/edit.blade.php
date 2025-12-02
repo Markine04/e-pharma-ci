@@ -262,8 +262,7 @@
 <body>
     <div class="container">
         <header>
-            <h1><i class="fas fa-pills"></i> Formulaire d'Enregistrement de Produit</h1>
-            <p>Veuillez remplir tous les champs obligatoires (*)</p>
+            <h1><i class="fas fa-pills"></i> Formulaire de modification de Produit</h1>
         </header>
 
         <!-- Formulaire Laravel -->

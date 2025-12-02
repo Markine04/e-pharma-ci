@@ -135,9 +135,10 @@ class MedicamentsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Medicaments $medicaments)
+    public function edit(Request $request)
     {
-        //
+        $medicaments = DB::table('medicaments')->where('idmedicament', $request->id)->first();
+        return view('dashboard.medicaments.edit', compact('medicaments'));
     }
 
     /**
@@ -145,7 +146,51 @@ class MedicamentsController extends Controller
      */
     public function update(Request $request, Medicaments $medicaments)
     {
-        //
+
+        $recupererImages = [];
+
+        if ($request->temp_images) {
+            foreach ($request->temp_images as $tempImage) {
+
+                $tempPath = public_path('storage/temp/' . $tempImage);
+
+                if (file_exists($tempPath)) {
+                    $newName = time() . '_' . uniqid() . '.' . pathinfo($tempImage, PATHINFO_EXTENSION);
+
+                    // Déplacer du temp -> produits
+                    rename($tempPath, public_path('storage/produits/' . $newName));
+
+                    $recupererImages[] = $newName;
+                }
+            }
+        }
+
+        DB::table('medicaments')->where('idmedicament', $request->id_medicament)->update([
+            "code_barre" => $request->barcode,
+            "nom" => $request->name,
+            "principe_actif" => $request->active_ingredient,
+            "dosage" => $request->dosage,
+            "forme_galenique" => $request->galenic_form,
+            "indications" => $request->indication,
+            "posologies" => $request->posologie,
+            "contreindications" => $request->contreindication,
+            "compositions" => $request->composition,
+            "categorie_id" => json_encode($request->category),
+            "fournisseur_id" => $request->supplier,
+            "prix_achat" => $request->purchase_price,
+            "prix_vente" => $request->selling_price,
+            "taux_tva" => $request->vat_rate,
+            "besoin_ordonnance" => $request->prescription_required,
+            "conditionnement" => $request->packaging,
+            "temperature_conservation" => $request->storage_temperature,
+            "description" => $request->description,
+            "images" => json_encode($recupererImages),
+            "user_enreg" => Auth::user()->id,
+            "updated_at" => Carbon::now(),
+        ]);
+
+
+        return redirect()->back()->with('success', 'Medicament ajouté avec succès');
     }
 
     /**

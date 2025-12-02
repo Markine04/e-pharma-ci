@@ -62,7 +62,8 @@ class UploadController extends Controller
                 'url' => asset('storage/ordonnances-clients/' . $name)
             ], 200);
         }    
-            return response()->json(['success' => false, 'message' => 'Aucune image reçue'], 400);
+        
+        return response()->json(['success' => false, 'message' => 'Aucune image reçue'], 400);
         
   
     }
